@@ -1,0 +1,13 @@
+{
+  "facts": [
+    {
+      "short": "Primul radar mobil folosit la scară largă.",
+      "detail": "Radarul britanic Chain Home...",
+      "category": "tehnic",
+      "icon": "📡",
+      "source": "https://www.iwm.org.uk/history/how-radar-helped-win-the-battle-of-britain",
+      "sourceName": "Imperial War Museums"
+    }
+    // ...alte fun facts
+  ]
+}

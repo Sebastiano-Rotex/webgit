@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Al Doilea Război Mondial — Site Interactiv</title>
+  <style>
+    :root{--accent:#2b6cb0;--muted:#6b7280;--bg:#0f1724;--card:#0b1220;color-scheme:dark}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071226 0%, #071829 100%);color:#e6eef8}
+    .wrap{max-width:1000px;margin:28px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center}
+    header h1{margin:0;font-size:1.6rem}
+    nav{margin-left:auto}
+    nav a{color:var(--accent);text-decoration:none;margin-left:12px}
+    .hero{background:linear-gradient(90deg, rgba(43,108,176,0.08), transparent);padding:16px;border-radius:12px;margin-top:12px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:18px}
+    @media(max-width:880px){.grid{grid-template-columns:1fr}}
+    .card{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    h2{margin:8px 0}
+    .accordion .item{border-top:1px solid rgba(255,255,255,0.03)}
+    .accordion button{width:100%;text-align:left;padding:12px;background:none;border:0;color:inherit;font-size:1rem;display:flex;justify-content:space-between;align-items:center}
+    .accordion .panel{padding:0 12px 12px;display:none;color:var(--muted)}
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:10px}
+    .controls{display:flex;gap:8px;align-items:center}
+    .quiz .q{margin-bottom:12px}
+    button.btn{background:var(--accent);border:0;padding:8px 12px;border-radius:8px;color:white;cursor:pointer}
+    input[type=range]{width:100%}
+    .search{display:flex;gap:8px}
+    .search input{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+    footer{margin-top:18px;color:var(--muted);font-size:0.9rem}
+    .result{padding:10px;margin-top:10px;border-radius:8px;background:rgba(255,255,255,0.02)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Al Doilea Război Mondial</h1>
+        <div style="color:var(--muted);font-size:0.9rem">Site interactiv educațional — sumar și activități</div>
+      </div>
+      <nav>
+        <a href="#cauze">Cauze</a>
+        <a href="#teatre">Teatre</a>
+        <a href="#holocaust">Holocaust</a>
+      </nav>
+    </header>
+
+    <section class="hero card">
+      <strong>Ce găsești aici:</strong>
+      <ul style="margin:8px 0 0 18px;color:var(--muted)">
+        <li>Secțiuni sintetizate din documentul școlar</li>
+        <li>Timeline interactiv</li>
+        <li>Accordioane pentru învățare pas-cu-pas</li>
+        <li>Quiz rapid cu feedback imediat</li>
+      </ul>
+    </section>
+
+    <div class="grid">
+      <main>
+        <section id="cauze" class="card">
+          <h2>Cauzele războiului</h2>
+          <div class="accordion" id="accCauze">
+            <div class="item">
+              <button data-target="p1">Politica expansionistă și ideologia</button>
+              <div id="p1" class="panel">Germania, Italia și Japonia urmăreau extinderea teritorială, resurse și dominație, susținute de ideologii ultranaționaliste și rasiste.</div>
+            </div>
+            <div class="item">
+              <button data-target="p2">Factori geopolitici</button>
+              <div id="p2" class="panel">Revizionismul, constituirea Axei Berlin–Roma–Tokyo, conciliatorismul franco-britanic și fragilitatea securității colective.</div>
+            </div>
+            <div class="item">
+              <button data-target="p3">Rezumat</button>
+              <div id="p3" class="panel">În concluzie: politica expansionistă, alianțele agresive și eșecul mecanismelor de prevenire au dus la izbucnire.</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="teatre" class="card" style="margin-top:14px">
+          <h2>Principalele teatre de operațiuni</h2>
+          <ul style="color:var(--muted)">
+            <li>Frontul de Vest — Europa Occidentală</li>
+            <li>Frontul de Est — teritoriul U.R.S.S.</li>
+            <li>Sud-Estul Europei</li>
+            <li>Nordul Africii</li>
+            <li>Zona Pacificului</li>
+          </ul>
+          <div style="margin-top:10px;color:var(--muted)">Folosește timeline-ul din dreapta pentru a explora date cheie.</div>
+        </section>
+
+        <section id="desfasurare" class="card" style="margin-top:14px">
+          <h2>Desfășurarea războiului — fragmente</h2>
+          <p style="color:var(--muted)">Documentul tău conține secțiuni despre: invadarea Poloniei, "războiul ciudat", bătălia Angliei, operațiunile din Africa de Nord, invazia U.R.S.S., atacul de la Pearl Harbor și intrarea SUA în război, debarcarea din Normandia și capitularea finală.</p>
+          <details style="color:var(--muted);margin-top:8px"><summary>Vezi sursa (documentul încărcat)</summary>
+            <p style="color:var(--muted)">Acest site sintetizează conținut din documentul furnizat.</p>
+          </details>
+        </section>
+
+        <section id="holocaust" class="card" style="margin-top:14px">
+          <h2>Holocaustul — sinteză</h2>
+          <p style="color:var(--muted)">Explică premisele (legile de la Nurnberg, Noaptea de Cristal), "Soluția finală", funcționarea lagărelor și impactul asupra Europei (≈6 milioane de evrei uciși) și participarea unor state din regiune.</p>
+        </section>
+
+        <section id="conferinte" class="card" style="margin-top:14px">
+          <h2>Conferințe interaliate</h2>
+          <ul style="color:var(--muted)">
+            <li>Acordul UK–URSS (octombrie 1941)</li>
+            <li>Charta Atlanticului (14 august 1941)</li>
+            <li>Casablanca (ianuarie 1943)</li>
+            <li>Yalta (februarie 1945)</li>
+            <li>Potsdam (iulie–august 1945)</li>
+          </ul>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>Resurse și activități</h2>
+          <div class="quiz">
+            <h3>Quiz rapid</h3>
+            <div class="q">
+              <div><strong>1.</strong> În ce an a început invazia Poloniei?</div>
+              <label><input type="radio" name="q1" value="1939"> 1939</label>
+              <label><input type="radio" name="q1" value="1941"> 1941</label>
+            </div>
+            <div class="q">
+              <div><strong>2.</strong> Ce eveniment a dus la intrarea SUA în război?</div>
+              <label><input type="radio" name="q2" value="Pearl"> Atacul de la Pearl Harbor</label>
+              <label><input type="radio" name="q2" value="Dday"> Debarcarea din Normandia</label>
+            </div>
+            <button class="btn" id="checkQuiz">Vezi rezultatul</button>
+            <div id="quizResult" class="result" aria-live="polite"></div>
+          </div>
+        </section>
+
+      </main>
+
+      <aside>
+        <div class="card">
+          <h3>Timeline interactiv</h3>
+          <div style="font-size:0.9rem;color:var(--muted)">Trage cursorul pentru a vedea momente cheie</div>
+          <input type="range" id="slider" min="0" max="6" value="0">
+          <div id="timeLabel" style="margin-top:10px;color:var(--muted)">1 septembrie 1939 — Invadarea Poloniei</div>
+          <div style="margin-top:12px">
+            <button class="btn" id="prev">◀</button>
+            <button class="btn" id="next">▶</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Căutare rapidă</h3>
+          <div class="search">
+            <input id="searchInput" placeholder="Caută termen (ex: Stalingrad)" />
+            <button class="btn" id="searchBtn">Caută</button>
+          </div>
+          <div id="searchRes" class="result"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Instrumente</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn" id="printBtn">Print / Salvează PDF</button>
+            <button class="btn" id="exportTxt">Exportă text</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Acest site a fost generat automat pe baza documentului încărcat. Pentru referință, conținutul original a fost folosit ca sursă.
+    </footer>
+  </div>
+
+  <script>
+    // Accordion
+    document.querySelectorAll('.accordion button').forEach(b=>{
+      b.addEventListener('click',()=>{
+        const id=b.dataset.target||b.getAttribute('data-target')||b.getAttribute('aria-controls')
+        const p=document.getElementById(id)
+        if(!p) return;
+        const opened = p.style.display === 'block'
+        document.querySelectorAll('.accordion .panel').forEach(x=>x.style.display='none')
+        p.style.display = opened ? 'none' : 'block'
+      })
+    })
+
+    // Timeline data
+    const events = [
+      {label:'1 septembrie 1939 — Invadarea Poloniei'},
+      {label:'9 aprilie 1940 — Invazia Danemarcei și Norvegiei'},
+      {label:'10 iunie 1940 — Căderea Franței'},
+      {label:'7 decembrie 1941 — Atacul de la Pearl Harbor'},
+      {label:'6 iunie 1944 — Debarcarea din Normandia'},
+      {label:'7 mai 1945 — Capitulaarea Germaniei'},
+      {label:'2 septembrie 1945 — Capitulaarea Japoniei'}
+    ]
+
+    const slider=document.getElementById('slider')
+    const label=document.getElementById('timeLabel')
+    function updateLabel(i){ label.textContent = events[i].label }
+    slider.addEventListener('input',()=> updateLabel(parseInt(slider.value)))
+    document.getElementById('prev').addEventListener('click',()=>{ slider.value = Math.max(0,slider.value-1); updateLabel(parseInt(slider.value)) })
+    document.getElementById('next').addEventListener('click',()=>{ slider.value = Math.min(events.length-1,parseInt(slider.value)+1); updateLabel(parseInt(slider.value)) })
+
+    // Quiz
+    document.getElementById('checkQuiz').addEventListener('click',()=>{
+      const a1 = document.querySelector('input[name=q1]:checked')?.value
+      const a2 = document.querySelector('input[name=q2]:checked')?.value
+      let score=0, total=2, msgs=[]
+      if(a1==='1939') { score++; msgs.push('Întrebarea 1: corect') } else msgs.push('Întrebarea 1: greșit — corect: 1939')
+      if(a2==='Pearl') { score++; msgs.push('Întrebarea 2: corect') } else msgs.push('Întrebarea 2: greșit — corect: Atacul de la Pearl Harbor')
+      document.getElementById('quizResult').innerHTML = `<strong>Scor: ${score}/${total}</strong><div style="margin-top:8px;color:var(--muted)">${msgs.join('<br>')}</div>`
+    })
+
+    // Simple search (searches visible text)
+    document.getElementById('searchBtn').addEventListener('click',()=>{
+      const q=document.getElementById('searchInput').value.trim().toLowerCase()
+      if(!q){ document.getElementById('searchRes').textContent='Introdu un termen.'; return }
+      const nodes = Array.from(document.querySelectorAll('main')).map(n=>n.textContent.toLowerCase())
+      const found = nodes.some(t=>t.includes(q))
+      document.getElementById('searchRes').textContent = found ? 'Termen găsit în pagină.' : 'Termenul nu a fost găsit.'
+    })
+
+    // Export text
+    document.getElementById('exportTxt').addEventListener('click',()=>{
+      const text = Array.from(document.querySelectorAll('main section')).map(s=>s.querySelector('h2')?.textContent + '\n' + s.textContent).join('\n\n')
+      const blob = new Blob([text],{type:'text/plain'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a'); a.href=url; a.download='AlDoileaRazboiMondial.txt'; a.click(); URL.revokeObjectURL(url)
+    })
+
+    document.getElementById('printBtn').addEventListener('click',()=> window.print())
+
+    // Initialize
+    updateLabel(0)
+  </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Istorie - Cauzele Războiului</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    function toggle(id) {
+      const content = document.getElementById(id);
+      content.classList.toggle('hidden');
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Staatliches', sans-serif;
+      background-color: #1a1a1a;
+      background-image: url('https://www.transparenttextures.com/patterns/camo.png');
+      font-size: 20px;
+    }
+    .text-sm {
+      font-size: 1.2rem !important;
+    }
+    .text-lg {
+      font-size: 1.5rem !important;
+    }
+    .text-xl {
+      font-size: 1.8rem !important;
+    }
+    .text-2xl {
+      font-size: 2.2rem !important;
+    }
+    .text-4xl {
+      font-size: 3rem !important;
+    }
+  </style>
+</head>
+<body class="text-gray-100 p-6">
+  <h1 class="text-4xl text-yellow-300 mb-6"><i class="fas fa-history"></i> Istorie</h1>
+
+  <div class="bg-gray-900 bg-opacity-90 p-6 rounded-xl shadow-lg">
+    <h2 class="text-2xl text-yellow-200 mb-4">Cauzele Al Doilea Război Mondial</h2>
+
+    <!-- Cauza 1 -->
+    <div class="mb-4">
+      <button onclick="toggle('cauza1')" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
+        <i class="fas fa-chevron-right"></i> Tratatul de la Versailles (1919) – umilința impusă Germaniei
+      </button>
+      <div id="cauza1" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
+        <ul class="list-disc list-inside">
+          <li>Pierderea unor teritorii importante (Alsacia și Lorena către Franța, coloniile externe etc.)</li>
+          <li>Limitarea armatei la 100.000 de soldați</li>
+          <li>Interzicerea armelor grele (avioane, tancuri)</li>
+          <li>Plata unor despăgubiri uriașe către statele învingătoare (132 miliarde de mărci aur)</li>
+        </ul>
+        <p class="mt-2"> Rezultat: un sentiment profund de umilință și dorință de revanșă în rândul populației germane.</p>
+      </div>
+    </div>
+
+    <!-- Cauza 2 -->
+    <div class="mb-4">
+      <button onclick="toggle('cauza2')" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
+        <i class="fas fa-chevron-right"></i> Ascensiunea regimurilor totalitare
+      </button>
+      <div id="cauza2" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
+        <p class="font-semibold text-red-400"> Nazismul (Germania)</p>
+        <ul class="list-disc list-inside">
+          <li>Lider: Adolf Hitler</li>
+          <li>Puterea preluată în 1933, în contextul crizei economice</li>
+          <li>Ideologie: naționalism extremist, rasism, antisemitism, revizionism teritorial</li>
+          <li>Politici: reînarmare, Anschluss (1938), invadarea Cehoslovaciei (1939)</li>
+        </ul>
+        <p class="mt-2 font-semibold text-gray-300"> Fascismul (Italia)</p>
+        <ul class="list-disc list-inside">
+          <li>Lider: Benito Mussolini</li>
+          <li>Puterea preluată în 1922</li>
+          <li>Ideologie: naționalism radical, dictatură, glorificarea statului</li>
+          <li>Acțiuni: invadarea Etiopiei (1935), intervenția în Spania, Axa Roma-Berlin (1936)</li>
+        </ul>
+        <p class="mt-2 font-semibold text-red-400"> Militarismul în Japonia</p>
+        <ul class="list-disc list-inside">
+          <li>Conducere militară imperială expansionistă</li>
+          <li>Invadarea Manciuriei (1931), apoi China (1937)</li>
+          <li>Masacrul de la Nanking (1937)</li>
+        </ul>
+        <p class="mt-2"> Regimuri autoritare, expansioniste, bazate pe forță militară și represiune.</p>
+      </div>
+    </div>
+
+    <!-- Cauza 3 -->
+    <div class="mb-4">
+      <button onclick="toggle('cauza3')" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
+        <i class="fas fa-chevron-right"></i> Criza economică mondială (1929–1933)
+      </button>
+      <div id="cauza3" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
+        <ul class="list-disc list-inside">
+          <li>Șomaj masiv, inflație, foamete, mai ales în Germania</li>
+          <li>
+            Promisiuni totalitare de „ordine” și „măreție națională”</li>
+          <li>Democrațiile păreau slabe și ineficiente</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cauza 4 -->
+    <div class="mb-4">
+      <button onclick="toggle('cauza4')" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
+        <i class="fas fa-chevron-right"></i> Politica de conciliere („appeasement”)
+      </button>
+      <div id="cauza4" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
+        <ul class="list-disc list-inside">
+          <li>Evitat confruntarea directă cu Hitler, sperând că se va opri</li>
+          <li>Conferința de la München (1938): Sudetii cedați fără opoziție</li>
+          <li>Nu s-a reacționat la reocuparea Rinaniei și Anschluss</li>
+        </ul>
+        <p class="mt-2"> Politică percepută de Hitler ca slăbiciune, încurajând agresiunile.</p>
+      </div>
+    </div>
+
+    <!-- Cauza 5 -->
+    <div class="mb-4">
+      <button onclick="toggle('cauza5')" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
+        <i class="fas fa-chevron-right"></i> Eșecul Ligii Națiunilor
+      </button>
+      <div id="cauza5" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
+        <ul class="list-disc list-inside">
+          <li>Creată pentru pace mondială, dar fără forță militară</li>
+          <li>Nu a oprit agresiunile Japoniei, Italiei, Germaniei</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cauza 6 -->
+    <div class="mb-4">
+      <button onclick="toggle('cauza6')" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
+        <i class="fas fa-chevron-right"></i> Pactul Ribbentrop-Molotov (23 august 1939)
+      </button>
+      <div id="cauza6" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
+        <ul class="list-disc list-inside">
+          <li>Pact de neagresiune între Germania și URSS</li>
+          <li>Protocol secret: împărțirea Poloniei și altor teritorii est-europene</li>
+        </ul>
+        <p class="mt-2"> A permis Germaniei să atace Polonia fără teama unui război pe două fronturi.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-900 bg-opacity-90 p-6 rounded-xl shadow-lg mt-8">
+  <h2 class="text-2xl text-yellow-200 mb-4"><i class="fas fa-stream"></i> Cronologia Evenimentelor (1919–1939)</h2>
+
+   <!-- Cronologia Evenimentelor -->
+  <section>
+    <h2 class="text-3xl text-yellow-300 mb-6"><i class="fas fa-stream"></i> Cronologia Evenimentelor (1919–1939)</h2>
+
+    <ol class="relative border-l border-yellow-400 ml-4">
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="tratatul-versailles.html" class="text-yellow-300 hover:underline">1919 – Tratatul de la Versailles</a>
+        </h3>
+        <p class="text-sm text-gray-300">Germania este obligată să accepte condiții dure.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="mussolini-1922.html" class="text-yellow-300 hover:underline">1922 – Mussolini devine prim-ministru</a>
+        </h3>
+        <p class="text-sm text-gray-300">Ascensiunea fascismului în Italia.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="hitler-1933.html" class="text-yellow-300 hover:underline">1933 – Hitler devine cancelar</a>
+        </h3>
+        <p class="text-sm text-gray-300">Nazismul preia puterea în Germania.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="etiopia-1935.html" class="text-yellow-300 hover:underline">1935 – Italia invadează Etiopia</a>
+        </h3>
+        <p class="text-sm text-gray-300">Liga Națiunilor eșuează să intervină.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="axa-roma-berlin.html" class="text-yellow-300 hover:underline">1936 – Axa Roma–Berlin</a>
+        </h3>
+        <p class="text-sm text-gray-300">Alianță Italia–Germania.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="anschluss-munchen.html" class="text-yellow-300 hover:underline">1938 – Anschluss și Acordul de la München</a>
+        </h3>
+        <p class="text-sm text-gray-300">Germania anexează Austria și obține Sudetele.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-yellow-400 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="pactul-ribbentrop.html" class="text-yellow-300 hover:underline">23 august 1939 – Pactul Ribbentrop–Molotov</a>
+        </h3>
+        <p class="text-sm text-gray-300">Germania și URSS împart Europa de Est.</p>
+      </li>
+
+      <li class="mb-6 ml-6">
+        <span class="absolute -left-3 w-6 h-6 bg-red-500 rounded-full ring-8 ring-gray-900"></span>
+        <h3 class="font-bold text-lg">
+          <a href="invazia-poloniei.html" class="text-red-400 hover:underline">1 septembrie 1939 – Germania invadează Polonia</a>
+        </h3>
+        <p class="text-sm text-gray-300">Începutul celui de-Al Doilea Război Mondial.</p>
+      </li>
+</ol>
+</section>
+</div>
+</body>
+</html>

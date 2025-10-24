@@ -1,0 +1,16 @@
+{
+  "events": [
+    {
+      "id": "inv-polonia",
+      "title": "Invazia Poloniei",
+      "date": "1 septembrie 1939",
+      "shortDate": "1939",
+      "icon": "⚔️",
+      "summary": "Germania invadează Polonia...",
+      "detail": "Detalii eveniment...",
+      "image": "assets/polonia1939.jpg",
+      "imageCredit": "Bundesarchiv"
+    }
+    // ...alte evenimente
+  ]
+}

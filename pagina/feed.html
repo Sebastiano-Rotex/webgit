@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback</title>
+  <style>
+    body {
+      font-family: 'Roboto Condensed', Arial, sans-serif;
+      background: linear-gradient(135deg, #2e4226 0%, #6b7a59 100%);
+      color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+    .container {
+      background: rgba(34, 37, 20, 0.95);
+      padding: 30px;
+      border-radius: 14px;
+      width: 440px;
+      box-shadow: 0 0 25px 2px #1c1e13;
+      border: 2px solid #4b5d36;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: 'Staatliches', Arial, sans-serif;
+      color: #d1a83e;
+      letter-spacing: 2px;
+      font-size: 2rem;
+      text-shadow: 2px 2px 0 #23260e;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #b9c68d;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 2px solid #4b5d36;
+      outline: none;
+      background: #22240c;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      background: #23260e;
+    }
+    .stars {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+      gap: 6px;
+    }
+    .star {
+      font-size: 28px;
+      cursor: pointer;
+      color: #666c5c;
+      transition: 0.2s;
+      user-select: none;
+      text-shadow: 1px 1px 2px #111;
+    }
+    .star.selected {
+      color: #d1a83e;
+      text-shadow: 0 0 6px #d1a83e, 2px 2px 2px #23260e;
+    }
+    button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg,#4b5d36 0%, #d1a83e 100%);
+      color: #23260e;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 6px #23260e;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: linear-gradient(90deg,#d1a83e 0%, #4b5d36 100%);
+      color: #fff;
+    }
+    .divider {
+      margin: 18px 0 12px 0;
+      border-top: 1.5px dashed #b9c68d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Feedback</h2>
+    <form action="save.php" method="POST">
+      <label for="name">Nume:</label>
+      <input type="text" id="name" name="name" placeholder="Scrie numele tău" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="exemplu@email.com" required>
+
+      <label for="phone">Număr de telefon:</label>
+      <input type="tel" id="phone" name="phone" placeholder="07XXXXXXXX" required>
+
+      <div class="divider"></div>
+
+      <label>Apreciază lecția:</label>
+      <div class="stars" id="stars-lectie">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      <input type="hidden" id="rating-lectie" name="rating_lectie" value="0">
+
+      <label>Apreciază grafica:</label>
+      <div class="stars" id="stars-grafica">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      <input type="hidden" id="rating-grafica" name="rating_grafica" value="0">
+
+      <label>Apreciază informațiile:</label>
+      <div class="stars" id="stars-informatii">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      <input type="hidden" id="rating-informatii" name="rating_informatii" value="0">
+
+      <label for="message">Sugestii / Comentarii:</label>
+      <textarea id="message" name="message" placeholder="Scrie aici părerea ta..."></textarea>
+
+      <button type="submit">Trimite Feedback</button>
+    </form>
+  </div>
+  <script>
+    function setupStars(starsId, inputId) {
+      const stars = document.querySelectorAll(`#${starsId} .star`);
+      const ratingInput = document.getElementById(inputId);
+      stars.forEach((star, index) => {
+        star.addEventListener('click', () => {
+          stars.forEach(s => s.classList.remove('selected'));
+          for (let i = 0; i <= index; i++) {
+            stars[i].classList.add('selected');
+          }
+          ratingInput.value = index + 1;
+        });
+      });
+    }
+    setupStars('stars-lectie', 'rating-lectie');
+    setupStars('stars-grafica', 'rating-grafica');
+    setupStars('stars-informatii', 'rating-informatii');
+  </script>
+</body>
+</html>

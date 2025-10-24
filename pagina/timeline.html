@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <title>Cronologia 1919–1945 — Interactiv</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Font militar + stencil pentru titlu -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Share+Tech+Mono&family=Staatliches&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #111312;
+      --card: #232d1d;
+      --accent: #ffcc00;
+      --muted: #bfbfbf;
+      --primary: #1f6feb;
+      --warn: #b8751a;
+      --military-olive: #6b7a3a;
+      --dark-camo: #1a1e17;
+      --radius: 12px;
+    }
+    html, body {
+      min-height: 100%;
+      height: auto;
+    }
+    body{
+      background: linear-gradient(180deg,#101614 0%, #171a15 100%);
+      color: #eee;
+      font-family: "Share Tech Mono", "Segoe UI", Roboto, Arial, sans-serif;
+      margin:0;
+      padding:24px;
+      min-height: 100vh;
+      position: relative;
+    }
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      opacity: 0.12;
+      z-index: 0;
+      pointer-events: none;
+      background: url('https://www.transparenttextures.com/patterns/camo.png');
+      mix-blend-mode: multiply;
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+      background:rgba(34,48,30,0.25);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px #0004;
+      padding: 10px 18px 6px 18px;
+      border-bottom: 2.5px solid var(--military-olive);
+    }
+    header h1{
+      font-size:30px;
+      margin:0;
+      color: var(--accent);
+      letter-spacing:2.5px;
+      font-family: "Staatliches", "Oswald", "Impact", Arial, sans-serif;
+      text-shadow: 1px 2px 0 #333, 0 0 6px #0008;
+      text-transform: uppercase;
+      line-height:1.1;
+    }
+    header p{ margin:0; color:var(--muted); font-size:15px; }
+    .controls{ display:flex; gap:10px; margin: 10px 0 24px 0; flex-wrap:wrap; }
+    .btn{
+      background:#232d1d;
+      border:1.7px solid var(--military-olive);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      font-family:inherit;
+      transition: transform .08s, background .12s, box-shadow .12s, border-color .15s;
+      letter-spacing: 0.8px;
+      outline: none;
+    }
+    .btn:active{ transform: translateY(1px) scale(0.98);}
+    .btn.primary{ background: var(--military-olive); color: #fffde5; border-color: #9bb747; box-shadow: 0 6px 18px rgba(107,122,58,0.14);}
+    .btn.warn{ background: var(--warn); color:#fff; border-color: #d8aa63;}
+    .timeline{
+      max-width:980px;
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+      padding-bottom: 56px;
+    }
+    .timeline:before {
+      content:"";
+      position:absolute;
+      left:62px;
+      top:0;
+      bottom:0;
+      width:6px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #556b2f 0 20px,
+        #a5b08c 20px 30px,
+        #556b2f 30px 40px
+      );
+      border-radius:3px;
+      opacity:.22;
+      z-index:0;
+      pointer-events:none;
+    }
+    .event{
+      background: linear-gradient(120deg,rgba(34,48,30,0.87) 60%,rgba(35,45,29,0.98) 100%);
+      border-radius: var(--radius);
+      padding:20px 20px 20px 8px;
+      margin: 26px 0;
+      display:flex;
+      gap:24px;
+      align-items:flex-start;
+      position:relative;
+      overflow:visible;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      border-left: 7px solid var(--military-olive);
+      transform-origin: left center;
+      transition: transform .28s, box-shadow .28s, border-color .18s;
+      z-index:1;
+      min-height: 88px;
+    }
+    .event:focus-within, .event:hover{
+      transform: translateY(-4px) scale(1.014);
+      box-shadow: 0 12px 36px rgba(40,55,47,0.35);
+      border-left: 7px solid var(--accent);
+    }
+    .military-icon {
+      width:48px; height:48px;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 30px;
+      background:rgba(107,122,58,0.18);
+      border-radius:50%;
+      margin-right:-14px;
+      border:2.5px solid var(--military-olive);
+      box-shadow: 0 2px 10px #0005;
+      position:relative; z-index:2;
+      transition: border-color .18s;
+    }
+    .event:hover .military-icon, .event:focus-within .military-icon {
+      border-color: var(--accent);
+      background:rgba(255,204,0,0.11);
+    }
+    .marker{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background: linear-gradient(180deg,#ffd94d 75%,#ffcc00 100%);
+      flex: 0 0 54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#111;
+      font-weight:800;
+      font-size:22px;
+      border:2px solid #fff7;
+      transition: background .35s, transform .35s, color .2s, border-color .18s;
+      position:relative;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+      font-family: "Oswald", "Impact", Arial, sans-serif;
+    }
+    .marker.hit{
+      background: linear-gradient(180deg,#b71c1c,#7f1212);
+      color:#fff;
+      border-color: #ffd700;
+    }
+    .badge-year {
+      position:absolute;
+      top:16px;
+      left: 112px;
+      background: var(--military-olive);
+      color:#fffde5;
+      font-family:"Share Tech Mono", monospace;
+      font-size:14px;
+      padding:2.5px 14px 2.5px 10px;
+      border-radius: 13px 0 10px 13px;
+      letter-spacing: 1.2px;
+      box-shadow: 0 2px 10px #0003;
+      border: 1px solid #fff2;
+      transition: background .18s;
+      text-shadow: 0 2px 0 #333c;
+    }
+    .content h3{
+      margin:0 0 7px 0;
+      color:var(--accent);
+      font-size:20px;
+      font-family: "Staatliches", "Oswald", "Impact", Arial, sans-serif;
+      text-shadow: 0 1px 0 #111a;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+    }
+    .content p{ margin:0; color:var(--muted); font-size:15.5px; line-height:1.48; }
+    .content .meta{ margin-top:10px; font-size:13.5px; color:#aeb790; font-style:italic; }
+    .bullet{
+      position:absolute;
+      width:14px;
+      height:14px;
+      background: linear-gradient(90deg,#ff9f43,#ff6b00);
+      border-radius:50%;
+      left:-44px;
+      top:23px;
+      opacity:0;
+      z-index:10;
+      transition: left .55s linear, opacity .12s linear, transform .18s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+      border: 2px solid #b8751a;
+    }
+    .bullet.animate{
+      left: 22px; opacity:1;
+      transform: translateX(0) scale(1.11);
+    }
+    .splash{
+      position:absolute;
+      width:14px;height:14px;
+      background:#ffda47;
+      border-radius:50%;
+      opacity:0;
+      transform: scale(.6);
+      pointer-events:none;
+      box-shadow: 0 6px 18px rgba(198,40,40,0.45);
+      border:2px solid #fff8;
+    }
+    @keyframes splashAnim {
+      0%   { transform: scale(.6) translateY(0); opacity:0; }
+      20%  { opacity:1; background:#c62828; transform: scale(1.2) translateY(-4px);}
+      60%  { background: #fffbe5;}
+      100% { opacity:0; transform: scale(1.7) translateY(-12px); }
+    }
+    .splash.play{
+      animation: splashAnim .66s cubic-bezier(.2,.8,.3,1) forwards;
+    }
+    .timeline .divider {
+      width: 78%;
+      margin: 0 auto;
+      border: none;
+      border-top: 2px dashed #6b7a3a;
+      opacity: 0.24;
+      margin-bottom: -10px;
+      margin-top: 12px;
+    }
+    @media (max-width:800px){
+      .timeline:before { left: 34px; }
+      .event{ gap:12px; padding-left:2px;}
+      .military-icon { width:35px; height:35px; font-size:20px; margin-right:-7px;}
+      .marker{ width:38px; height:38px; font-size:15px;}
+      .badge-year{ left: 66px; font-size:11px;}
+    }
+    @media (max-width:500px){
+      header {flex-direction:column; align-items: flex-start;}
+      .timeline {padding-bottom: 16px;}
+      .badge-year{ left: 56px;}
+    }
+    .sr-only{
+      position:absolute !important;
+      height:1px; width:1px;
+      overflow:hidden; clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
+    }
+    .marker.hit, .marker:focus, .marker:hover {
+      box-shadow: 0 0 20px 5px #ffcc0077, 0 6px 16px rgba(0,0,0,0.45);
+    }
+    .event:focus-within, .event:hover {
+      box-shadow: 0 0 17px 0 #ffcc0055, 0 12px 36px rgba(40,55,47,0.29);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Cronologia 1919–1945 — Interactiv</h1>
+      <p>Timeline educațional — evenimente principale & curiozități</p>
+    </div>
+    <div style="margin-left:auto" aria-hidden="true">
+      <div class="controls" role="toolbar" aria-label="Controale timeline">
+        <button class="btn primary" id="playAll">Animează toate</button>
+        <button class="btn" id="reset">Resetează</button>
+      </div>
+    </div>
+  </header>
+  <main class="timeline" id="timeline" aria-live="polite">
+
+<!-- 1933–1939 — Context, reînarmare și agresiuni -->
+<article class="event" tabindex="0"><span class="military-icon">&#128104;&#8205;&#9874;&#65039;</span><div class="marker">1</div><div class="badge-year">1933</div><div class="bullet"></div><div class="content"><h3>Hitler devine cancelar</h3><p><strong>30 ianuarie 1933</strong> — Adolf Hitler devine cancelar al Germaniei; începutul politicii naziste de reînarmare și revizuire a Tratatului de la Versailles.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127891;</span><div class="marker">2</div><div class="badge-year">1934</div><div class="bullet"></div><div class="content"><h3>Conferința de la Londra</h3><p><strong>6 februarie 1934</strong> — Încercări de stabilizare economică, dar reacție slabă la agresiuni.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">3</div><div class="badge-year">1936</div><div class="bullet"></div><div class="content"><h3>Germania reocupa Renania</h3><p><strong>7–10 martie 1936</strong> — Germania reocupa militar Renania, încălcând tratatele internaționale.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9876;&#65039;</span><div class="marker">4</div><div class="badge-year">1935-36</div><div class="bullet"></div><div class="content"><h3>Italia invadează Etiopia</h3><p><strong>25 octombrie 1935 – mai 1936</strong> — Italia invadează Etiopia; sancțiunile Ligii Națiunilor sunt ineficiente.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">5</div><div class="badge-year">1938</div><div class="bullet"></div><div class="content"><h3>Anschluss</h3><p><strong>12 martie 1938</strong> — Germania anexează Austria (Anschluss).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128221;</span><div class="marker">6</div><div class="badge-year">1938</div><div class="bullet"></div><div class="content"><h3>Acordul de la München</h3><p><strong>30 septembrie 1938</strong> — Puterile europene cedează Sudetelor Germaniei (politica de „appeasement”).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9877;&#65039;</span><div class="marker">7</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Germania ocupă Praga</h3><p><strong>15 martie 1939</strong> — Germania ocupă restul Cehoslovaciei (Praga).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129309;</span><div class="marker">8</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Acord italo-german</h3><p><strong>22 mai 1939</strong> — Acord politic între Italia și Germania, pregătiri pentru alianțe militare.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129300;</span><div class="marker">9</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Pactul Ribbentrop–Molotov</h3><p><strong>23 august 1939</strong> — Pact de neagresiune între Germania și URSS, protocol secret pentru împărțirea Europei de Est.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1939 — Izbucnirea războiului -->
+<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">10</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Invazia Poloniei</h3><p><strong>1 septembrie 1939</strong> — Germania invadează Polonia; începutul războiului în Europa.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128226;</span><div class="marker">11</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Marea Britanie și Franța declară război</h3><p><strong>3 septembrie 1939</strong> — Marea Britanie și Franța declară război Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">12</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>URSS invadează Polonia de est</h3><p><strong>17 septembrie 1939</strong> — URSS invadează estul Poloniei (pactul Ribbentrop–Molotov).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127963;</span><div class="marker">13</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Căderea Varșoviei</h3><p><strong>27 septembrie 1939</strong> — Polonia este ocupată și împărțită între Germania și URSS.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#10052;&#65039;</span><div class="marker">14</div><div class="badge-year">1939-40</div><div class="bullet"></div><div class="content"><h3>Războiul de iarnă</h3><p><strong>30 noiembrie 1939 – martie 1940</strong> — URSS invadează Finlanda; Finlanda cedează teritorii, deși rezistă curajos.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1940 — Extinderea Axei -->
+<article class="event" tabindex="0"><span class="military-icon">&#127480;&#127475;</span><div class="marker">15</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Invazia Danemarcei și Norvegiei</h3><p><strong>9 aprilie 1940</strong> — Germania invadează Danemarca și Norvegia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127465;&#127473;</span><div class="marker">16</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Invadarea Benelux și Franței</h3><p><strong>10 mai 1940</strong> — Germania invadează rapid Olanda, Belgia, Luxemburg și Franța.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">17</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Evacuarea de la Dunkerque</h3><p><strong>26 mai – 4 iunie 1940</strong> — Evacuarea a peste 330.000 de soldați aliați din Franța.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127467;&#127479;</span><div class="marker">18</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Capitularea Franței</h3><p><strong>22 iunie 1940</strong> — Franța capitulează; se formează guvernul de la Vichy.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9992;&#65039;</span><div class="marker">19</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Bătălia Angliei</h3><p><strong>iulie–octombrie 1940</strong> — Campanie aeriană majoră: Regatul Unit rezistă atacului Luftwaffe.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">20</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Pactul Tripartit</h3><p><strong>25 octombrie 1940</strong> — Pact formal între Germania, Italia și Japonia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127479;&#127479;</span><div class="marker">21</div><div class="badge-year">1940-41</div><div class="bullet"></div><div class="content"><h3>Grecia rezistă invaziei italiene</h3><p><strong>29 noiembrie 1940 – 12 iunie 1941</strong> — Grecia rezistă, dar Germania intervine și ocupă Grecia în 1941.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1941 — Extindere spre Est, Balcani și Pacific -->
+<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">22</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Operațiunea Barbarossa</h3><p><strong>22 iunie 1941</strong> — Germania invadează URSS, deschizând frontul de est.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9889;</span><div class="marker">23</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Atacul de la Pearl Harbor</h3><p><strong>7 decembrie 1941</strong> — Japonia atacă baza americană Pearl Harbor; SUA intră în război.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9875;</span><div class="marker">24</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Japonia cucerește Asia de Sud-Est</h3><p><strong>decembrie 1941</strong> — Japonia ocupă Filipine, Malaezia, Indonezia și baze strategice britanice/olandeze.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1942 — Anul întoarcerii -->
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">25</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Conferința de la Washington</h3><p><strong>20 ianuarie 1942</strong> — SUA și aliații planifică coordonarea strategică („Europe First”).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128165;</span><div class="marker">26</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Midway</h3><p><strong>4–7 iunie 1942</strong> — Victoria decisivă americană oprește avansul japonez în Pacific.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">27</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Bătălii pe frontul de est și Africa</h3><p><strong>iunie–noiembrie 1942</strong> — Lupte grele la Tobruk, El Alamein, Stalingrad.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">28</div><div class="badge-year">1942-43</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Stalingrad</h3><p><strong>23 august 1942 – 2 februarie 1943</strong> — Cotitura războiului pe Frontul de Est; încercuire, contraîncercuire, capitulare germană.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9876;</span><div class="marker">29</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Operațiunea Torch</h3><p><strong>8 noiembrie 1942</strong> — Debarcări aliate în Africa de Nord (Maroc și Algeria).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">30</div><div class="badge-year">1942-43</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Guadalcanal</h3><p><strong>19 august 1942 – februarie 1943</strong> — Începutul contraofensivei americane insulă-cu-insulă în Pacific.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1943 — Consolidare Aliați -->
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">31</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Capitularea la Stalingrad</h3><p><strong>2 februarie 1943</strong> — Armata germană capitulează la Stalingrad, mare victorie sovietică.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">32</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Debarcarea în Sicilia</h3><p><strong>10 iulie 1943</strong> — Aliații debarcă în Sicilia, apoi invadează Italia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129686;</span><div class="marker">33</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Armistițiul Italiei și Republica Salò</h3><p><strong>3–8 septembrie 1943</strong> — Italia semnează armistițiul, Mussolini este înlăturat; Germania instaurează Republica Socială Italiană.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">34</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Conferința de la Teheran</h3><p><strong>23 octombrie – 11 noiembrie 1943</strong> — Roosevelt, Stalin și Churchill discută deschiderea celui de-al doilea front (Normandia).</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1944 — Al doilea front și colapsul Axei -->
+<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">35</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Debarcarea din Normandia (Ziua Z)</h3><p><strong>6 iunie 1944</strong> — Operațiunea Overlord: debarcare aliată masivă în Franța.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9888;</span><div class="marker">36</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Puciul de la 20 iulie împotriva lui Hitler</h3><p><strong>20 iulie 1944</strong> — Conspirație militară germană (Stauffenberg) eșuează.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127464;&#127476;</span><div class="marker">37</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Lovitura de stat din România</h3><p><strong>23 august 1944</strong> — Regele Mihai I forțează armistițiul, România întoarce armele împotriva Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">38</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Eliberarea Parisului</h3><p><strong>25 august 1944</strong> — Parisul este eliberat de Aliați; urmează Belgia, Olanda, Balcanii.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">39</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Bulge</h3><p><strong>16–19 decembrie 1944</strong> — Ultima mare contraofensivă germană în Vest, respinsă de Aliați.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1945 — Finalul -->
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">40</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Conferința de la Yalta</h3><p><strong>12–27 ianuarie 1945</strong> — Discuții despre împărțirea Europei, ONU, soarta Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129686;</span><div class="marker">41</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Ofensivă sovietică spre Berlin</h3><p><strong>ianuarie–aprilie 1945</strong> — Eliberarea lagărelor de concentrare (Auschwitz – 27 ian).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9760;</span><div class="marker">42</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Sinuciderea lui Hitler</h3><p><strong>30 aprilie 1945</strong> — Adolf Hitler se sinucide în buncărul din Berlin.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">43</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Capitularea Germaniei</h3><p><strong>7–8 mai 1945</strong> — Germania capitulează necondiționat (V-E Day).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">44</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Conferința de la Potsdam</h3><p><strong>17–30 iulie 1945</strong> — Decizii finale despre Germania, frontiere și Japonia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">45</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Bomba atomică la Hiroshima</h3><p><strong>6 august 1945</strong> — SUA aruncă bomba atomică asupra orașului Hiroshima.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">46</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Bomba de la Nagasaki & URSS declară război Japoniei</h3><p><strong>9 august 1945</strong> — SUA bombardează Nagasaki; URSS invadează Manciuria.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127988;</span><div class="marker">47</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Capitularea Japoniei</h3><p><strong>15 august 1945</strong> — Japonia anunță intenția de capitulare; <strong>2 septembrie 1945</strong> — semnarea oficială: sfârșitul războiului.</p></div><div class="splash"></div></article><hr class="divider" />
+
+<!-- 1945–1946 — Urmări și reorganizări -->
+<article class="event" tabindex="0"><span class="military-icon">&#128106;</span><div class="marker">48</div><div class="badge-year">1945-46</div><div class="bullet"></div><div class="content"><h3>Repatriere și reconstrucție</h3><p><strong>1945 (aug–dec)</strong> — Începe repatrierea prizonierilor, reconstrucția, migrații masive, foamete.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9878;</span><div class="marker">49</div><div class="badge-year">1945-46</div><div class="bullet"></div><div class="content"><h3>Procesele de la Nürnberg</h3><p><strong>20 noiembrie 1945 – 1 octombrie 1946</strong> — Judecarea liderilor naziști pentru crime de război.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">50</div><div class="badge-year">1945-49</div><div class="bullet"></div><div class="content"><h3>Divizarea Germaniei</h3><p><strong>1945–1949</strong> — Germania, sub administrație aliată, se va împărți în RFG și RDG (1949).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">51</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Națiunile Unite</h3><p><strong>24 octombrie 1945</strong> — ONU este înființată oficial (Carta ONU intră în vigoare).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128679;</span><div class="marker">52</div><div class="badge-year">1946+</div><div class="bullet"></div><div class="content"><h3>Începutul Războiului Rece</h3><p><strong>1946 și ulterior</strong> — Tensiuni între blocul sovietic și cel occidental, Planul Marshall (1947), NATO (1949).</p></div><div class="splash"></div></article>
+
+  </main>
+  <script>
+    // Selectoare
+    const timeline = document.getElementById('timeline');
+    const playBtn = document.getElementById('playAll');
+    const resetBtn = document.getElementById('reset');
+    function animateEvent(ev) {
+      const bullet = ev.querySelector('.bullet');
+      const marker = ev.querySelector('.marker');
+      const splash = ev.querySelector('.splash');
+      if (!bullet || !marker) return;
+      bullet.classList.remove('animate');
+      splash.classList.remove('play');
+      void bullet.offsetWidth;
+      bullet.classList.add('animate');
+      const travelTime = 550;
+      setTimeout(() => {
+        marker.classList.add('hit');
+        splash.classList.add('play');
+        setTimeout(() => {
+          marker.classList.remove('hit');
+        }, 1200);
+      }, travelTime);
+    }
+    playBtn.addEventListener('click', () => {
+      const events = Array.from(timeline.querySelectorAll('.event'));
+      events.forEach((ev, i) => {
+        setTimeout(() => animateEvent(ev), i * 700);
+      });
+    });
+    resetBtn.addEventListener('click', () => {
+      timeline.querySelectorAll('.marker').forEach(m => m.classList.remove('hit'));
+      timeline.querySelectorAll('.bullet').forEach(b => b.classList.remove('animate'));
+      timeline.querySelectorAll('.splash').forEach(s => s.classList.remove('play'));
+    });
+    timeline.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action="toggle-hit"]');
+      if (!btn) return;
+      const ev = btn.closest('.event');
+      if (!ev) return;
+      animateEvent(ev);
+    });
+    timeline.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const ev = e.target.closest('.event');
+        if (ev) {
+          e.preventDefault();
+          animateEvent(ev);
+        }
+      }
+    });
+    const observer = ('IntersectionObserver' in window) ? new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 }) : null;
+    document.querySelectorAll('.event').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(17px)';
+      if (observer) observer.observe(el);
+      else { el.style.opacity = 1; el.style.transform = 'none'; }
+    });
+  </script>
+</body>
+</html>
