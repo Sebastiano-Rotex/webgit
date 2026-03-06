@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tratatul de la Versailles — 1919</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#c84b31; --muted:#9aa4b2; --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --glass-strong: rgba(255,255,255,0.06);
+      --radius:18px;
+      --mono: 'Segoe UI Mono', Consolas, monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:#e6eef6;background: radial-gradient(1200px 600px at 10% 10%, rgba(200,75,49,0.06), transparent), linear-gradient(180deg,#071029 0%, #0b1220 50%);}
+    header{padding:40px 6vw;display:flex;gap:24px;align-items:center}
+    .logo{display:flex;align-items:center;gap:14px}
+    .logo .mark{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ef7b5b);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(200,75,49,0.18);}
+    .logo svg{width:40px;height:40px;filter:drop-shadow(0 6px 20px rgba(0,0,0,0.6));}
+    h1{font-size:28px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 0}
+
+    nav{margin-left:auto}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+
+    .hero{padding:60px 6vw;display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+    .hero .panel{background:linear-gradient(180deg,var(--glass),transparent);padding:28px;border-radius:20px;backdrop-filter:blur(6px);box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .intro h2{font-size:42px;margin:0 0 12px;line-height:1.02}
+    .intro p{color:var(--muted);font-size:16px}
+    .kpis{display:flex;gap:14px;margin-top:18px}
+    .kpi{background:var(--glass-2);padding:14px;border-radius:12px;flex:1;text-align:center}
+    .kpi h3{margin:0;color:#fff}
+    .kpi p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    .timeline-card{padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* Interactive timeline */
+    .timeline-wrap{padding:40px 6vw}
+    .timeline{display:flex;gap:18px;overflow:auto;padding-bottom:8px}
+    .event{min-width:260px;background:linear-gradient(180deg,var(--glass),transparent);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:transform .28s, box-shadow .28s}
+    .event:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(2,6,23,0.6)}
+    .event .date{font-family:var(--mono);color:var(--muted);font-size:13px}
+    .event h4{margin:8px 0 0}
+    .event p{color:var(--muted);font-size:14px}
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:28px;padding:20px 6vw 80px}
+    .content{background:linear-gradient(180deg,var(--glass-2),transparent);padding:26px;border-radius:18px;border:1px solid rgba(255,255,255,0.03)}
+    .aside{position:sticky;top:24px;height:max-content;padding:18px;border-radius:16px;background:linear-gradient(180deg,var(--glass),transparent);border:1px solid rgba(255,255,255,0.03)}
+
+    section h3{margin-top:0}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+
+    .term{padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--glass-2),transparent);border:1px solid rgba(255,255,255,0.02)}
+
+    footer{padding:28px 6vw;color:var(--muted);text-align:center}
+
+    /* small screens */
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.timeline-wrap{padding:20px}.kpis{flex-direction:column}.grid{grid-template-columns:1fr}main{grid-template-columns:1fr}}
+
+    /* flourish animations */
+    .flag{width:100%;height:110px;border-radius:12px;overflow:hidden;position:relative;background:linear-gradient(90deg,#b22222 0,#fff 50%, #b22222 100%);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+    .flag::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,0.04), transparent);mix-blend-mode:overlay}
+    .ribbon{display:inline-block;padding:8px 14px;border-radius:999px;background:linear-gradient(90deg,#ffd7cf, #ffd9c3);color:#5b2a23;font-weight:700}
+
+    /* modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(3,6,10,0.5);visibility:hidden;opacity:0;transition:opacity .2s;}
+    .modal.open{visibility:visible;opacity:1}
+    .modal .box{width:min(900px,94%);background:linear-gradient(180deg,#071229,#081725);padding:26px;border-radius:16px;border:1px solid rgba(255,255,255,0.04)}
+    .close-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    /* subtle parallax */
+    .bg-ornament{position:absolute;right:-120px;top:20vh;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(200,75,49,0.06), transparent 20%), conic-gradient(from 120deg, rgba(255,255,255,0.02), transparent);filter:blur(42px);pointer-events:none}
+
+  </style>
+</head>
+<body>
+  <div class="bg-ornament" aria-hidden></div>
+  <header>
+    <div class="logo">
+      <div class="mark" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M6 7h12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+      </div>
+      <div>
+        <h1>Tratatul de la Versailles</h1>
+        <p class="lead">28 iunie 1919 — Acordul care a redesenat Europa și a lăsat urme adânci în istorie.</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#overview">Prezentare</a>
+      <a href="#terms">Clauze principale</a>
+      <a href="#timeline">Cronologie</a>
+      <a href="#impact">Urmări</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="panel intro">
+      <h2>Un tratat, multe ecouri — înţelege cum s-a ajuns aici.</h2>
+      <p>Tratatul de la Versailles a încheiat formal Primul Război Mondial între Germania şi Puterile Aliate. A impus responsabilităţi, limite militare şi reparaţii care au modelat... și, în multe privințe, au construit premisele pentru conflicte noi.</p>
+
+      <div class="kpis" aria-hidden>
+        <div class="kpi"><h3>28 iun. 1919</h3><p>Ziua semnării</p></div>
+        <div class="kpi"><h3>440+ pagini</h3><p>Documente & anexe</p></div>
+        <div class="kpi"><h3>Liga Națiunilor</h3><p>Instituție născută din tratat</p></div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:12px">
+        <button class="ribbon" id="openTimeline">Vezi cronologia</button>
+        <button class="ribbon" onclick="scrollToSection('terms')">Clauze principale</button>
+      </div>
+    </div>
+
+    <aside class="panel timeline-card">
+      <div class="flag" aria-hidden></div>
+      <h3 style="margin-top:14px">Context rapid</h3>
+      <p style="color:var(--muted)">Războiul, negocieri intense la Paris, lideri ca Clemenceau, Lloyd George și Wilson — fiecare cu viziunea sa. Germania, înfrântă, a fost lăsată în fața condițiilor aspre.</p>
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <div style="flex:1;text-align:center;padding:10px;border-radius:10px;background:var(--glass-strong)"><strong>Germania</strong><div style="color:var(--muted);font-size:13px">Plătește reparații</div></div>
+        <div style="flex:1;text-align:center;padding:10px;border-radius:10px;background:var(--glass-strong)"><strong>Puteri</strong><div style="color:var(--muted);font-size:13px">Redesenare frontierelor</div></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="timeline-wrap" id="timeline">
+    <h3 style="color:#fff;margin:0 6vw 16px">Cronologie interactivă</h3>
+    <div class="timeline" id="timelineList">
+      <article class="event" data-content="conferinta" tabindex="0">
+        <div class="date">Ianuarie - Iunie 1919</div>
+        <h4>Conferința de pace de la Paris</h4>
+        <p>Negocieri între delegațiile învingătoare pentru a decide soarta Europei postbelice.</p>
+      </article>
+      <article class="event" data-content="semnare" tabindex="0">
+        <div class="date">28 iunie 1919</div>
+        <h4>Semnarea Tratatului</h4>
+        <p>Semnat la Palatul Versailles, în Sala Oglinzilor — un act simbolic și politic.</p>
+      </article>
+      <article class="event" data-content="reparatii" tabindex="0">
+        <div class="date">1921</div>
+        <h4>Planul de reparaţii</h4>
+        <p>Stabilirea sumei și a mecanismelor de plată care au afectat economia germană.</p>
+      </article>
+      <article class="event" data-content="liga" tabindex="0">
+        <div class="date">1919</div>
+        <h4>Înființarea Ligii Națiunilor</h4>
+        <p>Organism creat pentru a preveni viitoare conflicte — însă fără susținerea totală a Statelor Unite.</p>
+      </article>
+      <article class="event" data-content="consecinte" tabindex="0">
+        <div class="date">Anii 1920-30</div>
+        <h4>Consecinţe pe termen lung</h4>
+        <p>Instabilitate politică și resentimente exploatate de forţe extremiste.</p>
+      </article>
+    </div>
+  </section>
+
+  <main>
+    <article class="content" id="overview">
+      <section>
+        <h3>Prezentare</h3>
+        <p>Tratatul de la Versailles (28 iunie 1919) a pus capăt stării de război între Germania și Puterile Aliate după Primul Război Mondial. A reprezentat o încercare de a reordona Europa, dar și o expresie a intereselor concurente ale țărilor victorioase. Documentul a inclus prevederi teritoriale, militare, economice și politice care au avut efecte profunde în deceniile următoare.</p>
+      </section>
+
+      <section id="terms" style="margin-top:18px">
+        <h3>Clauze principale</h3>
+        <div class="grid">
+          <div class="term"><h4>Responsabilitate</h4><p>Articolul 231 — atribuirea vinovăției pentru război în sarcina Germaniei, folosit ca bază morală pentru reparații.</p></div>
+          <div class="term"><h4>Reparaţii</h4><p>Despagubiri financiare impuse Germaniei; efectele economice au fost resimțite pe termen lung.</p></div>
+          <div class="term"><h4>Redesenare frontierelor</h4><p>Regiuni precum Alsacia-Lorena, teritorii din est și colonii au fost redistribuite.</p></div>
+          <div class="term"><h4>Limitări militare</h4><p>Reducerea forțelor armate germane, interdicții privind anumite arme și arme de ofensivă.</p></div>
+        </div>
+      </section>
+
+      <section id="impact" style="margin-top:18px">
+        <h3>Urmări și interpretări</h3>
+        <p>Istoricii dezbat dacă tratatul a fost prea dur sau nu suficient de coordonat cu reconstruirea economică. Cert este că impunerea de reparaţii, combinată cu tulburări politice și crize economice, a creat teren fertil pentru extreme politice.</p>
+
+        <h4 style="margin-top:14px">Aspecte cheie</h4>
+        <ul style="color:var(--muted)">
+          <li>Creșterea resentimentului în Germania;</li>
+          <li>Probleme economice și politice în Europa Centrală și de Est;</li>
+          <li>Formarea unor noi state și minorități etnice disputate;</li>
+          <li>Rolul Ligii Națiunilor — ambițios, dar limitat.</li>
+        </ul>
+      </section>
+
+      <section style="margin-top:18px">
+        <h3>Resurse vizuale & documente</h3>
+        <p style="color:var(--muted)">Arhivele conțin fotografii, hărți și copii ale tratatului. În acest demo am integrat elemente grafice și o cronologie interactivă pentru a facilita înțelegerea.</p>
+      </section>
+    </article>
+
+    <aside class="aside">
+      <h4>Detalii rapide</h4>
+      <p style="color:var(--muted);margin-bottom:8px">Semnat de reprezentanții Puterilor Aliate și ai Germaniei în Sala Oglinzilor, Palatul Versailles.</p>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <button class="close-btn" onclick="scrollToSection('overview')">Prezentare</button>
+        <button class="close-btn" onclick="scrollToSection('timeline')">Cronologie</button>
+      </div>
+
+      <h4>Glosar</h4>
+      <p style="color:var(--muted);font-size:14px">Articol 231 — <em>clauza vinovăției</em>. Reparații — plăți impuse pentru daune de război.</p>
+
+      <div style="margin-top:12px">
+        <h4>Surse recomandate</h4>
+        <ol style="color:var(--muted);font-size:14px">
+          <li>Documente de arhivă (colecții naționale)</li>
+          <li>Studii istorice despre negocieri și consecinţe</li>
+        </ol>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div style="max-width:900px;margin:0 auto">
+      <small>Acest site este un demo educațional — poate fi extins cu hărți interactive, copii scanate ale documentelor și bibliografie detaliată. Creat cu drag pentru istorie.</small>
+    </div>
+  </footer>
+
+  <!-- modal pentru evenimente -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true">
+    <div class="box">
+      <button class="close-btn" id="closeModal">Închide</button>
+      <div id="modalContent" style="margin-top:14px;color:var(--muted)"></div>
+    </div>
+  </div>
+
+  <script>
+    const events = document.querySelectorAll('.event');
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const openTimeline = document.getElementById('openTimeline');
+    const closeModal = document.getElementById('closeModal');
+
+    const details = {
+      'conferinta': '<h3>Conferința de pace de la Paris</h3><p>În primele luni ale anului 1919, liderii aliați s-au reunit la Paris pentru a discuta termenii păcii. Au participat personalități politice și experți din statele victorioase, fiecare urmărind interese naţionale distincte.</p>',
+      'semnare': '<h3>Semnarea din Sala Oglinzilor</h3><p>Actul a fost semnat la 28 iunie 1919, marcând încheierea oficială a stării de război cu Germania. Evenimentul a avut și o încărcătură simbolică puternică.</p>',
+      'reparatii': '<h3>Planul de reparaţii</h3><p>Stabilirea reparaţiilor a fost una dintre cele mai controversate chestiuni. Sumele și metodele de plată au generat dispute politice și economice.</p>',
+      'liga': '<h3>Liga Națiunilor</h3><p>Propunerea președintelui american Woodrow Wilson a dus la crearea Ligii Națiunilor, menită să medieze conflicte internaționale — dar fără participarea completă a SUA.</p>',
+      'consecinte': '<h3>Consecinţele politice</h3><p>Tratatul a influenţat geografia și politica Europei în deceniile următoare și a fost invocat în discursurile politice care au urmat — uneori pentru a justifica poziţii revizioniste.</p>'
+    };
+
+    events.forEach(e=>{
+      e.addEventListener('click',()=>openModal(e.dataset.content));
+      e.addEventListener('keypress', (ev)=>{ if(ev.key==='Enter') openModal(e.dataset.content); })
+    })
+
+    function openModal(id){
+      modalContent.innerHTML = details[id] || '<p>Detalii indisponibile.</p>';
+      modal.classList.add('open');
+    }
+    function close(){ modal.classList.remove('open'); }
+    closeModal.addEventListener('click', close);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+
+    openTimeline.addEventListener('click', ()=>{document.getElementById('timeline').scrollIntoView({behavior:'smooth'});});
+    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}    
+
+    // keyboard shortcuts
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') close();
+    });
+
+    // small enhancement: highlight active event while scrolling
+    const tl = document.getElementById('timelineList');
+    tl.addEventListener('scroll', ()=>{
+      const children = [...tl.children];
+      children.forEach(c=>{
+        const r = c.getBoundingClientRect();
+        if(r.left >= 0 && r.left < window.innerWidth/2){
+          c.style.boxShadow = '0 30px 60px rgba(2,6,23,0.6)';
+          c.style.transform = 'translateY(-8px)';
+        } else { c.style.boxShadow = ''; c.style.transform=''; }
+      })
+    });
+  </script>
+  
+</body>
+</html>

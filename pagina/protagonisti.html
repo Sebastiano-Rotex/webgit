@@ -6,15 +6,6 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <script>
-    function toggle(id, btn) {
-      const content = document.getElementById(id);
-      content.classList.toggle('hidden');
-      const icon = btn.querySelector('i');
-      icon.classList.toggle('fa-chevron-right');
-      icon.classList.toggle('fa-chevron-down');
-    }
-  </script>
   <style>
     body {
       font-family: 'Staatliches', sans-serif;
@@ -26,99 +17,226 @@
     .text-lg { font-size: 1.5rem !important; }
     .text-xl { font-size: 1.8rem !important; }
     .text-2xl { font-size: 2.2rem !important; }
+    .text-3xl { font-size: 2.5rem !important; }
     .text-4xl { font-size: 3rem !important; }
   </style>
 </head>
 <body class="text-gray-100 p-6">
+  <script>
+window.addEventListener('keydown', function(e){
+  const tag = document.activeElement && document.activeElement.tagName ? document.activeElement.tagName.toLowerCase() : '';
+  if (tag === 'input' || tag === 'textarea' || tag === 'select' || (document.activeElement && document.activeElement.isContentEditable)) return;
+  // tasta '[' (folosim e.key și e.code)
+  if (e.key === '[' || e.code === 'BracketLeft') {
+    try { window.parent.postMessage({ type: 'toggle-nav-request' }, '*'); } catch(err){}
+    e.preventDefault();
+  }
+});
+</script>
   <h1 class="text-4xl text-yellow-300 mb-6"><i class="fas fa-users"></i> Protagoniști Al Doilea Război Mondial</h1>
 
-  <div class="bg-gray-900 bg-opacity-90 p-6 rounded-xl shadow-lg">
-    <!-- Germania -->
-    <div class="mb-4">
-      <button onclick="toggle('hitler', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Adolf Hitler (Germania)
-      </button>
-      <div id="hitler" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>Lider al Germaniei naziste, responsabil de declanșarea războiului și de Holocaust.</p>
-        <ul class="list-disc list-inside mt-2">
-          <li>Funcție: Führer al Germaniei</li>
-          <li>Perioada: 1933–1945</li>
-          <li>Politici: Nazism, antisemitism, expansionism teritorial</li>
-        </ul>
+  <!-- Adolf Hitler -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="https://media.discordapp.net/attachments/1462408337822847079/1469248935230181518/hitler.jpg?ex=6986f833&is=6985a6b3&hm=4868c875a098fa7d4119ab123e13d0dd730d9462c687a5510d3c2299c5c4ce5e&=&format=webp 
+" alt="Adolf Hitler" class="w-64 h-80 object-cover rounded shadow-xl mb-6 md:mb-0 border-4 border-yellow-700">
+      <div>
+        <h2 class="text-3xl text-yellow-300 mb-2">Adolf Hitler</h2>
+        <h3 class="text-xl text-gray-400 mb-2">Führer al Germaniei Naziste</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> Născut în 1889 în Austria, Hitler a avut o copilărie marcată de sărăcie și conflicte familiale. A încercat fără succes să devină artist la Viena, ajungând să trăiască în sărăcie și dezvoltând o ură viscerală față de evrei, pe care îi considera responsabili pentru eșecurile sale.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> După Primul Război Mondial, s-a alăturat Partidului Muncitoresc German, transformându-l în Partidul Nazist. Prin carismă, propagandă și violență, a ajuns cancelar în 1933, apoi Führer, instaurând un regim totalitar bazat pe teroare și cultul personalității.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> Hitler a inițiat Holocaustul, a pornit Al Doilea Război Mondial prin invadarea Poloniei și a condus Germania în cele mai mari atrocități din istoria omenirii, influențând decisiv geopolitica secolului XX.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> În aprilie 1945, în fața colapsului Germaniei, s-a sinucis în buncărul din Berlin, alături de Eva Braun. Cadavrul său a fost ars conform dorinței sale.</p>
+        <button onclick="window.open('AdolfHitler.pdf', '_blank')" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Adolf Hitler
+        </button>
       </div>
     </div>
+  </section>
 
-    <div class="mb-4">
-      <button onclick="toggle('rommel', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Erwin Rommel
-      </button>
-      <div id="rommel" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>General german, supranumit „Vulpea Deșertului”, celebru pentru campaniile din Africa de Nord.</p>
+  <!-- Erwin Rommel -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="https://cdn.discordapp.com/attachments/1462408337822847079/1469261983143428126/rommel.jpg?ex=6987045a&is=6985b2da&hm=f03c4d861102f712b8288e7843e9a4ebe5750f9d7886ebc9bb4d65a005aa931f&">
+      <div>
+        <h2 class="text-3xl text-green-300 mb-2">Erwin Rommel</h2>
+        <h3 class="text-xl text-gray-400 mb-2">General-Feldmareșal, "Vulpea Deșertului"</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> Născut în 1891, Rommel a avut o carieră militară strălucită încă din Primul Război Mondial, fiind cunoscut pentru curaj și inovație tactică.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> A devenit celebru ca autor de manuale militare și a fost promovat rapid, ajungând să comande trupele germane în Franța și apoi în Africa de Nord.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> A revoluționat războiul mecanizat, fiind respectat de adversari pentru umanitate și strategie. A avut succese notabile în campania din Africa de Nord.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> Bănuit că ar fi implicat în atentatul împotriva lui Hitler, a fost forțat să se sinucidă în 1944 pentru a-și salva familia și reputația.</p>
+        <button onclick="window.open('https://en.wikipedia.org/wiki/Erwin_Rommel', '_blank')" class="mt-4 bg-green-400 hover:bg-green-500 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Erwin Rommel
+        </button>
       </div>
     </div>
+  </section>
 
-    <!-- Italia -->
-    <div class="mb-4">
-      <button onclick="toggle('mussolini', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Benito Mussolini (Italia)
-      </button>
-      <div id="mussolini" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>Liderul Italiei fasciste, aliat al Germaniei naziste.</p>
+  <!-- Benito Mussolini -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="https://media.discordapp.net/attachments/1462408337822847079/1469248935716454471/mussolini.jpg?ex=6986f833&is=6985a6b3&hm=3da3d4c4017dd37e050ec6be59cc0262b926a4cc33b5a33202933c01d60d94d2&=&format=webp">
+      <div>
+        <h2 class="text-3xl text-red-400 mb-2">Benito Mussolini</h2>
+        <h3 class="text-xl text-gray-400 mb-2">Duce al Italiei Fasciste</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> Născut în 1883, fiu de fierar, Mussolini a fost inițial socialist radical, apoi jurnalist și agitator politic.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> Profitând de criza economică și frica de comunism, a fondat Fasci di Combattimento și, în 1922, a ajuns la putere prin Marșul asupra Romei, instaurând o dictatură.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> A instaurat regimul fascist, a aliat Italia cu Germania nazistă și a contribuit la declanșarea războiului, dar armata italiană a suferit înfrângeri majore.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> Capturat de partizanii italieni în aprilie 1945, a fost executat sumat, iar trupul său expus public la Milano.</p>
+        <button onclick="window.open('BenitoMussolini.pdf', '_blank')" class="mt-4 bg-red-400 hover:bg-red-500 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Benito Mussolini
+        </button>
       </div>
     </div>
+  </section>
 
-    <!-- Japonia -->
-    <div class="mb-4">
-      <button onclick="toggle('tojo', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Hideki Tōjō (Japonia)
-      </button>
-      <div id="tojo" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>Prim-ministru militar al Japoniei, responsabil de expansiunea Japoniei în Asia și Pacific.</p>
+  <!-- Hideki Tōjō -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="https://cdn.discordapp.com/attachments/1462408337822847079/1469248936299724965/tojo.jpg?ex=6986f833&is=6985a6b3&hm=ca96497e4700f24ae07da4ac82c8ee0cc00fa52bb795bb3a3d659e3d701899d3&" alt="Hideki Tōjō" class="w-64 h-80 object-cover rounded shadow-xl mb-6 md:mb-0 border-4 border-blue-700">
+      <div>
+        <h2 class="text-3xl text-blue-400 mb-2">Hideki Tōjō</h2>
+        <h3 class="text-xl text-gray-400 mb-2">Prim-ministru Militar al Japoniei</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> S-a născut în 1884 într-o familie de samurai, a urmat cariera militară și a ajuns rapid în vârful ierarhiei armatei japoneze.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> A devenit ministru al războiului, apoi prim-ministru în 1941, fiind principalul strateg al expansiunii imperiului japonez în Asia și Pacific.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> A aprobat atacul surpriză de la Pearl Harbor și a condus Japonia în războiul total împotriva SUA și aliaților.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> După capitularea Japoniei, a fost arestat, judecat pentru crime de război și executat prin spânzurare în 1948.</p>
+        <button onclick="window.open('https://en.wikipedia.org/wiki/Hideki_Tojo', '_blank')" class="mt-4 bg-blue-400 hover:bg-blue-500 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Hideki Tōjō
+        </button>
       </div>
     </div>
+  </section>
 
-    <!-- Aliați -->
-    <div class="mb-4">
-      <button onclick="toggle('churchill', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Winston Churchill (Marea Britanie)
-      </button>
-      <div id="churchill" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>Prim-ministru al Marii Britanii în timpul războiului, simbol al rezistenței anti-naziste.</p>
+  <!-- Winston Churchill -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="https://media.discordapp.net/attachments/1462408337822847079/1469248934869205084/churchill.jpg?ex=6986f833&is=6985a6b3&hm=b2dfb873e1c16ea9c3aa45b9ce3af5f05a743681083e7d57f2ee2c7fb408e333&=&format=webp" alt="Winston Churchill" class="w-64 h-80 object-cover rounded shadow-xl mb-6 md:mb-0 border-4 border-green-400">
+      <div>
+        <h2 class="text-3xl text-green-400 mb-2">Winston Churchill</h2>
+        <h3 class="text-xl text-gray-400 mb-2">Prim-ministru al Marii Britanii</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> Descendent dintr-o familie aristocrată, Churchill s-a remarcat ca ofițer, ziarist și politician în numeroase funcții publice înainte de război.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> În 1940 a devenit prim-ministru, fiind ales pentru determinarea și abilitățile sale oratorice în fața pericolului nazist.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> A inspirat rezistența britanică prin discursuri celebre ("We shall never surrender"), a consolidat alianța cu SUA și URSS, fiind arhitectul victoriei aliate.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> După război, a mai fost prim-ministru o scurtă perioadă, apoi s-a retras, rămânând o figură legendară a secolului XX. A murit în 1965.</p>
+        <button onclick="window.open('WinstonChurchill.pdf', '_blank')" class="mt-4 bg-green-300 hover:bg-green-400 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Winston Churchill
+        </button>
       </div>
     </div>
+  </section>
 
-    <div class="mb-4">
-      <button onclick="toggle('roosevelt', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Franklin D. Roosevelt (SUA)
-      </button>
-      <div id="roosevelt" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>Președinte al SUA, a condus țara în perioada războiului și a mobilizat economia pentru efortul militar.</p>
+  <!-- Franklin D. Roosevelt -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="data:image/jpeg;base64,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" alt="Franklin D. Roosevelt" class="w-64 h-80 object-cover rounded shadow-xl mb-6 md:mb-0 border-4 border-blue-400">
+      <div>
+        <h2 class="text-3xl text-blue-300 mb-2">Franklin D. Roosevelt</h2>
+        <h3 class="text-xl text-gray-400 mb-2">Președinte al Statelor Unite</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> Născut în 1882, provenind dintr-o familie bogată, a fost afectat de poliomielită, dar nu și-a abandonat cariera politică, devenind guvernator al statului New York și apoi președinte.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> A fost ales președinte în 1932, în plină criză economică, implementând New Deal-ul pentru relansarea economiei americane.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> A condus SUA în timpul celui mai dificil conflict, asigurând mobilizarea totală a resurselor și stabilind relații strânse cu Churchill și Stalin.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> A murit în exercițiul funcțiunii, în aprilie 1945, cu puțin timp înainte de capitularea Germaniei, fiind singurul președinte american ales de patru ori.</p>
+        <button onclick="window.open('FranklinDRoosevelt.pdf', '_blank')" class="mt-4 bg-blue-300 hover:bg-blue-400 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Franklin D. Roosevelt
+        </button>
       </div>
     </div>
+  </section>
 
-    <div class="mb-4">
-      <button onclick="toggle('stalin', this)" class="w-full bg-[#5f6640] hover:bg-[#6c7450] text-left px-4 py-2 rounded text-lg">
-        <i class="fas fa-chevron-right"></i> Iosif Stalin (URSS)
-      </button>
-      <div id="stalin" class="hidden mt-2 bg-gray-800 p-4 rounded text-sm">
-        <p>Conducătorul URSS, lider al contraofensivei sovietice, cheie în bătăliile de la Stalingrad și Berlin.</p>
+  <!-- Iosif Stalin -->
+  <section class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg mt-10">
+    <div class="flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="https://cdn.discordapp.com/attachments/1462408337822847079/1469248936022904876/stalin.jpg?ex=6986f833&is=6985a6b3&hm=c35db22e992d29ddb172d26add945e66a7312ae8aa71116d495a27447037d5b0&" alt="Iosif Stalin" class="w-64 h-80 object-cover rounded shadow-xl mb-6 md:mb-0 border-4 border-red-400">
+      <div>
+        <h2 class="text-3xl text-red-300 mb-2">Iosif Stalin</h2>
+        <h3 class="text-xl text-gray-400 mb-2">Conducător al URSS</h3>
+        <p class="mb-4 text-sm"><b>Povestea vieții:</b> Născut în 1878 în Georgia, fiu de cizmar, Stalin a trecut prin școli teologice, dar a devenit revoluționar bolșevic, participând la revoluția rusă.</p>
+        <p class="mb-4 text-sm"><b>Ascensiunea la putere:</b> După moartea lui Lenin, a eliminat treptat rivalii și a instaurat un regim autoritar, transformând URSS într-o superputere industrială prin represiune și teroare.</p>
+        <p class="mb-4 text-sm"><b>Influență și decizii:</b> A condus cu mână de fier efortul de război sovietic, fiind decisiv în bătăliile de la Stalingrad și Berlin. Politicile sale au dus la milioane de victime, dar și la victoria asupra Germaniei naziste.</p>
+        <p class="mb-4 text-sm"><b>Finalul vieții:</b> A murit în 1953 de atac cerebral, lăsând o moștenire controversată de teroare, dar și de modernizare a URSS.</p>
+        <button onclick="window.open('IosifStalin.pdf', '_blank')" class="mt-4 bg-red-300 hover:bg-red-400 text-black font-bold px-4 py-2 rounded shadow">
+            Deschide PDF Iosif Stalin
+        </button>
       </div>
     </div>
-  </div>
+  </section>
+  <div class="overflow-auto mt-16">
+  <table class="min-w-full text-center border-2 border-gray-500">
+    <thead>
+      <tr class="bg-gray-700 text-white">
+        <th class="px-6 py-3 text-xl font-bold border-2 border-gray-500">Nume</th>
+        <th class="px-6 py-3 text-xl font-bold border-2 border-gray-500">Țara</th>
+        <th class="px-6 py-3 text-xl font-bold border-2 border-gray-500">Funcție</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-900">
+      <tr class="bg-gray-200">
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Adolf Hitler</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Germania</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Führer, dictator nazist</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Erwin Rommel</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Germania</td>
+        <td class="px-6 py-3 border-2 border-gray-500">General, „Vulpea Deșertului”</td>
+      </tr>
+      <tr class="bg-gray-200">
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Benito Mussolini</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Italia</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Lider fascist</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Hideki Tōjō</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Japonia</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Prim-ministru militar</td>
+      </tr>
+      <tr class="bg-gray-200">
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Iosif Stalin</td>
+        <td class="px-6 py-3 border-2 border-gray-500">URSS</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Conducător sovietic</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Winston Churchill</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Marea Britanie</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Prim-ministru</td>
+      </tr>
+      <tr class="bg-gray-200">
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Franklin D. Roosevelt</td>
+        <td class="px-6 py-3 border-2 border-gray-500">SUA</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Președinte</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Harry S. Truman</td>
+        <td class="px-6 py-3 border-2 border-gray-500">SUA</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Președinte (după 1945)</td>
+      </tr>
+      <tr class="bg-gray-200">
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Charles de Gaulle</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Franța</td>
+        <td class="px-6 py-3 border-2 border-gray-500">Lider al Franței Libere</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3 border-2 border-gray-500 font-semibold">Dwight D. Eisenhower</td>
+        <td class="px-6 py-3 border-2 border-gray-500">SUA</td>
+        <td class="px-6 py-3 border-2 border-gray-500">General, comandant suprem</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-  <!-- SECTIUNE FORȚELE ALIATE -->
+  <!-- Restul paginii tale (harta, butoane, etc.) -->
+
   <div class="bg-gray-900 bg-opacity-90 p-6 rounded-xl shadow-lg mt-10">
     <h2 class="text-2xl text-green-400 mb-4"><i class="fas fa-flag"></i> Forțele Aliate</h2>
     <p class="text-sm mb-4">Forțele Aliate au reprezentat coaliția statelor care s-au unit pentru a înfrânge Germania nazistă, Italia fascistă și Japonia imperială.</p>
   </div>
 
-  <!-- SECTIUNE PUTERILE AXEI -->
   <div class="bg-gray-900 bg-opacity-90 p-6 rounded-xl shadow-lg mt-10">
     <h2 class="text-2xl text-red-400 mb-4"><i class="fas fa-bolt"></i> Puterile Axei</h2>
     <p class="text-sm mb-4">Puterile Axei au fost alianța statelor totalitare și expansioniste care au declanșat Al Doilea Război Mondial.</p>
   </div>
 
-  <!-- HARTĂ -->
   <div class="bg-gray-900 bg-opacity-90 p-6 rounded-xl shadow-lg mt-10">
     <h2 class="text-2xl text-green-400 mb-4"><i class="fas fa-globe"></i> Hartă interactivă</h2>
     <div id="map" style="height: 500px;" class="rounded shadow-lg"></div>
@@ -130,31 +248,26 @@
             class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded">
       Zone de conflict
     </button>
-
     <button id="axaAliatiBtn" onclick="toggleAxaAliati()" 
             class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded">
       Forțele Axa
     </button>
   </div>
 
-  <!-- Leaflet -->
+  <!-- Leaflet + Script pentru hartă -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
   <script>
     // Inițializare hartă
     const map = L.map('map').setView([48, 10], 4);
-   L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; OpenStreetMap contributors &copy; OSM France'
-}).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors &copy; OSM France'
+    }).addTo(map);
 
-    // -------------------
     // Zone de conflict
-    // -------------------
     let conflictLayer;
     let conflictOn = false;
-
     function toggleConflict() {
       if (!conflictOn) {
         const conflictZone = [[45, 5], [55, 15], [55, 25], [45, 25]];
@@ -170,54 +283,40 @@
       }
     }
 
-    // ------------------------
     // Axa și Aliații toggle
-    // ------------------------
     let axaLayer, aliatiLayer;
     let axaAliatiState = 0; // 0 = nimic, 1 = Axa, 2 = Aliați
-
     function toggleAxaAliati() {
       if (axaAliatiState === 0) {
-        // Axa
         const germania = [[55, 5], [55, 15], [47, 15], [47, 5]];
         const italia = [[47, 7], [47, 15], [37, 15], [37, 7]];
         const japonia = [[46, 138], [46, 146], [35, 146], [35, 138]];
-
         axaLayer = L.layerGroup([
           L.polygon(germania, {color: "red", fillColor: "red", fillOpacity: 0.4}).bindPopup("Germania"),
           L.polygon(italia, {color: "red", fillColor: "red", fillOpacity: 0.4}).bindPopup("Italia"),
           L.polygon(japonia, {color: "red", fillColor: "red", fillOpacity: 0.4}).bindPopup("Japonia")
         ]).addTo(map);
-
         document.getElementById("axaAliatiBtn").innerText = "Forțele Aliați";
         axaAliatiState = 1;
-
       } else if (axaAliatiState === 1) {
-        // eliminăm Axa
         if (axaLayer) { map.removeLayer(axaLayer); }
-
-        // Aliați
         const uk = [[59, -8], [59, 2], [50, 2], [50, -8]];
         const sua = [[49, -125], [49, -66], [25, -66], [25, -125]];
         const urss = [[70, 30], [70, 90], [50, 90], [50, 30]];
-
         aliatiLayer = L.layerGroup([
           L.polygon(uk, {color: "green", fillColor: "green", fillOpacity: 0.4}).bindPopup("Marea Britanie"),
           L.polygon(sua, {color: "green", fillColor: "green", fillOpacity: 0.4}).bindPopup("Statele Unite"),
           L.polygon(urss, {color: "green", fillColor: "green", fillOpacity: 0.4}).bindPopup("URSS")
         ]).addTo(map);
-
         document.getElementById("axaAliatiBtn").innerText = "Șterge forțele";
         axaAliatiState = 2;
-
       } else if (axaAliatiState === 2) {
-        // eliminăm Aliați
         if (aliatiLayer) { map.removeLayer(aliatiLayer); }
-
         document.getElementById("axaAliatiBtn").innerText = "Forțele Axa";
         axaAliatiState = 0;
       }
     }
   </script>
+
 </body>
 </html>

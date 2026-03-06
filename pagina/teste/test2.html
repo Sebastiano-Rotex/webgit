@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fișa de învățare și evaluare — Al Doilea Război Mondial (Test web)</title>
+  <meta name="description" content="Fișă de învățare și evaluare convertită în pagină web interactivă. Permite completarea, salvarea locală, exportul și printarea răspunsurilor." />
+  <style>
+    :root{--accent:#2b6cb0;--muted:#6b7280;--bg:#0f1724;--card:#071026;color-scheme:light}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:#f6f8fb;color:#0b1220}
+    .wrap{max-width:1000px;margin:20px auto;padding:18px}
+    header{display:flex;gap:16px;align-items:center}
+    header h1{margin:0;font-size:1.4rem}
+    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.06);margin-top:12px}
+    h2{margin:8px 0 12px}
+    label{display:block;margin:10px 0 6px;font-weight:600}
+    textarea, input[type="text"], input[type="number"], select { width:100%; padding:10px;border-radius:8px;border:1px solid #d6dbe6; background:transparent; font-size:0.95rem; box-sizing:border-box }
+    textarea{min-height:80px; resize:vertical}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .controls{display:flex;gap:8px;align-items:center;margin-top:12px}
+    button.btn{background:var(--accent);border:0;padding:8px 12px;border-radius:8px;color:white;cursor:pointer}
+    .hint{color:var(--muted);font-size:0.92rem;margin-top:6px}
+    details{margin-top:8px}
+    .section-title{font-size:1.05rem;margin-top:8px;margin-bottom:6px}
+    .small{font-size:0.9rem;color:var(--muted)}
+    blockquote{margin:0 0 8px 0;padding-left:16px;border-left:3px solid rgba(43,108,176,0.3);font-style:italic;color:#333}
+    figure{margin:10px 0}
+    figcaption{font-size:0.9rem;color:var(--muted)}
+    @media (max-width:880px){ .row{flex-direction:column} }
+    @media print {
+      .controls, header, footer, .top-actions { display:none }
+      .wrap{max-width:100%;margin:0;padding:0}
+      .card{box-shadow:none;border-radius:0}
+    }
+
+    /* Section III table styles (editable) */
+    #III-table { width:100%; border-collapse:collapse; margin-top:8px; table-layout:fixed; }
+    #III-table th, #III-table td { border:2px solid #222; padding:8px; vertical-align:middle; font-size:0.96rem; }
+    #III-table th { background:#fff; font-weight:700; text-align:left; padding:10px; }
+    #III-table th.th-red { color:#b22222; }   /* Alianțe politico-militare */
+    #III-table th.th-green { color:#0b8043; } /* State membre */
+    #III-table th.th-purple { color:#7b2cbf; }/* Motivele participării */
+    .alliance-cell { width:28%; font-weight:700; text-align:center; padding:16px; background:#fff; }
+    .alliance-cell .alliance-name { display:inline-block; line-height:1.25; }
+    .state-cell, .reason-cell { height:56px; text-align:left; padding:6px 8px; overflow:hidden; }
+    .cell-input, .cell-textarea { width:100%; box-sizing:border-box; border:0; background:transparent; font-size:0.95rem; padding:6px 4px; outline: none; resize:vertical; }
+    .cell-input:focus, .cell-textarea:focus { outline:2px solid rgba(43,108,176,0.18); background: rgba(43,108,176,0.02); border-radius:4px; }
+    .cell-textarea { min-height:38px; max-height:140px; }
+
+    /* Section V styles (operations table) */
+    #V-table { width:100%; border-collapse:collapse; margin-top:12px; table-layout:fixed; }
+    #V-table th, #V-table td { border:2px solid #222; padding:8px; vertical-align:top; font-size:0.95rem; }
+    #V-table th { background:#fff; font-weight:700; text-align:center; }
+    #V-table th.th-op { text-align:left; color:#111 }
+    #V-table th.th-goal { color:#0b8043 }
+    #V-table th.th-desc { color:#b22222 }
+    #V-table th.th-conseq { color:#7b2cbf }
+    #V-table colgroup col.op-col { width:30%; }
+    #V-table colgroup col.goal-col, #V-table colgroup col.desc-col, #V-table colgroup col.conseq-col { width:23.3333%; }
+    .op-cell { display:flex; gap:8px; align-items:flex-start; }
+    .row-number { display:inline-block; min-width:20px; font-weight:700; color:#333; }
+
+    /* Blazon (section VIII) styles with fixed spacing to avoid overlap */
+    .blazon { border:2px solid #333; background:#fff; overflow:visible; padding-bottom:140px; margin-bottom:24px; }
+    .blazon-header { background:#3a3a3a; color:#fff; text-align:center; padding:6px 10px; font-weight:700; }
+    .blazon-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+    .cell { padding:14px; border-top:1px solid rgba(0,0,0,0.12); border-left:1px solid rgba(0,0,0,0.12); border-right:1px solid rgba(0,0,0,0.12); min-height:64px; box-sizing:border-box; }
+    .row-1 .cell { background:#b4de2b; }   /* verde lime */
+    .row-2 .cell { background:#00f0ea; }   /* cyan */
+    .row-3 .cell { background:#6f6f95; }   /* mov / violet */
+    .row-4 .cell, .row-5 .cell { background:#5a5a5a; }   /* gri inchis */
+    .label { font-weight:600; margin-bottom:6px; display:block; color:#111 }
+    .cell-textarea { min-height:50px; resize:vertical; border:0; background:transparent; padding:6px; }
+    .blazon-triangle-wrap { position:relative; height:100px; margin-top:0; margin-bottom:36px; }
+    .blazon-triangle { width:0; height:0; border-left:420px solid transparent; border-right:420px solid transparent; border-top:80px solid #5a5a5a; margin:0 auto; transform:translateY(-2px); }
+    .triangle-text { position:relative; top:-70px; text-align:center; color:#111; font-size:0.95rem; padding:8px 10px; }
+    @media (max-width:900px) {
+      .blazon-grid { grid-template-columns:1fr; }
+      .blazon-triangle { border-left:40vw solid transparent; border-right:40vw solid transparent; }
+      .blazon { padding-bottom:160px; }
+      .blazon-triangle-wrap { margin-bottom:48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Fișa de învățare și evaluare — Al Doilea Război Mondial</h1>
+        <div class="small">Test convertit în pagină web interactivă. Completează răspunsurile, salvează local sau exportă.</div>
+      </div>
+    </header>
+
+    <div class="top-actions" style="display:flex;gap:10px;margin-top:12px">
+      <button class="btn" id="saveBtn">Salvează în browser</button>
+      <button class="btn" id="loadBtn">Încarcă salvarea</button>
+      <button class="btn" id="exportBtn">Exportă răspunsuri (.txt)</button>
+      <button class="btn" id="printBtn">Printează / Salvează PDF</button>
+    </div>
+
+    <form id="testForm" class="card" autocomplete="off">
+      <h2>Instrucțiuni</h2>
+      <p class="small">Completează fișa în limba română. Poți salva progresul local, exporta răspunsurile ca fișier text sau printa pagina. Câmpurile deschise permit redactare liberă; pentru întrebări scurte folosește câmpurile dedicate.</p>
+
+      <!-- I. Text și întrebări -->
+      <section id="I">
+        <h3 class="section-title">I. Citirea textului (întrebări)</h3>
+
+        <label for="I1">1. Identificați cine a fost autorul textului de mai sus.</label>
+
+        <blockquote>
+          <p>“Timp de şase ore, trupele motorizate ale Reichului au defilat într-un şir neîntrerupt de tancuri, mortiere, obuziere, tunuri impresionante, în sunetele vesele ale fanfarelor (...) prelungindu-se apoi într-un zgomot obsedant, în faţa unor spectatori istoviţi, cu nervii zdrobiţi (...) Un coşmar de şase ore, preludiu îngrijorător al dramei de şase ani ce avea să urmeze.”</p>
+          <footer>— Grigore Gafencu, Memorii</footer>
+        </blockquote>
+
+        <figure>
+          <img src="test2img1.jpg" alt="Paradă militară: coloane de tancuri și trupe pe stradă" style="width:300px;height:auto;display:block;">
+          <figcaption>Imagine ilustrativă: paradă militară (sursa: material didactic)</figcaption>
+        </figure>
+
+        <input id="I1" name="I1" type="text" placeholder="Ex: Nume autor (ex: Grigore Gafencu)" />
+
+        <label for="I2">2. Pe baza imaginilor, ce impresie putea face o paradă militară în mintea cetățenilor germani?</label>
+        <textarea id="I2" name="I2" placeholder="Redactează răspunsul (2-4 rânduri)"></textarea>
+
+        <label>3. Pe baza textului, menţionaţi cinci dintre armele armatei germane care erau pregătite să asigure succesul în război. (completați literele)</label>
+        <div class="row">
+          <div class="col"><input id="I3a" name="I3a" type="text" placeholder="a. ..." /></div>
+          <div class="col"><input id="I3b" name="I3b" type="text" placeholder="b. ..." /></div>
+        </div>
+        <div class="row">
+          <div class="col"><input id="I3c" name="I3c" type="text" placeholder="c. ..." /></div>
+          <div class="col"><input id="I3d" name="I3d" type="text" placeholder="d. ..." /></div>
+        </div>
+        <div style="margin-top:8px"><input id="I3e" name="I3e" type="text" placeholder="e. ..." /></div>
+
+        <label for="I4">4. Explicați de ce războiul a durat atât de mult, deși se estima blitzkrieg.</label>
+        <textarea id="I4" name="I4" placeholder="Explicație (3-6 rânduri)"></textarea>
+
+        <label for="I5">5. Care a fost scopul declanșării războiului de către Germania și aliații săi?</label>
+        <textarea id="I5" name="I5" placeholder="Scopuri politice, economice, teritoriale (2-4 rânduri)"></textarea>
+      </section>
+
+      <!-- II. Redactare text -->
+      <section id="II" style="margin-top:12px">
+        <h3 class="section-title">II. Redactare istorică</h3>
+        <p class="small">Redactați un text corect din punct de vedere istoric pornind de la termenii: Blitzkrieg, Axa Berlin‑Roma‑Tokyo, Alianţa Naţiunilor Unite, linia Maginot, bătălia Angliei, Operaţiunea Barbarossa, Afrikakorps, Nagasaki</p>
+        <textarea id="II_text" name="II_text" placeholder="Redactați textul (aprox. 8–12 rânduri)"></textarea>
+      </section>
+
+      <!-- III. Tabel alianțe și cauzalități (editable) -->
+      <section id="III" style="margin-top:12px">
+        <h3 class="section-title">III. Alianțe și relații cauzale</h3>
+        <p class="small">1. Completați tabelul pentru cele două alianțe (introduceți câteva state și motive)</p>
+
+        <table id="III-table" aria-label="Tabel alianțe">
+          <thead>
+            <tr>
+              <th class="th-red" style="width:28%;">Alianţe politico-militare</th>
+              <th class="th-green">State membre</th>
+              <th class="th-purple">Motivele participării acestora la război</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="alliance-cell" rowspan="6" scope="row">
+                <div class="alliance-name">Axa<br><strong>Berlin‑Roma‑Tokyo</strong></div>
+              </td>
+              <td class="state-cell">
+                <input class="cell-input" type="text" name="III_axis_state_1" aria-label="Axa - stat 1" value="Italia">
+              </td>
+              <td class="reason-cell">
+                <textarea class="cell-textarea" name="III_axis_reason_1" aria-label="Axa - motiv 1" placeholder="Motivul participării..."></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_axis_state_2" aria-label="Axa - stat 2" placeholder="Ex: Germania"></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_axis_reason_2" aria-label="Axa - motiv 2" placeholder="Motivul participării..."></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_axis_state_3" aria-label="Axa - stat 3" placeholder="Ex: Japonia"></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_axis_reason_3" aria-label="Axa - motiv 3" placeholder="Motivul participării..."></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_axis_state_4" aria-label="Axa - stat 4" placeholder=""></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_axis_reason_4" aria-label="Axa - motiv 4" placeholder=""></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_axis_state_5" aria-label="Axa - stat 5" placeholder=""></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_axis_reason_5" aria-label="Axa - motiv 5" placeholder=""></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_axis_state_6" aria-label="Axa - stat 6" placeholder=""></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_axis_reason_6" aria-label="Axa - motiv 6" placeholder=""></textarea></td>
+            </tr>
+
+            <tr><td colspan="3" style="border:none;height:10px"></td></tr>
+
+            <tr>
+              <td class="alliance-cell" rowspan="6" scope="row">
+                <div class="alliance-name">Alianţa<br><strong>Naţiunilor<br>Unite</strong></div>
+              </td>
+              <td class="state-cell">
+                <input class="cell-input" type="text" name="III_un_state_1" aria-label="Națiunile Unite - stat 1" value="Anglia">
+              </td>
+              <td class="reason-cell">
+                <textarea class="cell-textarea" name="III_un_reason_1" aria-label="Națiunile Unite - motiv 1" placeholder="Motivul participării..."></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_un_state_2" aria-label="Națiunile Unite - stat 2" placeholder="Ex: SUA"></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_un_reason_2" aria-label="Națiunile Unite - motiv 2" placeholder="Motivul participării..."></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_un_state_3" aria-label="Națiunile Unite - stat 3" placeholder="Ex: U.R.S.S."></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_un_reason_3" aria-label="Națiunile Unite - motiv 3" placeholder="Motivul participării..."></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_un_state_4" aria-label="Națiunile Unite - stat 4" placeholder=""></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_un_reason_4" aria-label="Națiunile Unite - motiv 4" placeholder=""></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_un_state_5" aria-label="Națiunile Unite - stat 5" placeholder=""></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_un_reason_5" aria-label="Națiunile Unite - motiv 5" placeholder=""></textarea></td>
+            </tr>
+            <tr>
+              <td class="state-cell"><input class="cell-input" type="text" name="III_un_state_6" aria-label="Națiunile Unite - stat 6" placeholder=""></td>
+              <td class="reason-cell"><textarea class="cell-textarea" name="III_un_reason_6" aria-label="Națiunile Unite - motiv 6" placeholder=""></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="small" style="margin-top:8px">2. Stabilește trei legături de cauzalitate între cele două războaie mondiale</p>
+        <textarea id="III_causeLinks" name="III_causeLinks" placeholder="3 legături cauzale, separate prin linii" style="min-height:80px;"></textarea>
+
+        <p class="small" style="margin-top:8px">3. Două asemănări și două deosebiri între cauzele celor două războaie</p>
+        <textarea id="III_simdiff" name="III_simdiff" placeholder="Ex: Asemănări: ...; Deosebiri: ..." style="min-height:80px;"></textarea>
+      </section>
+
+      <!-- IV. Analiza afișelor (imagini) -->
+      <section id="IV" style="margin-top:12px">
+        <h3 class="section-title">IV. Analiza afișelor</h3>
+        <p class="small">Pentru fiecare imagine (1, 2, 3) analizați: a) autorii afişelor; b) motivele realizării lor; c) simbolurile utilizate şi semnificaţia acestora; d) opinia ta despre impactul unor astfel de mesaje</p>
+
+        <label for="IV1">1.</label>
+        <figure><img src="1-2.png" alt="Afiș 1" style="width:300px;height:auto;"><figcaption class="small">Afiș 1</figcaption></figure>
+        <textarea id="IV1" name="IV1" placeholder="a) ... b) ... c) ... d) ..."></textarea>
+
+        <label for="IV2">2.</label>
+        <figure><img src="2-2.png" alt="Afiș 2" style="width:300px;height:auto;"><figcaption class="small">Afiș 2</figcaption></figure>
+        <textarea id="IV2" name="IV2" placeholder="a) ... b) ... c) ... d) ..."></textarea>
+
+        <label for="IV3">3.</label>
+        <figure><img src="3-2.png" alt="Afiș 3" style="width:300px;height:auto;"><figcaption class="small">Afiș 3</figcaption></figure>
+        <textarea id="IV3" name="IV3" placeholder="a) ... b) ... c) ... d) ..."></textarea>
+      </section>
+
+      <!-- V. Operațiuni militare (editable) -->
+      <section id="V" style="margin-top:12px">
+        <h3 class="section-title">V. Completați tabelul de mai jos cu cinci operaţiuni militare ale conflictului</h3>
+        <p class="small">Completați 5 operațiuni: nume, scop, desfășurare, consecințe</p>
+
+        <table id="V-table" aria-label="Tabel operațiuni militare">
+          <colgroup>
+            <col class="op-col">
+            <col class="goal-col">
+            <col class="desc-col">
+            <col class="conseq-col">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="th-op">Operaţiunea militară</th>
+              <th class="th-goal">Scopul acesteia</th>
+              <th class="th-desc">Desfăşurarea</th>
+              <th class="th-conseq">Consecinţele operaţiunii</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="op-cell">
+                  <span class="row-number">1.</span>
+                  <input class="cell-input" type="text" name="V_op_name_1" aria-label="Operațiunea 1" value='Operațiunea "Leul de mare"'>
+                </div>
+              </td>
+              <td><textarea class="cell-textarea" name="V_op_goal_1" aria-label="Scopul operațiunii 1" placeholder="Scopul..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_desc_1" aria-label="Desfășurarea operațiunii 1" placeholder="Desfășurarea..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_conseq_1" aria-label="Consecințele operațiunii 1" placeholder="Consecințe..."></textarea></td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="op-cell">
+                  <span class="row-number">2.</span>
+                  <input class="cell-input" type="text" name="V_op_name_2" aria-label="Operațiunea 2" placeholder="2. Numele operațiunii">
+                </div>
+              </td>
+              <td><textarea class="cell-textarea" name="V_op_goal_2" aria-label="Scopul operațiunii 2" placeholder="Scopul..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_desc_2" aria-label="Desfășurarea operațiunii 2" placeholder="Desfășurarea..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_conseq_2" aria-label="Consecințele operațiunii 2" placeholder="Consecințe..."></textarea></td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="op-cell">
+                  <span class="row-number">3.</span>
+                  <input class="cell-input" type="text" name="V_op_name_3" aria-label="Operațiunea 3" placeholder="3. Numele operațiunii">
+                </div>
+              </td>
+              <td><textarea class="cell-textarea" name="V_op_goal_3" aria-label="Scopul operațiunii 3" placeholder="Scopul..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_desc_3" aria-label="Desfășurarea operațiunii 3" placeholder="Desfășurarea..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_conseq_3" aria-label="Consecințele operațiunii 3" placeholder="Consecințe..."></textarea></td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="op-cell">
+                  <span class="row-number">4.</span>
+                  <input class="cell-input" type="text" name="V_op_name_4" aria-label="Operațiunea 4" placeholder="4. Numele operațiunii">
+                </div>
+              </td>
+              <td><textarea class="cell-textarea" name="V_op_goal_4" aria-label="Scopul operațiunii 4" placeholder="Scopul..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_desc_4" aria-label="Desfășurarea operațiunii 4" placeholder="Desfășurarea..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_conseq_4" aria-label="Consecințele operațiunii 4" placeholder="Consecințe..."></textarea></td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="op-cell">
+                  <span class="row-number">5.</span>
+                  <input class="cell-input" type="text" name="V_op_name_5" aria-label="Operațiunea 5" placeholder="5. Numele operațiunii">
+                </div>
+              </td>
+              <td><textarea class="cell-textarea" name="V_op_goal_5" aria-label="Scopul operațiunii 5" placeholder="Scopul..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_desc_5" aria-label="Desfășurarea operațiunii 5" placeholder="Desfășurarea..."></textarea></td>
+              <td><textarea class="cell-textarea" name="V_op_conseq_5" aria-label="Consecințele operațiunii 5" placeholder="Consecințe..."></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- VI. Desfășurare în spațiul european (max 15 rânduri) -->
+      <section id="VI" style="margin-top:12px">
+        <h3 class="section-title">VI. Desfășurarea războiului în spațiul european</h3>
+        <p class="small">Prezentați sumar, în maxim 15 rânduri, desfăşurarea celui de al Doilea Război Mondial în spaţiul european.</p>
+        <figure><img src="spatiu.jpg" alt="Hartă spațiu european" style="width:600px;height:auto;"></figure>
+        <textarea id="VI_text" name="VI_text" placeholder="Maxim 15 rânduri"></textarea>
+      </section>
+
+      <!-- VII. Anul 1940 și România -->
+      <section id="VII" style="margin-top:12px">
+        <h3 class="section-title">VII. 1940 — 'tragicul an 1940' (România)</h3>
+        <figure><img src="tragic1940.jpg" alt="Evenimente 1940" style="width:600px;height:auto;"></figure>
+
+        <label for="VII1">1. De ce 1940 este numit 'tragicul an 1940'?</label>
+        <textarea id="VII1" name="VII1"></textarea>
+
+        <label for="VII2">2. Consecințele evenimentelor din 1940</label>
+        <textarea id="VII2" name="VII2"></textarea>
+
+        <label for="VII3">3. Sondaj și opinie (descrie răspunsurile)</label>
+        <figure>
+          <img src="t2e71.jpg" alt="Imagine 1 sondaj" style="width:300px;height:auto;">
+          <img src="t2e72.jpg" alt="Imagine 2 sondaj" style="width:300px;height:auto;">
+        </figure>
+        <textarea id="VII3" name="VII3" placeholder="a) ... b) ... c) ..."></textarea>
+      </section>
+
+      <!-- VIII. Blazonul (profil) -->
+      <section id="VIII" style="margin-top:12px">
+        <h3 class="section-title">VIII. Blazon — profil biografic</h3>
+
+        <div class="blazon" role="region" aria-label="Blazon profil">
+          <div class="blazon-header">
+            <input type="text" name="VIII_name" class="cell-input" aria-label="Nume persoană" placeholder="Nume (ex: Ion ...)" style="text-align:center; font-weight:700; color:#fff; background:transparent; border:0;">
+          </div>
+
+          <div class="blazon-grid">
+            <div class="cell row-1">
+              <label class="label" for="VIII_fam">Date familiale:</label>
+              <textarea id="VIII_fam" name="VIII_fam" class="cell-textarea" placeholder="Introduceți date familiale..."></textarea>
+            </div>
+            <div class="cell row-1">
+              <label class="label" for="VIII_edu">Pregătire şcolară:</label>
+              <textarea id="VIII_edu" name="VIII_edu" class="cell-textarea" placeholder="Introduceți pregătire școlară..."></textarea>
+            </div>
+
+            <div class="cell row-2">
+              <label class="label" for="VIII_phys">Caracteristici fizice:</label>
+              <textarea id="VIII_phys" name="VIII_phys" class="cell-textarea" placeholder="Descriere fizică..."></textarea>
+            </div>
+            <div class="cell row-2">
+              <label class="label" for="VIII_moral">Caracteristici morale:</label>
+              <textarea id="VIII_moral" name="VIII_moral" class="cell-textarea" placeholder="Trăsături morale..."></textarea>
+            </div>
+
+            <div class="cell row-3">
+              <label class="label" for="VIII_achievements">Realizări politico-militare:</label>
+              <textarea id="VIII_achievements" name="VIII_achievements" class="cell-textarea" placeholder="Realizări politic-militare..."></textarea>
+            </div>
+            <div class="cell row-3">
+              <label class="label" for="VIII_goals">Dorinţe, neîmpliniri:</label>
+              <textarea id="VIII_goals" name="VIII_goals" class="cell-textarea" placeholder="Dorințe, obiective neîmplinite..."></textarea>
+            </div>
+
+            <div class="cell row-4">
+              <label class="label" for="VIII_friends">Prieteni sau camarazi:</label>
+              <textarea id="VIII_friends" name="VIII_friends" class="cell-textarea" placeholder="Prieteni, camarazi..."></textarea>
+            </div>
+            <div class="cell row-4">
+              <label class="label" for="VIII_adversaries">Adversari sau duşmani:</label>
+              <textarea id="VIII_adversaries" name="VIII_adversaries" class="cell-textarea" placeholder="Adversari, opozanți..."></textarea>
+            </div>
+
+            <div class="cell row-5">
+              <label class="label" for="VIII_consequences">Consecinţele faptelor sale:</label>
+              <textarea id="VIII_consequences" name="VIII_consequences" class="cell-textarea" placeholder="Consecințele acțiunilor sale..."></textarea>
+            </div>
+            <div class="cell row-5">
+              <label class="label" for="VIII_authors">Autori care au scris despre el:</label>
+              <textarea id="VIII_authors" name="VIII_authors" class="cell-textarea" placeholder="Lista autorilor / referințe..."></textarea>
+            </div>
+          </div>
+
+          <div class="blazon-triangle-wrap" aria-hidden="false">
+            <div class="blazon-triangle" role="presentation"></div>
+            <div class="triangle-text">Descrie aici felul în care s-a sfârșit viața sa.</div>
+            <textarea id="VIII_death" name="VIII_death" class="cell-textarea" placeholder="Descrierea sfârșitului vieții..." style="display:block; width:84%; margin:12px auto 24px auto; min-height:70px;"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- IX. Caricaturi -->
+      <section id="IX" style="margin-top:12px">
+        <h3 class="section-title">IX. Priviţi caricaturile de mai jos şi descrieţi ce mesaje pot oferi acestea.</h3>
+        <label for="IX1">1.</label>
+        <figure><img src="1-4.jpg.png" alt="Caricatura 1" style="width:300px;height:auto;"></figure>
+        <textarea id="IX1" name="IX1"></textarea>
+
+        <label for="IX2">2.</label>
+        <figure><img src="2-4.jpg.png" alt="Caricatura 2" style="width:300px;height:auto;"></figure>
+        <textarea id="IX2" name="IX2"></textarea>
+
+        <label for="IX3">3.</label>
+        <figure><img src="3-4.jpg.png" alt="Caricatura 3" style="width:300px;height:auto;"></figure>
+        <textarea id="IX3" name="IX3"></textarea>
+      </section>
+
+      <!-- X. Eseu Holocaust -->
+      <section id="X" style="margin-top:12px">
+        <h3 class="section-title">X. Eseu — Holocaustul (aprox. jumătate de pagină)</h3>
+        <p class="small">Aveți în vedere cauzele, aplicarea soluției finale, România și memoria Holocaustului.</p>
+        <textarea id="X_text" name="X_text" placeholder="Eseu (aprox. 8–12 rânduri)"></textarea>
+      </section>
+
+      <div class="controls">
+        <button type="button" class="btn" id="saveInline">Salvează în browser</button>
+        <button type="button" class="btn" id="exportInline">Exportă răspunsuri</button>
+        <button type="button" class="btn" id="clearBtn" title="Curăță toate răspunsurile">Curăță</button>
+        <button type="button" class="btn" id="donePrint">Printează / PDF</button>
+      </div>
+
+      <details style="margin-top:10px">
+        <summary>Ajutor: cum se salvează și exportă răspunsurile</summary>
+        <ol>
+          <li>Salvare locală: folosiți "Salvează în browser" — datele rămân pe acest calculator în browser (localStorage).</li>
+          <li>Încărcare: folosiți "Încarcă salvarea" pentru a restaura datele salvate.</li>
+          <li>Export: "Exportă răspunsuri" va descărca un fișier .txt cu toate răspunsurile, pe care îl puteți trimite profesorului.</li>
+          <li>Print: "Printează / Salvează PDF" deschide dialogul de print al browserului.</li>
+        </ol>
+      </details>
+    </form>
+
+    <footer class="small" style="margin-top:12px;color:var(--muted)">
+      Pagina generată automat din fișa oferită. Datele salvate rămân în browserul tău și nu sunt trimise nicăieri.
+    </footer>
+  </div>
+
+  <script>
+    // Simple form save/load/export utilities (localStorage-based)
+    const STORAGE_KEY = 'test_al_doilea_razboi_2025_v1'
+    const form = document.getElementById('testForm')
+
+    function getFormData() {
+      const data = {}
+      Array.from(form.elements).forEach(el => {
+        if (!el.name) return
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          if (el.checked) data[el.name] = el.value
+        } else {
+          data[el.name] = el.value
+        }
+      })
+      return data
+    }
+
+    function setFormData(data = {}) {
+      Array.from(form.elements).forEach(el => {
+        if (!el.name) return
+        if (data.hasOwnProperty(el.name)) {
+          try { el.value = data[el.name] } catch(e){}
+        }
+      })
+    }
+
+    function saveLocal() {
+      const data = getFormData()
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({savedAt: new Date().toISOString(), data}))
+      alert('Răspunsurile au fost salvate local în browser.')
+      isDirty = false
+    }
+
+    function loadLocal() {
+      const raw = localStorage.getItem(STORAGE_KEY)
+      if (!raw) { alert('Nu există salvări în browser.'); return }
+      try {
+        const parsed = JSON.parse(raw)
+        setFormData(parsed.data || {})
+        alert('Salvarea a fost încărcată (data salvării: ' + (parsed.savedAt||'necunoscut') + ').')
+        isDirty = false
+      } catch(e) {
+        alert('Eroare la încărcare: date corupte.')
+      }
+    }
+
+    function exportTxt() {
+      const data = getFormData()
+      const lines = []
+      lines.push('Fișa de învățare și evaluare — Al Doilea Război Mondial')
+      lines.push('Export: ' + new Date().toLocaleString())
+      lines.push('---')
+      for (const k of Object.keys(data)) {
+        lines.push(k + ':')
+        lines.push((data[k] && data[k].trim()) ? data[k].trim() : '[nu completat]')
+        lines.push('') // blank line
+      }
+      const blob = new Blob([lines.join('\n')], {type: 'text/plain;charset=utf-8'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'Fisa_evaluare_AlDoileaRazboiMondial.txt'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    }
+
+    function clearAll() {
+      if (!confirm('Sigur doriți să curățați toate câmpurile? Această operațiune nu va șterge fișierul salvat în browser.')) return
+      Array.from(form.elements).forEach(el => { if (el.name) el.value = '' })
+      isDirty = false
+    }
+
+    // Buttons
+    document.getElementById('saveBtn').addEventListener('click', saveLocal)
+    document.getElementById('saveInline').addEventListener('click', saveLocal)
+    document.getElementById('loadBtn').addEventListener('click', loadLocal)
+    document.getElementById('exportBtn').addEventListener('click', exportTxt)
+    document.getElementById('exportInline').addEventListener('click', exportTxt)
+    document.getElementById('clearBtn').addEventListener('click', clearAll)
+    document.getElementById('printBtn').addEventListener('click', ()=> window.print())
+    document.getElementById('donePrint').addEventListener('click', ()=> window.print())
+
+    // Auto-save draft every 60 seconds (optional)
+    let autoSaveTimer = setInterval(() => {
+      try {
+        const data = getFormData()
+        localStorage.setItem(STORAGE_KEY + '_autosave', JSON.stringify({savedAt: new Date().toISOString(), data}))
+        // silent autosave
+      } catch(e){}
+    }, 60000)
+
+    // Load autosave on page open if main save not present
+    window.addEventListener('load', () => {
+      const raw = localStorage.getItem(STORAGE_KEY + '_autosave')
+      if (raw && !localStorage.getItem(STORAGE_KEY)) {
+        try {
+          const parsed = JSON.parse(raw)
+          if (confirm('Există o salvare automată neînregistrată. Doriți să o restaurați?')) {
+            setFormData(parsed.data || {})
+            alert('Salvare automată restaurată (data: '+(parsed.savedAt||'necunoscut')+').')
+          }
+        } catch(e){}
+      }
+    })
+
+    // Warn user about unsaved changes before leaving
+    let isDirty = false
+    form.addEventListener('input', ()=> isDirty = true)
+    window.addEventListener('beforeunload', (e) => {
+      if (!isDirty) return
+      e.preventDefault()
+      e.returnValue = ''
+    })
+  </script>
+</body>
+</html>

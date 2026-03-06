@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fișa de învăţare şi evaluare — Regimuri politice (test1)</title>
+  <meta name="description" content="Fişa de învăţare şi evaluare — Regimuri politice în perioada interbelică. Formă web pentru completare, salvare și export." />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root{--accent:#2b6cb0;--muted:#6b7280}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:#f6f8fb;color:#0b1220}
+    .wrap{max-width:1000px;margin:20px auto;padding:18px}
+    header{display:flex;gap:16px;align-items:center}
+    header h1{margin:0;font-size:1.4rem}
+    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.06);margin-top:12px}
+    h2{margin:8px 0 12px}
+    label{display:block;margin:10px 0 6px;font-weight:600}
+    textarea, input[type="text"], input[type="number"], select { width:100%; padding:10px;border-radius:8px;border:1px solid #d6dbe6; background:transparent; font-size:0.95rem; box-sizing:border-box }
+    textarea{min-height:80px; resize:vertical}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .controls{display:flex;gap:8px;align-items:center;margin-top:12px}
+    button.btn{background:var(--accent);border:0;padding:8px 12px;border-radius:8px;color:white;cursor:pointer}
+    .small{font-size:0.9rem;color:var(--muted)}
+    .note{font-size:0.9rem;color:#374151;margin-top:6px}
+    @media (max-width:880px){ .row{flex-direction:column} }
+    @media print { .controls, header, footer, .top-actions { display:none } .wrap{max-width:100%;margin:0;padding:0} .card{box-shadow:none;border-radius:0} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Fişa de învăţare şi evaluare</h1>
+        <div class="small">STATUL ŞI POLITICA — REGIMURI POLITICE ÎN PERIOADA INTERBELICĂ</div>
+      </div>
+    </header>
+
+    <div class="top-actions" style="display:flex;gap:10px;margin-top:12px">
+      <button class="btn" id="saveBtn">Salvează în browser</button>
+      <button class="btn" id="loadBtn">Încarcă salvarea</button>
+      <button class="btn" id="exportBtn">Exportă răspunsuri (.txt)</button>
+      <button class="btn" id="printBtn">Printează / Salvează PDF</button>
+    </div>
+
+    <form id="testForm" class="card" autocomplete="off">
+      <h2>I. Citiţi textul</h2>
+      <blockquote style="margin:0 0 12px;padding-left:12px;border-left:4px solid rgba(43,108,176,0.2);font-style:italic;color:#333">
+        “Pentru fascism, totul este în stat şi nimic uman, nimic spiritual nu există şi nu are valoare în afara statului. În aceste sens, fascismul este totalitar. În afara statului nu există nici indivizi, nici grupuri. De aceea fascismul se opune socialismului, care accentuează mişcările politice ale luptei de clasă şi ignoră unitatea statului care fundamentează clasele sociale pe o singură realitate economică şi morală. Şi într-o manieră omoloagă, fascismul se opune sindicalismului.”
+        <footer style="margin-top:8px">— Benito Mussolini, Fascismul, 1934</footer>
+      </blockquote>
+      <img src="musobruttto.jpg" alt="Operațiunea Fortitude – WW2" style="width:100%; margin:20px 0;">
+
+      <p class="note">Pe baza textului şi a imaginilor (inserează imaginile în pagină când folosești versiunea offline), răspundeţi la următoarele cerinţe:</p>
+
+      <label for="Q1">1. Identificaţi cine este personajul din cele trei imagini şi menţionaţi alături de cine se află acesta în imaginea din mijloc.</label>
+      <textarea id="Q1" name="Q1" placeholder="Răspuns..."></textarea>
+
+      <label for="Q2">2. Pornind de la imaginea din mijloc, reliefaţi ce legătură există între fascism şi nazism și identificați două deosebiri (1, 2)</label>
+      <textarea id="Q2" name="Q2" placeholder="Legătura și deosebiri (1, 2)..."></textarea>
+
+      <label for="Q3">3. Pe baza textului și informațiilor din manual, menționați cinci principii de guvernare ale fascismului (a–e)</label>
+      <div class="row">
+        <div class="col"><input id="Q3a" name="Q3a" type="text" placeholder="a. ..." /></div>
+        <div class="col"><input id="Q3b" name="Q3b" type="text" placeholder="b. ..." /></div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div class="col"><input id="Q3c" name="Q3c" type="text" placeholder="c. ..." /></div>
+        <div class="col"><input id="Q3d" name="Q3d" type="text" placeholder="d. ..." /></div>
+      </div>
+      <div style="margin-top:8px"><input id="Q3e" name="Q3e" type="text" placeholder="e. ..." /></div>
+
+      <label for="Q4" style="margin-top:10px">4. Menționați trei țări europene care au avut regimuri de tip fascist.</label>
+      <textarea id="Q4" name="Q4" placeholder="Ex: Italia, Germania, ..."></textarea>
+
+      <label for="Q5">5. Identificați trei dintre influențele fascismului în România (a–c)</label>
+      <div class="row">
+        <div class="col"><input id="Q5a" name="Q5a" type="text" placeholder="a. ..." /></div>
+        <div class="col"><input id="Q5b" name="Q5b" type="text" placeholder="b. ..." /></div>
+      </div>
+      <div style="margin-top:8px"><input id="Q5c" name="Q5c" type="text" placeholder="c. ..." /></div>
+
+      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+      <h2>II. Redactare istorică</h2>
+      <p class="small">Redactați un text corect din punct de vedere istoric pornind de la termenii următori:</p>
+      <p class="note">Karl Marx, Lenin, Stalin, revoluţie, dictatură, gulag, autodeterminare, bolşevici, URSS, comunism, Armata Roşie, nomenclatura, Marea Teroare</p>
+      <textarea id="II_text" name="II_text" placeholder="Redactează textul (8–12 rânduri)"></textarea>
+
+      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+      <h2>III. Adevărat / Fals</h2>
+      <p class="note">Demonstrați adevărul sau falsitatea afirmațiilor — completați coloana cu Adevărat/Fals și argument scurt.</p>
+      <div class="row">
+        <div class="col">
+          <label for="III1">Afirmația 1</label>
+          <input id="III1" name="III1" type="text" placeholder="Adevărat / Fals și argument..." />
+        </div>
+        <div class="col">
+          <label for="III2">Afirmația 2</label>
+          <input id="III2" name="III2" type="text" placeholder="Adevărat / Fals și argument..." />
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <div class="col"><label for="III3">Afirmația 3</label><input id="III3" name="III3" type="text" placeholder="Adevărat / Fals și argument..." /></div>
+        <div class="col"><label for="III4">Afirmația 4</label><input id="III4" name="III4" type="text" placeholder="Adevărat / Fals și argument..." /></div>
+      </div>
+
+      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+      <!-- Secțiuni IV & V (înlocuiește secțiunile curente IV și V din pagina ta cu acest bloc) -->
+<section id="IV" class="card" style="margin-top:12px; padding:14px;">
+  <h3 class="section-title">IV. Completaţi în romburile alăturate numele a trei persoane din anturajul celor doi lideri politici</h3>
+
+  <div style="display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap">
+    <!-- Bloc stânga (lider 1) -->
+    <div style="flex:1;min-width:300px">
+      <div style="display:flex;justify-content:center;">
+        <!-- romburi de sus (3 mici + 1 mare) -->
+        <div style="display:grid;grid-template-columns:repeat(3,64px);gap:12px;transform:translateY(-12px);">
+          <div class="diamond editable" contenteditable="true" data-name="IV_left_r1" aria-label="rombul 1 stânga"> </div>
+          <div class="diamond editable" contenteditable="true" data-name="IV_left_r2" aria-label="rombul 2 stânga"> </div>
+          <div class="diamond editable" contenteditable="true" data-name="IV_left_r3" aria-label="rombul 3 stânga"> </div>
+        </div>
+      </div>
+
+      <!-- piramida (triunghi) cu etichetă în interior -->
+      <div style="display:flex;justify-content:center;margin-top:-8px;">
+        <div class="triangle-wrap">
+          <div class="triangle-label">
+            <input type="hidden" name="IV_left_leader" value="leader_left">
+            <div class="leader-box">
+              <input class="leader-input" name="IV_left_leader_input" value=" " placeholder="Nume lider" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc dreapta (lider 2) -->
+    <div style="flex:1;min-width:300px">
+      <div style="display:flex;justify-content:center;">
+        <div style="display:grid;grid-template-columns:repeat(3,64px);gap:12px;transform:translateY(-12px);">
+          <div class="diamond editable" contenteditable="true" data-name="IV_right_r1" aria-label="rombul 1 dreapta"> </div>
+          <div class="diamond editable" contenteditable="true" data-name="IV_right_r2" aria-label="rombul 2 dreapta"> </div>
+          <div class="diamond editable" contenteditable="true" data-name="IV_right_r3" aria-label="rombul 3 dreapta"> </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:center;margin-top:-8px;">
+        <div class="triangle-wrap">
+          <div class="triangle-label">
+            <input type="hidden" name="IV_right_leader" value="leader_right">
+            <div class="leader-box">
+              <input class="leader-input" name="IV_right_leader_input" value=" " placeholder="Nume lider" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- câmpuri ascunse care vor conține valorile pentru salvare/export -->
+  <div style="display:none" aria-hidden="true">
+    <input type="text" name="IV_left_r1_val" />
+    <input type="text" name="IV_left_r2_val" />
+    <input type="text" name="IV_left_r3_val" />
+    <input type="text" name="IV_right_r1_val" />
+    <input type="text" name="IV_right_r2_val" />
+    <input type="text" name="IV_right_r3_val" />
+    <input type="text" name="IV_left_leader_val" />
+    <input type="text" name="IV_right_leader_val" />
+  </div>
+</section>
+
+<section id="V" class="card" style="margin-top:18px; padding:14px;">
+  <h3 class="section-title">V. Folosind diagrama de mai jos, realizaţi o analiză comparativă între regimul politic democratic american şi regimul comunist din URSS</h3>
+
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;">
+    <div style="flex:1;min-width:220px;">
+      <div style="background:#ffefcc;padding:8px;border-radius:6px;display:inline-block;font-weight:700;color:#8a4b00">Democraţie americană</div>
+    </div>
+    <div style="flex:1;min-width:220px;text-align:right;">
+      <div style="background:#ffd1e8;padding:8px;border-radius:6px;display:inline-block;font-weight:700;color:#7a0f4b">Regimul comunist</div>
+    </div>
+  </div>
+
+  <!-- Diagrama Venn (SVG) cu zone editabile -->
+  <div style="margin-top:18px;display:flex;justify-content:center;">
+    <svg id="venn" viewBox="0 0 900 360" width="900" height="360" role="img" aria-label="Diagrama Venn pentru comparație">
+      <!-- left circle -->
+      <ellipse cx="320" cy="180" rx="220" ry="140" fill="rgba(59,130,246,0.08)" stroke="#1e3a8a" />
+      <!-- right circle -->
+      <ellipse cx="580" cy="180" rx="220" ry="140" fill="rgba(239,68,68,0.06)" stroke="#7f1d1d" />
+      <!-- invisible rects for aligning foreignObject -->
+      <rect x="80" y="40" width="280" height="220" fill="transparent"></rect>
+      <rect x="300" y="40" width="300" height="220" fill="transparent"></rect>
+      <rect x="540" y="40" width="280" height="220" fill="transparent"></rect>
+
+      <!-- left editable area -->
+      <foreignObject x="100" y="60" width="240" height="200">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="venn-area" contenteditable="true" data-name="V_left" aria-label="Deosebiri democrație americană" style="height:100%;padding:8px;font-size:14px;overflow:auto;">
+          <ul style="margin:4px 0;padding-left:18px;">
+            <li> </li>
+          </ul>
+        </div>
+      </foreignObject>
+
+      <!-- center editable area -->
+      <foreignObject x="330" y="60" width="240" height="200">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="venn-area" contenteditable="true" data-name="V_center" aria-label="Asemănări" style="height:100%;padding:8px;font-size:14px;overflow:auto;">
+          <ul style="margin:4px 0;padding-left:18px;">
+            <li> </li>
+          </ul>
+        </div>
+      </foreignObject>
+
+      <!-- right editable area -->
+      <foreignObject x="560" y="60" width="240" height="200">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="venn-area" contenteditable="true" data-name="V_right" aria-label="Deosebiri regim comunist" style="height:100%;padding:8px;font-size:14px;overflow:auto;">
+          <ul style="margin:4px 0;padding-left:18px;">
+            <li> </li>
+          </ul>
+        </div>
+      </foreignObject>
+    </svg>
+  </div>
+
+  <!-- hidden fields synced with editable areas so export/save picks them up -->
+  <div style="display:none" aria-hidden="true">
+    <textarea name="V_left_val"></textarea>
+    <textarea name="V_center_val"></textarea>
+    <textarea name="V_right_val"></textarea>
+  </div>
+</section>
+
+<style>
+  /* diamante/romburi */
+  .diamond {
+    width:64px;height:64px;
+    background: #cff9ff;
+    transform: rotate(45deg);
+    border:2px solid rgba(0,0,0,0.22);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    padding:6px;
+    color:#022;
+    font-size:13px;
+  }
+  .diamond:focus, .diamond[contenteditable="true"]:focus { outline:3px solid rgba(99,102,241,0.24) }
+
+  /* label leader inside triangle */
+  .triangle-wrap { width:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:160px solid #6fb3ff; position:relative; }
+  .triangle-label { position:absolute; left:-110px; top:40px; width:220px; display:flex;align-items:center;justify-content:center; }
+  .leader-box { background:#ffffffaa;padding:6px;border-radius:6px;border:1px solid rgba(0,0,0,0.08); width:86%; text-align:center; }
+  .leader-input { width:100%; border:0; background:transparent; font-weight:700; text-align:center; }
+
+  /* Venn editable area visuals */
+  .venn-area:focus { outline: 3px solid rgba(34,197,94,0.18); border-radius:6px; background:rgba(255,255,255,0.02) }
+</style>
+
+<script>
+  // Sincronizare contenteditable -> câmpuri ascunse (pentru funcțiile de save/export existente)
+  (function(){
+    // map contenteditable elements to hidden inputs by data-name -> form field names
+    const editableSelectors = document.querySelectorAll('.editable, .venn-area');
+    function syncOne(el){
+      const name = el.dataset.name || el.getAttribute('data-name');
+      if(!name) return;
+      // find corresponding hidden input(s) by convention:
+      // - for IV: IV_left_r1_val etc or for V: V_left_val etc
+      // try variants
+      const targetName = name + (name.startsWith('V_') ? '_val' : (name.startsWith('IV_') ? '_val' : '_val'));
+      // fallback: direct mappings for IV diamonds we used data-names like IV_left_r1 etc
+      // compute mapping:
+      let mapped = null;
+      if(name.startsWith('IV_left')) mapped = document.querySelector(`input[name="${name.replace('IV_left_','IV_left_')}_val"]`) || document.querySelector(`input[name="${name}_val"]`);
+      if(name.startsWith('IV_right')) mapped = document.querySelector(`input[name="${name}_val"]`);
+      if(name.startsWith('V_')) mapped = document.querySelector(`textarea[name="${name}_val"]`) || document.querySelector(`input[name="${name}_val"]`);
+      // if not found try generic
+      if(!mapped) mapped = document.querySelector(`[name="${targetName}"]`);
+      if(!mapped) return;
+      // store innerText trimmed
+      mapped.value = el.innerText.trim();
+    }
+
+    // wire up event listeners
+    editableSelectors.forEach(el=>{
+      // derive data-name for diamonds
+      if(!el.dataset.name){
+        const role = el.getAttribute('aria-label') || el.getAttribute('data-name') || '';
+        // leave as is
+      }
+      // initial sync
+      syncOne(el);
+      // on input or blur sync
+      el.addEventListener('input', ()=> syncOne(el));
+      el.addEventListener('blur', ()=> syncOne(el));
+    });
+
+    // also sync leader inputs to hidden leader fields
+    const leftLeaderInput = document.querySelector('input[name="IV_left_leader_input"]');
+    const rightLeaderInput = document.querySelector('input[name="IV_right_leader_input"]');
+    const leftLeaderHidden = document.querySelector('input[name="IV_left_leader_val"]');
+    const rightLeaderHidden = document.querySelector('input[name="IV_right_leader_val"]');
+    if(leftLeaderInput && leftLeaderHidden){
+      leftLeaderInput.addEventListener('input', ()=> leftLeaderHidden.value = leftLeaderInput.value.trim());
+      leftLeaderHidden.value = leftLeaderInput.value.trim();
+    }
+    if(rightLeaderInput && rightLeaderHidden){
+      rightLeaderInput.addEventListener('input', ()=> rightLeaderHidden.value = rightLeaderInput.value.trim());
+      rightLeaderHidden.value = rightLeaderInput.value.trim();
+    }
+
+    // For Venn areas, map their data-name to corresponding hidden textareas
+    document.querySelectorAll('.venn-area').forEach(el=>{
+      const dataName = el.dataset.name; // V_left, V_center, V_right
+      const ta = document.querySelector(`textarea[name="${dataName}_val"]`);
+      if(!ta) return;
+      // initial
+      ta.value = el.innerText.trim();
+      el.addEventListener('input', ()=> ta.value = el.innerText.trim());
+      el.addEventListener('blur', ()=> ta.value = el.innerText.trim());
+    });
+
+    // For diamonds, map to input names explicitly (we created hidden inputs with specific names)
+    const diamondMap = {
+      'IV_left_r1': 'IV_left_r1_val',
+      'IV_left_r2': 'IV_left_r2_val',
+      'IV_left_r3': 'IV_left_r3_val',
+      'IV_right_r1': 'IV_right_r1_val',
+      'IV_right_r2': 'IV_right_r2_val',
+      'IV_right_r3': 'IV_right_r3_val'
+    };
+    Object.keys(diamondMap).forEach(k=>{
+      const el = document.querySelector(`[data-name="${k}"]`);
+      const hidden = document.querySelector(`[name="${diamondMap[k]}"]`);
+      if(el && hidden){
+        hidden.value = el.innerText.trim();
+        el.addEventListener('input', ()=> hidden.value = el.innerText.trim());
+        el.addEventListener('blur', ()=> hidden.value = el.innerText.trim());
+      }
+    });
+
+    // Before form submit/save/export, ensure all are synced (for code paths that don't trigger blur)
+    const form = document.getElementById('testForm');
+    if(form){
+      form.addEventListener('submit', (e)=> {
+        // sync all
+        document.querySelectorAll('.editable, .venn-area').forEach(el => {
+          // call syncOne
+          if(el.dataset.name && el.dataset.name.startsWith('V_')){
+            const ta = document.querySelector(`textarea[name="${el.dataset.name}_val"]`);
+            if(ta) ta.value = el.innerText.trim();
+          }
+        });
+      });
+    }
+  })();
+</script>
+      <h2 style="margin-top:12px">VI. Realizări și greşeli (Adolf Hitler)</h2>
+      <p class="note">Completați căsuțele alăturate imaginii pentru realizări (stânga) și greșeli (dreapta).</p>
+      <div class="row">
+        <div class="col"><label for="VI_left">Realizări</label><textarea id="VI_left" name="VI_left" placeholder="Realizări..."></textarea></div>
+        <div class="col"><label for="VI_right">Greșeli</label><textarea id="VI_right" name="VI_right" placeholder="Greșeli..."></textarea></div>
+      </div>
+
+      <h2 style="margin-top:12px">VII. Mesaj caricaturi</h2>
+      <label for="VII_text">Descrie pe scurt mesajul celor două caricaturi:</label>
+      <textarea id="VII_text" name="VII_text" placeholder="Mesaj (sintetic)..."></textarea>
+
+      <h2 style="margin-top:12px">VIII. Identificare și justificare</h2>
+      <p class="note">Identificați cei mai celebri criminali din caricatură și explicați de ce Hitler și Stalin figurează printre ei.</p>
+      <textarea id="VIII_text" name="VIII_text" placeholder="Răspuns..."></textarea>
+
+      <h2 style="margin-top:12px">IX. Eseu — Consecinţele instaurării regimurilor totalitare</h2>
+      <p class="note">Realizaţi un eseu de aproximativ o pagină.</p>
+      <textarea id="IX_text" name="IX_text" placeholder="Eseu (aprox. o pagină)... (folosiți ~900-1200 caractere)"></textarea>
+
+      <div class="controls">
+        <button type="button" class="btn" id="saveInline">Salvează în browser</button>
+        <button type="button" class="btn" id="exportInline">Exportă răspunsuri</button>
+        <button type="button" class="btn" id="clearBtn" title="Curăță toate răspunsurile">Curăță</button>
+        <button type="button" class="btn" id="donePrint">Printează / PDF</button>
+      </div>
+
+      <details style="margin-top:10px">
+        <summary>Ajutor: salvare și export</summary>
+        <ol>
+          <li>Salvați local cu "Salvează în browser".</li>
+          <li>Încarcați cu "Încarcă salvarea".</li>
+          <li>Exportați ca .txt cu "Exportă răspunsuri".</li>
+          <li>Tipăriți cu "Printează / Salvează PDF".</li>
+        </ol>
+      </details>
+    </form>
+
+    <footer class="small" style="margin-top:12px;color:var(--muted)">
+      Pagina generată pentru test — datele salvate rămân în browser și nu sunt trimise nicăieri.
+    </footer>
+  </div>
+
+  <script>
+    // Save/load/export utilities (localStorage)
+    const STORAGE_KEY = 'test1_regimuri_interbelice_v1'
+    const form = document.getElementById('testForm')
+
+    function getFormData() {
+      const data = {}
+      Array.from(form.elements).forEach(el => {
+        if (!el.name) return
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          if (el.checked) data[el.name] = el.value
+        } else {
+          data[el.name] = el.value
+        }
+      })
+      return data
+    }
+
+    function setFormData(data = {}) {
+      Array.from(form.elements).forEach(el => {
+        if (!el.name) return
+        if (data.hasOwnProperty(el.name)) {
+          try { el.value = data[el.name] } catch(e){}
+        }
+      })
+    }
+
+    function saveLocal() {
+      const data = getFormData()
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({savedAt: new Date().toISOString(), data}))
+      alert('Răspunsurile au fost salvate local în browser.')
+      isDirty = false
+    }
+
+    function loadLocal() {
+      const raw = localStorage.getItem(STORAGE_KEY)
+      if (!raw) { alert('Nu există salvări în browser.'); return }
+      try {
+        const parsed = JSON.parse(raw)
+        setFormData(parsed.data || {})
+        alert('Salvarea a fost încărcată (data salvării: ' + (parsed.savedAt||'necunoscut') + ').')
+        isDirty = false
+      } catch(e) {
+        alert('Eroare la încărcare: date corupte.')
+      }
+    }
+
+    function exportTxt() {
+      const data = getFormData()
+      const lines = []
+      lines.push('Fișa de învățare și evaluare — Regimuri interbelice')
+      lines.push('Export: ' + new Date().toLocaleString())
+      lines.push('---')
+      for (const k of Object.keys(data)) {
+        lines.push(k + ':')
+        lines.push((data[k] && data[k].trim()) ? data[k].trim() : '[nu completat]')
+        lines.push('') // blank line
+      }
+      const blob = new Blob([lines.join('\\n')], {type: 'text/plain;charset=utf-8'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'Fisa_test1_RegimuriInterbelice.txt'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    }
+
+    function clearAll() {
+      if (!confirm('Sigur doriți să curățați toate câmpurile? Această operațiune nu va șterge fișierul salvat în browser.')) return
+      Array.from(form.elements).forEach(el => { if (el.name) el.value = '' })
+      isDirty = false
+    }
+
+    // Buttons
+    document.getElementById('saveBtn').addEventListener('click', saveLocal)
+    document.getElementById('saveInline').addEventListener('click', saveLocal)
+    document.getElementById('loadBtn').addEventListener('click', loadLocal)
+    document.getElementById('exportBtn').addEventListener('click', exportTxt)
+    document.getElementById('exportInline').addEventListener('click', exportTxt)
+    document.getElementById('clearBtn').addEventListener('click', clearAll)
+    document.getElementById('printBtn').addEventListener('click', ()=> window.print())
+    document.getElementById('donePrint').addEventListener('click', ()=> window.print())
+
+    // Auto-save draft every 60 seconds
+    let autoSaveTimer = setInterval(() => {
+      try {
+        const data = getFormData()
+        localStorage.setItem(STORAGE_KEY + '_autosave', JSON.stringify({savedAt: new Date().toISOString(), data}))
+      } catch(e){}
+    }, 60000)
+
+    // Restore autosave if main save not present
+    window.addEventListener('load', () => {
+      const raw = localStorage.getItem(STORAGE_KEY + '_autosave')
+      if (raw && !localStorage.getItem(STORAGE_KEY)) {
+        try {
+          const parsed = JSON.parse(raw)
+          if (confirm('Există o salvare automată neînregistrată. Doriți să o restaurați?')) {
+            setFormData(parsed.data || {})
+            alert('Salvare automată restaurată (data: '+(parsed.savedAt||'necunoscut')+').')
+          }
+        } catch(e){}
+      }
+    })
+
+    // Warn user about unsaved changes
+    let isDirty = false
+    form.addEventListener('input', ()=> isDirty = true)
+    window.addEventListener('beforeunload', (e) => {
+      if (!isDirty) return
+      e.preventDefault()
+      e.returnValue = ''
+    })
+  </script>
+</body>
+</html>

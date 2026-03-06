@@ -267,6 +267,35 @@
     .event:focus-within, .event:hover {
       box-shadow: 0 0 17px 0 #ffcc0055, 0 12px 36px rgba(40,55,47,0.29);
     }
+    /* stil buton detalii */
+    .pdf-btn{
+      margin-left:10px;
+      font-size:12px;
+      background:#fde047;
+      color:#292524;
+      padding:2px 8px;
+      border-radius:6px;
+      font-weight:600;
+      text-decoration:none;
+      vertical-align:middle;
+      border:none;
+      cursor:pointer;
+      transition:background .13s;
+    }
+    .pdf-btn:hover,.pdf-btn:focus{
+      background:#facc15;
+      color:#18181b;
+      text-decoration:none;
+    }
+    .pdf-btn.pink {
+      background:#ffe4ef;
+      color:#7a1643;
+    }
+    .pdf-btn.pink:hover,
+    .pdf-btn.pink:focus {
+      background:#ffbcd9;
+      color:#4e0a22;
+    }
   </style>
 </head>
 <body>
@@ -284,75 +313,281 @@
   </header>
   <main class="timeline" id="timeline" aria-live="polite">
 
-<!-- 1933–1939 — Context, reînarmare și agresiuni -->
-<article class="event" tabindex="0"><span class="military-icon">&#128104;&#8205;&#9874;&#65039;</span><div class="marker">1</div><div class="badge-year">1933</div><div class="bullet"></div><div class="content"><h3>Hitler devine cancelar</h3><p><strong>30 ianuarie 1933</strong> — Adolf Hitler devine cancelar al Germaniei; începutul politicii naziste de reînarmare și revizuire a Tratatului de la Versailles.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127891;</span><div class="marker">2</div><div class="badge-year">1934</div><div class="bullet"></div><div class="content"><h3>Conferința de la Londra</h3><p><strong>6 februarie 1934</strong> — Încercări de stabilizare economică, dar reacție slabă la agresiuni.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">3</div><div class="badge-year">1936</div><div class="bullet"></div><div class="content"><h3>Germania reocupa Renania</h3><p><strong>7–10 martie 1936</strong> — Germania reocupa militar Renania, încălcând tratatele internaționale.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9876;&#65039;</span><div class="marker">4</div><div class="badge-year">1935-36</div><div class="bullet"></div><div class="content"><h3>Italia invadează Etiopia</h3><p><strong>25 octombrie 1935 – mai 1936</strong> — Italia invadează Etiopia; sancțiunile Ligii Națiunilor sunt ineficiente.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">5</div><div class="badge-year">1938</div><div class="bullet"></div><div class="content"><h3>Anschluss</h3><p><strong>12 martie 1938</strong> — Germania anexează Austria (Anschluss).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128221;</span><div class="marker">6</div><div class="badge-year">1938</div><div class="bullet"></div><div class="content"><h3>Acordul de la München</h3><p><strong>30 septembrie 1938</strong> — Puterile europene cedează Sudetelor Germaniei (politica de „appeasement”).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9877;&#65039;</span><div class="marker">7</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Germania ocupă Praga</h3><p><strong>15 martie 1939</strong> — Germania ocupă restul Cehoslovaciei (Praga).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#129309;</span><div class="marker">8</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Acord italo-german</h3><p><strong>22 mai 1939</strong> — Acord politic între Italia și Germania, pregătiri pentru alianțe militare.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#129300;</span><div class="marker">9</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Pactul Ribbentrop–Molotov</h3><p><strong>23 august 1939</strong> — Pact de neagresiune între Germania și URSS, protocol secret pentru împărțirea Europei de Est.</p></div><div class="splash"></div></article><hr class="divider" />
+<!-- Doar evenimentele-cheie au buton PDF -->
 
-<!-- 1939 — Izbucnirea războiului -->
-<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">10</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Invazia Poloniei</h3><p><strong>1 septembrie 1939</strong> — Germania invadează Polonia; începutul războiului în Europa.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128226;</span><div class="marker">11</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Marea Britanie și Franța declară război</h3><p><strong>3 septembrie 1939</strong> — Marea Britanie și Franța declară război Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">12</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>URSS invadează Polonia de est</h3><p><strong>17 septembrie 1939</strong> — URSS invadează estul Poloniei (pactul Ribbentrop–Molotov).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127963;</span><div class="marker">13</div><div class="badge-year">1939</div><div class="bullet"></div><div class="content"><h3>Căderea Varșoviei</h3><p><strong>27 septembrie 1939</strong> — Polonia este ocupată și împărțită între Germania și URSS.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#10052;&#65039;</span><div class="marker">14</div><div class="badge-year">1939-40</div><div class="bullet"></div><div class="content"><h3>Războiul de iarnă</h3><p><strong>30 noiembrie 1939 – martie 1940</strong> — URSS invadează Finlanda; Finlanda cedează teritorii, deși rezistă curajos.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0">
+  <span class="military-icon">&#128104;&#8205;&#9874;&#65039;</span>
+  <div class="marker">1</div>
+  <div class="badge-year">1933</div>
+  <div class="bullet"></div>
+  <div class="content">
+    <h3>Hitler devine cancelar
+      <a href="HitlerCancelar.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>30 ianuarie 1933</strong> — Adolf Hitler devine cancelar al Germaniei; începutul politicii naziste de reînarmare și revizuire a Tratatului de la Versailles.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1940 — Extinderea Axei -->
-<article class="event" tabindex="0"><span class="military-icon">&#127480;&#127475;</span><div class="marker">15</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Invazia Danemarcei și Norvegiei</h3><p><strong>9 aprilie 1940</strong> — Germania invadează Danemarca și Norvegia.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127465;&#127473;</span><div class="marker">16</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Invadarea Benelux și Franței</h3><p><strong>10 mai 1940</strong> — Germania invadează rapid Olanda, Belgia, Luxemburg și Franța.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">17</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Evacuarea de la Dunkerque</h3><p><strong>26 mai – 4 iunie 1940</strong> — Evacuarea a peste 330.000 de soldați aliați din Franța.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127467;&#127479;</span><div class="marker">18</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Capitularea Franței</h3><p><strong>22 iunie 1940</strong> — Franța capitulează; se formează guvernul de la Vichy.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9992;&#65039;</span><div class="marker">19</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Bătălia Angliei</h3><p><strong>iulie–octombrie 1940</strong> — Campanie aeriană majoră: Regatul Unit rezistă atacului Luftwaffe.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">20</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Pactul Tripartit</h3><p><strong>25 octombrie 1940</strong> — Pact formal între Germania, Italia și Japonia.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127479;&#127479;</span><div class="marker">21</div><div class="badge-year">1940-41</div><div class="bullet"></div><div class="content"><h3>Grecia rezistă invaziei italiene</h3><p><strong>29 noiembrie 1940 – 12 iunie 1941</strong> — Grecia rezistă, dar Germania intervine și ocupă Grecia în 1941.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">3</div><div class="badge-year">1936</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Germania reocupa Renania
+      <a href="Renania1936.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>7–10 martie 1936</strong> — Germania reocupa militar Renania, încălcând tratatele internaționale.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1941 — Extindere spre Est, Balcani și Pacific -->
-<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">22</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Operațiunea Barbarossa</h3><p><strong>22 iunie 1941</strong> — Germania invadează URSS, deschizând frontul de est.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9889;</span><div class="marker">23</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Atacul de la Pearl Harbor</h3><p><strong>7 decembrie 1941</strong> — Japonia atacă baza americană Pearl Harbor; SUA intră în război.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9875;</span><div class="marker">24</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Japonia cucerește Asia de Sud-Est</h3><p><strong>decembrie 1941</strong> — Japonia ocupă Filipine, Malaezia, Indonezia și baze strategice britanice/olandeze.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">5</div><div class="badge-year">1938</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Anschluss
+      <a href="Anschluss.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>12 martie 1938</strong> — Germania anexează Austria (Anschluss).</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1942 — Anul întoarcerii -->
-<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">25</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Conferința de la Washington</h3><p><strong>20 ianuarie 1942</strong> — SUA și aliații planifică coordonarea strategică („Europe First”).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128165;</span><div class="marker">26</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Midway</h3><p><strong>4–7 iunie 1942</strong> — Victoria decisivă americană oprește avansul japonez în Pacific.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">27</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Bătălii pe frontul de est și Africa</h3><p><strong>iunie–noiembrie 1942</strong> — Lupte grele la Tobruk, El Alamein, Stalingrad.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">28</div><div class="badge-year">1942-43</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Stalingrad</h3><p><strong>23 august 1942 – 2 februarie 1943</strong> — Cotitura războiului pe Frontul de Est; încercuire, contraîncercuire, capitulare germană.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9876;</span><div class="marker">29</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Operațiunea Torch</h3><p><strong>8 noiembrie 1942</strong> — Debarcări aliate în Africa de Nord (Maroc și Algeria).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">30</div><div class="badge-year">1942-43</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Guadalcanal</h3><p><strong>19 august 1942 – februarie 1943</strong> — Începutul contraofensivei americane insulă-cu-insulă în Pacific.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128221;</span><div class="marker">6</div><div class="badge-year">1938</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Acordul de la München
+      <a href="AcordulMunchen.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>30 septembrie 1938</strong> — Puterile europene cedează Sudetelor Germaniei (politica de „appeasement”).</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1943 — Consolidare Aliați -->
-<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">31</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Capitularea la Stalingrad</h3><p><strong>2 februarie 1943</strong> — Armata germană capitulează la Stalingrad, mare victorie sovietică.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">32</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Debarcarea în Sicilia</h3><p><strong>10 iulie 1943</strong> — Aliații debarcă în Sicilia, apoi invadează Italia.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#129686;</span><div class="marker">33</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Armistițiul Italiei și Republica Salò</h3><p><strong>3–8 septembrie 1943</strong> — Italia semnează armistițiul, Mussolini este înlăturat; Germania instaurează Republica Socială Italiană.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">34</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Conferința de la Teheran</h3><p><strong>23 octombrie – 11 noiembrie 1943</strong> — Roosevelt, Stalin și Churchill discută deschiderea celui de-al doilea front (Normandia).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129300;</span><div class="marker">9</div><div class="badge-year">1939</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Pactul Ribbentrop–Molotov
+      <a href="PactulRibbentropMolotov.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>23 august 1939</strong> — Pact de neagresiune între Germania și URSS, protocol secret pentru împărțirea Europei de Est.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1944 — Al doilea front și colapsul Axei -->
-<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">35</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Debarcarea din Normandia (Ziua Z)</h3><p><strong>6 iunie 1944</strong> — Operațiunea Overlord: debarcare aliată masivă în Franța.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9888;</span><div class="marker">36</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Puciul de la 20 iulie împotriva lui Hitler</h3><p><strong>20 iulie 1944</strong> — Conspirație militară germană (Stauffenberg) eșuează.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127464;&#127476;</span><div class="marker">37</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Lovitura de stat din România</h3><p><strong>23 august 1944</strong> — Regele Mihai I forțează armistițiul, România întoarce armele împotriva Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">38</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Eliberarea Parisului</h3><p><strong>25 august 1944</strong> — Parisul este eliberat de Aliați; urmează Belgia, Olanda, Balcanii.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">39</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Bulge</h3><p><strong>16–19 decembrie 1944</strong> — Ultima mare contraofensivă germană în Vest, respinsă de Aliați.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">10</div><div class="badge-year">1939</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Invazia Poloniei
+      <a href="InvaziaPoloniei.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>1 septembrie 1939</strong> — Germania invadează Polonia; începutul războiului în Europa.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1945 — Finalul -->
-<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">40</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Conferința de la Yalta</h3><p><strong>12–27 ianuarie 1945</strong> — Discuții despre împărțirea Europei, ONU, soarta Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#129686;</span><div class="marker">41</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Ofensivă sovietică spre Berlin</h3><p><strong>ianuarie–aprilie 1945</strong> — Eliberarea lagărelor de concentrare (Auschwitz – 27 ian).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9760;</span><div class="marker">42</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Sinuciderea lui Hitler</h3><p><strong>30 aprilie 1945</strong> — Adolf Hitler se sinucide în buncărul din Berlin.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">43</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Capitularea Germaniei</h3><p><strong>7–8 mai 1945</strong> — Germania capitulează necondiționat (V-E Day).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">44</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Conferința de la Potsdam</h3><p><strong>17–30 iulie 1945</strong> — Decizii finale despre Germania, frontiere și Japonia.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">45</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Bomba atomică la Hiroshima</h3><p><strong>6 august 1945</strong> — SUA aruncă bomba atomică asupra orașului Hiroshima.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">46</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Bomba de la Nagasaki & URSS declară război Japoniei</h3><p><strong>9 august 1945</strong> — SUA bombardează Nagasaki; URSS invadează Manciuria.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127988;</span><div class="marker">47</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Capitularea Japoniei</h3><p><strong>15 august 1945</strong> — Japonia anunță intenția de capitulare; <strong>2 septembrie 1945</strong> — semnarea oficială: sfârșitul războiului.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127465;&#127473;</span><div class="marker">16</div><div class="badge-year">1940</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Invadarea Benelux și Franței
+      <a href="InvadareBeneluxFranta.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>10 mai 1940</strong> — Germania invadează rapid Olanda, Belgia, Luxemburg și Franța.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
 
-<!-- 1945–1946 — Urmări și reorganizări -->
-<article class="event" tabindex="0"><span class="military-icon">&#128106;</span><div class="marker">48</div><div class="badge-year">1945-46</div><div class="bullet"></div><div class="content"><h3>Repatriere și reconstrucție</h3><p><strong>1945 (aug–dec)</strong> — Începe repatrierea prizonierilor, reconstrucția, migrații masive, foamete.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#9878;</span><div class="marker">49</div><div class="badge-year">1945-46</div><div class="bullet"></div><div class="content"><h3>Procesele de la Nürnberg</h3><p><strong>20 noiembrie 1945 – 1 octombrie 1946</strong> — Judecarea liderilor naziști pentru crime de război.</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">50</div><div class="badge-year">1945-49</div><div class="bullet"></div><div class="content"><h3>Divizarea Germaniei</h3><p><strong>1945–1949</strong> — Germania, sub administrație aliată, se va împărți în RFG și RDG (1949).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">51</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Națiunile Unite</h3><p><strong>24 octombrie 1945</strong> — ONU este înființată oficial (Carta ONU intră în vigoare).</p></div><div class="splash"></div></article><hr class="divider" />
-<article class="event" tabindex="0"><span class="military-icon">&#128679;</span><div class="marker">52</div><div class="badge-year">1946+</div><div class="bullet"></div><div class="content"><h3>Începutul Războiului Rece</h3><p><strong>1946 și ulterior</strong> — Tensiuni între blocul sovietic și cel occidental, Planul Marshall (1947), NATO (1949).</p></div><div class="splash"></div></article>
+<article class="event" tabindex="0"><span class="military-icon">&#127467;&#127479;</span><div class="marker">18</div><div class="badge-year">1940</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Capitularea Franței
+      <a href="CapitulareaFrantei.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>22 iunie 1940</strong> — Franța capitulează; se formează guvernul de la Vichy.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#9992;&#65039;</span><div class="marker">19</div><div class="badge-year">1940</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Bătălia Angliei
+      <a href="BataliaAngliei.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>iulie–octombrie 1940</strong> — Campanie aeriană majoră: Regatul Unit rezistă atacului Luftwaffe.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">22</div><div class="badge-year">1941</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Operațiunea Barbarossa
+      <a href="Barbarossa.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>22 iunie 1941</strong> — Germania invadează URSS, deschizând frontul de est.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#9889;</span><div class="marker">23</div><div class="badge-year">1941</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Atacul de la Pearl Harbor
+      <a href="PearlHarbor.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>7 decembrie 1941</strong> — Japonia atacă baza americană Pearl Harbor; SUA intră în război.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#128165;</span><div class="marker">26</div><div class="badge-year">1942</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Bătălia de la Midway
+      <a href="BataliaMidway.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>4–7 iunie 1942</strong> — Victoria decisivă americană oprește avansul japonez în Pacific.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">28</div><div class="badge-year">1942-43</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Bătălia de la Stalingrad
+      <a href="BataliaStalingrad.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>23 august 1942 – 2 februarie 1943</strong> — Cotitura războiului pe Frontul de Est; încercuire, contraîncercuire, capitulare germană.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">32</div><div class="badge-year">1943</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Debarcarea în Sicilia
+      <a href="DebarcareaSicilia.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>10 iulie 1943</strong> — Aliații debarcă în Sicilia, apoi invadează Italia.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">34</div><div class="badge-year">1943</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Conferința de la Teheran
+      <a href="ConferintaTeheran.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>23 octombrie – 11 noiembrie 1943</strong> — Roosevelt, Stalin și Churchill discută deschiderea celui de-al doilea front (Normandia).</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">35</div><div class="badge-year">1944</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Debarcarea din Normandia (Ziua Z)
+      <a href="DebarcareaNormandia.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>6 iunie 1944</strong> — Operațiunea Overlord: debarcare aliată masivă în Franța.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#127464;&#127476;</span><div class="marker">37</div><div class="badge-year">1944</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Lovitura de stat din România
+      <a href="LovituraStatRomania.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>23 august 1944</strong> — Regele Mihai I forțează armistițiul, România întoarce armele împotriva Germaniei.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#9760;</span><div class="marker">HC</div><div class="badge-year">1941-1945</div><div class="bullet"></div>
+  <div class="content">
+    <h3 style="color:#ec4899;">Holocaustul
+      <a href="Holocaustul.pdf" target="_blank" class="pdf-btn pink">Detalii</a>
+    </h3>
+    <p>
+      <strong>1941–1945</strong> — Exterminarea sistematică a aproximativ 6 milioane de evrei și alte milioane de victime nevinovate.
+    </p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">43</div><div class="badge-year">1945</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Capitularea Germaniei
+      <a href="CapitulareGermania.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>7–8 mai 1945</strong> — Germania capitulează necondiționat (V-E Day).</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">45</div><div class="badge-year">1945</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Bomba atomică la Hiroshima
+      <a href="Hiroshima.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>6 august 1945</strong> — SUA aruncă bomba atomică asupra orașului Hiroshima.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+
+<article class="event" tabindex="0"><span class="military-icon">&#127988;</span><div class="marker">47</div><div class="badge-year">1945</div><div class="bullet"></div>
+  <div class="content">
+    <h3>Capitularea Japoniei
+      <a href="CapitulareJaponia.pdf" target="_blank" class="pdf-btn">Detalii</a>
+    </h3>
+    <p><strong>15 august 1945</strong> — Japonia anunță intenția de capitulare; <strong>2 septembrie 1945</strong> — semnarea oficială: sfârșitul războiului.</p>
+  </div>
+  <div class="splash"></div>
+</article>
+<hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127467;&#127479;</span><div class="marker">18</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Capitularea Franței<a href="CapitulareaFrantei.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>22 iunie 1940</strong> — Franța capitulează; se formează guvernul de la Vichy.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9992;&#65039;</span><div class="marker">19</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Bătălia Angliei<a href="BataliaAngliei.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>iulie–octombrie 1940</strong> — Campanie aeriană majoră: Regatul Unit rezistă atacului Luftwaffe.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">20</div><div class="badge-year">1940</div><div class="bullet"></div><div class="content"><h3>Pactul Tripartit<a href="PactulTripartit.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>25 octombrie 1940</strong> — Pact formal între Germania, Italia și Japonia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127479;&#127479;</span><div class="marker">21</div><div class="badge-year">1940-41</div><div class="bullet"></div><div class="content"><h3>Grecia rezistă invaziei italiene<a href="Greciarezistainvazieitaliene.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>29 noiembrie 1940 – 12 iunie 1941</strong> — Grecia rezistă, dar Germania intervine și ocupă Grecia în 1941.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">22</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Operațiunea Barbarossa<a href="OperatiuneaBarbarossa.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>22 iunie 1941</strong> — Germania invadează URSS, deschizând frontul de est.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9889;</span><div class="marker">23</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Atacul de la Pearl Harbor<a href="AtaculDeLaPearlHarbor.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>7 decembrie 1941</strong> — Japonia atacă baza americană Pearl Harbor; SUA intră în război.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9875;</span><div class="marker">24</div><div class="badge-year">1941</div><div class="bullet"></div><div class="content"><h3>Japonia cucerește Asia de Sud-Est<a href="JaponiacuceresteAsiadeSudEst.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>decembrie 1941</strong> — Japonia ocupă Filipine, Malaezia, Indonezia și baze strategice britanice/olandeze.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">25</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Conferința de la Washington<a href="ConferintadelaWashington.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>20 ianuarie 1942</strong> — SUA și aliații planifică coordonarea strategică („Europe First”).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128165;</span><div class="marker">26</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Midway<a href="BattaliadeLaMidway.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>4–7 iunie 1942</strong> — Victoria decisivă americană oprește avansul japonez în Pacific.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128737;</span><div class="marker">27</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Bătălii pe frontul de est și Africa<a href="BattaliipeFrontDeEstSiAfrica.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>iunie–noiembrie 1942</strong> — Lupte grele la Tobruk, El Alamein, Stalingrad.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">28</div><div class="badge-year">1942-43</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Stalingrad<a href="BattaliadeLaStalingrad.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>23 august 1942 – 2 februarie 1943</strong> — Cotitura războiului pe Frontul de Est; încercuire, contraîncercuire, capitulare germană.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9876;</span><div class="marker">29</div><div class="badge-year">1942</div><div class="bullet"></div><div class="content"><h3>Operațiunea Torch<a href="OperatiuneaTorch.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>8 noiembrie 1942</strong> — Debarcări aliate în Africa de Nord (Maroc și Algeria).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">30</div><div class="badge-year">1942-43</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Guadalcanal<a href="BattaliadeLaGuadalcanal.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>19 august 1942 – februarie 1943</strong> — Începutul contraofensivei americane insulă-cu-insulă în Pacific.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128681;</span><div class="marker">31</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Capitularea la Stalingrad<a href="CapitularealaStalingrad.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>2 februarie 1943</strong> — Armata germană capitulează la Stalingrad, mare victorie sovietică.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128674;</span><div class="marker">32</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Debarcarea în Sicilia<a href="DebarcareaInSicilia.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>10 iulie 1943</strong> — Aliații debarcă în Sicilia, apoi invadează Italia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129686;</span><div class="marker">33</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Armistițiul Italiei și Republica Salo<a href="ArmistituliItalieiSiRepublicaSalo.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>3–8 septembrie 1943</strong> — Italia semnează armistițiul, Mussolini este înlăturat; Germania instaurează Republica Socială Italiană.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">34</div><div class="badge-year">1943</div><div class="bullet"></div><div class="content"><h3>Conferința de la Teheran<a href="ConferintadelaTeheran.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>23 octombrie – 11 noiembrie 1943</strong> — Roosevelt, Stalin și Churchill discută deschiderea celui de-al doilea front (Normandia).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">35</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Debarcarea din Normandia (Ziua Z)<a href="DebarcareaDinNormandia.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>6 iunie 1944</strong> — Operațiunea Overlord: debarcare aliată masivă în Franța.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9888;</span><div class="marker">36</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Puciul de la 20 iulie împotriva lui Hitler<a href="PuciulDeLa20IulieImpotrivaLuiHitler.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>20 iulie 1944</strong> — Conspirație militară germană (Stauffenberg) eșuează.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127464;&#127476;</span><div class="marker">37</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Lovitura de stat din Romania<a href="LovituradestatdinRomania.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>23 august 1944</strong> — Regele Mihai I forțează armistițiul, România întoarce armele împotriva Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#11088;</span><div class="marker">38</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Eliberarea Parisului<a href="EliberareaParisului.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>25 august 1944</strong> — Parisul este eliberat de Aliați; urmează Belgia, Olanda, Balcanii.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128299;</span><div class="marker">39</div><div class="badge-year">1944</div><div class="bullet"></div><div class="content"><h3>Bătălia de la Bulge<a href="BattaliadeLaBulge.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>16–19 decembrie 1944</strong> — Ultima mare contraofensivă germană în Vest, respinsă de Aliați.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">40</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Conferința de la Yalta<a href="ConferintadelaYalta.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>12–27 ianuarie 1945</strong> — Discuții despre împărțirea Europei, ONU, soarta Germaniei.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#129686;</span><div class="marker">41</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Ofensivă sovietică spre Berlin<a href="OfensivaSovieticaSpreBerlin.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>ianuarie–aprilie 1945</strong> — Eliberarea lagărelor de concentrare (Auschwitz – 27 ian).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9760;</span><div class="marker">42</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Sinuciderea lui Hitler<a href="SinucidereaLuiHitler.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>30 aprilie 1945</strong> — Adolf Hitler se sinucide în buncărul din Berlin.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">43</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Capitularea Germaniei<a href="CapitulareaGermaniei.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>7–8 mai 1945</strong> — Germania capitulează necondiționat (V-E Day).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128188;</span><div class="marker">44</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Conferința de la Potsdam<a href="ConferintadelaPotsdam.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>17–30 iulie 1945</strong> — Decizii finale despre Germania, frontiere și Japonia.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">45</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Bomba atomică la Hiroshima<a href="BombaAtomicaLaHiroshima.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>6 august 1945</strong> — SUA aruncă bomba atomică asupra orașului Hiroshima.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128163;</span><div class="marker">46</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Bomba de la Nagasaki & URSS declară război Japoniei<a href="BombaNagasakisiURSSdeclararazboiJaponiei.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>9 august 1945</strong> — SUA bombardează Nagasaki; URSS invadează Manciuria.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127988;</span><div class="marker">47</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Capitularea Japoniei<a href="CapitulareaJaponiei.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>15 august 1945</strong> — Japonia anunță intenția de capitulare; <strong>2 septembrie 1945</strong> — semnarea oficială: sfârșitul războiului.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128106;</span><div class="marker">48</div><div class="badge-year">1945-46</div><div class="bullet"></div><div class="content"><h3>Repatriere și reconstrucție<a href="RepatriereSireconstructie.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>1945 (aug–dec)</strong> — Începe repatrierea prizonierilor, reconstrucția, migrații masive, foamete.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#9878;</span><div class="marker">49</div><div class="badge-year">1945-46</div><div class="bullet"></div><div class="content"><h3>Procesele de la Nürnberg<a href="ProceseledelaNurnberg.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>20 noiembrie 1945 – 1 octombrie 1946</strong> — Judecarea liderilor naziști pentru crime de război.</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">50</div><div class="badge-year">1945-49</div><div class="bullet"></div><div class="content"><h3>Divizarea Germaniei<a href="DivizareaGermaniei.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>1945–1949</strong> — Germania, sub administrație aliată, se va împărți în RFG și RDG (1949).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#127758;</span><div class="marker">51</div><div class="badge-year">1945</div><div class="bullet"></div><div class="content"><h3>Națiunile Unite<a href="NatiunileUnite.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>24 octombrie 1945</strong> — ONU este înființată oficial (Carta ONU intră în vigoare).</p></div><div class="splash"></div></article><hr class="divider" />
+<article class="event" tabindex="0"><span class="military-icon">&#128679;</span><div class="marker">52</div><div class="badge-year">1946+</div><div class="bullet"></div><div class="content"><h3>Începutul Războiului Rece<a href="InceputulRazboiuluiRece.pdf" target="_blank" style="margin-left:9px;font-size:12px;background:#fde047;color:#292524;padding:1.5px 9px;border-radius:6px;font-weight:600;text-decoration:none;vertical-align:middle;transition:background .13s;">Detalii</a></h3><p><strong>1946 și ulterior</strong> — Tensiuni între blocul sovietic și cel occidental, Planul Marshall (1947), NATO (1949).</p></div><div class="splash"></div></article>
+
+
 
   </main>
   <script>
