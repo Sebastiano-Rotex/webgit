@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al Doilea Război Mondial - Timeline Complet Interactiv</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: 'Open Sans', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; min-height: 100vh; }
+    h1, h2, h3 { font-family: 'Lora', serif; }
+    .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 80px 20px; text-align: center; }
+    .header h1 { font-size: 3rem; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    .header p { font-size: 1.2rem; opacity: 0.9; }
+    .content { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+    .section { background: white; padding: 40px; margin-bottom: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .section h2 { color: #1a1a2e; font-size: 2rem; margin-bottom: 30px; text-align: center; border-bottom: 3px solid #667eea; padding-bottom: 15px; }
+    .timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+    .timeline-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 10px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; }
+    .timeline-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
+    .timeline-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .timeline-card .year { font-size: 2rem; font-weight: bold; color: #ffd700; margin-bottom: 10px; }
+    .timeline-card p { font-size: 0.95rem; line-height: 1.6; }
+    .timeline-card.era-1 { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); }
+    .timeline-card.era-2 { background: linear-gradient(135deg, #c0392b 0%, #a93226 100%); }
+    .timeline-card.era-3 { background: linear-gradient(135deg, #0277bd 0%, #01579b 100%); }
+    .timeline-card.era-4 { background: linear-gradient(135deg, #bf360c 0%, #5d4037 100%); }
+    .timeline-card.era-5 { background: linear-gradient(135deg, #1b5e20 0%, #0d3817 100%); }
+    .footer { background: #1a1a2e; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; font-size: 0.9rem; }
+    .intro { background: #f0f4ff; padding: 30px; border-radius: 10px; border-left: 5px solid #667eea; margin-bottom: 40px; }
+    .intro p { line-height: 1.8; font-size: 1.05rem; color: #333; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; }
+    .stat-box { background: #f9f9f9; padding: 20px; border-radius: 10px; text-align: center; border-left: 4px solid #667eea; }
+    .stat-box h3 { color: #667eea; font-size: 1.8rem; margin: 10px 0; }
+    .stat-box p { color: #666; font-size: 0.9rem; }
+    .nav-link { color: #667eea; text-decoration: none; font-weight: 600; }
+    .nav-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1><i class="fas fa-globe"></i> Al Doilea Război Mondial</h1>
+    <p>Timeline Complet Interactiv - 39 de Pagini Educative</p>
+    <p style="margin-top: 15px; font-size: 0.95rem;">1933-1945 și Consecințe (1945-1949+) | Limba Română | Design Responsive</p>
+  </div>
+
+  <div class="content">
+
+    <div class="intro">
+      <p><strong>🌍 Bun venit la cea mai cuprinzătoare platformă educativă despre WWII în limba română!</strong></p>
+      <p>Aceasta este o colecție de 39 de micro-site-uri HTML interactive cu timeline detaliat, context istoric, statistici, fotografii și perspective asupra celui mai devastator conflict din istoria umană (1939-1945) și consecințele sale imediate (1945-1949+).</p>
+      <p style="margin-top: 15px;"><strong>Cum să utilizezi:</strong> Apasă pe fiecare card pentru a deschide pagina cu detalii extinse. Fiecare pagină are navigare ușoară înapoi la index.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <h3>70-85M</h3>
+        <p>Estimat de morți<br>(civili + militari)</p>
+      </div>
+      <div class="stat-box">
+        <h3>1939-1945</h3>
+        <p>Durata + Consecințe<br>imediate</p>
+      </div>
+      <div class="stat-box">
+        <h3>39 Pagini</h3>
+        <p>Micro-site-uri HTML<br>Interactive</p>
+      </div>
+      <div class="stat-box">
+        <h3>6M Evrei</h3>
+        <p>Omorâți în Holocaust<br>sistematic</p>
+      </div>
+    </div>
+
+    <!-- ERA 1: Drumul spre Război -->
+    <div class="section">
+      <h2><i class="fas fa-fire"></i> ERA 1: Drumul spre Război (1933-1939)</h2>
+      <div class="timeline-grid">
+        <a href="1933.html" class="timeline-card era-1">
+          <div class="year">1933</div>
+          <h3>Hitler devine cancelar</h3>
+          <p>30 ianuarie — Începutul erei naziste și transformarea rapidă a Germaniei.</p>
+        </a>
+        <a href="1934-1937.html" class="timeline-card era-1">
+          <div class="year">1934-37</div>
+          <h3>Militarizare și expansiune</h3>
+          <p>Rearmare masivă, Axa Berlin-Roma, intervenție în Spania și remilitarizarea Renană.</p>
+        </a>
+        <a href="1938-1939.html" class="timeline-card era-1">
+          <div class="year">1938-39</div>
+          <h3>Agresiune și izbucnire</h3>
+          <p>Austria, Cehoslovacia, Acordul München și invadarea Poloniei — începe războiul.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- ERA 2: Dominația Axei -->
+    <div class="section">
+      <h2><i class="fas fa-sword"></i> ERA 2: Dominația Axei (1940-1941)</h2>
+      <div class="timeline-grid">
+        <a href="1940.html" class="timeline-card era-2">
+          <div class="year">1940</div>
+          <h3>Blitzkrieg în Vest</h3>
+          <p>Colapsul Franței în 6 săptămâni, Bătălia Britaniei și ocupația Europei occidentale.</p>
+        </a>
+        <a href="grecia-rezista-detalii.html" class="timeline-card era-2">
+          <div class="year">1940-41</div>
+          <h3>Grecia rezistă invaziei italiene</h3>
+          <p>29 noiembrie 1940 - 12 iunie 1941 — Prima victorie aliaților. Grecia rezistă, dar Germania intervine.</p>
+        </a>
+        <a href="1941.html" class="timeline-card era-2">
+          <div class="year">1941</div>
+          <h3>Barbarossa & Pearl Harbor</h3>
+          <p>Două invaziuni masive — Germania invadează URSS, Japonia atacă SUA. Lumea devine global.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- ERA 3: Cotiturile Strategice -->
+    <div class="section">
+      <h2><i class="fas fa-chart-line"></i> ERA 3: Cotiturile Strategice (1942-1943)</h2>
+      <div class="timeline-grid">
+        <a href="batalia-midway-detalii.html" class="timeline-card era-3">
+          <div class="year">1942</div>
+          <h3>Bătălia de la Midway - Detalii</h3>
+          <p>4-7 iunie 1942 — Cea mai decisivă bătălie navală. 4 portavioane japoneze scufundate.</p>
+        </a>
+        <a href="bataliifrontul-est-africa-detalii.html" class="timeline-card era-3">
+          <div class="year">1942</div>
+          <h3>Bătălii Frontul Est & Africa</h3>
+          <p>iunie-noiembrie 1942 — Tobruk, El Alamein, Stalingrad. Puncte de cotitură majore.</p>
+        </a>
+        <a href="batalia-stalingrad-detalii.html" class="timeline-card era-3">
+          <div class="year">1942-43</div>
+          <h3>Bătălia de la Stalingrad</h3>
+          <p>23 august 1942 - 2 februarie 1943 — Cea mai sângeroasă bătălie din istorie. 2,5 milioane casualități.</p>
+        </a>
+        <a href="batalia-guadalcanal-detalii.html" class="timeline-card era-3">
+          <div class="year">1942-43</div>
+          <h3>Bătălia de la Guadalcanal</h3>
+          <p>19 august 1942 - februarie 1943 — Primul contraatac major american. Island-Hopping incepe.</p>
+        </a>
+        <a href="1943.html" class="timeline-card era-3">
+          <div class="year">1943</div>
+          <h3>Capitularea Italiei</h3>
+          <p>Mussolini cade, Italia se predă, Germania ocupă peninsula. Aliații intră în Europa.</p>
+        </a>
+        <a href="invazia-siciliei.html" class="timeline-card era-3">
+          <div class="year">1943</div>
+          <h3>Invazia Siciliei</h3>
+          <p>10 iulie 1943 — Operațiunea Husky. Debarcarea aliaților pe Sicilia.</p>
+        </a>
+        <a href="armistițiul-italiei-republica-salo.html" class="timeline-card era-3">
+          <div class="year">1943</div>
+          <h3>Armistițiul Italiei & Republica Salò</h3>
+          <p>septembrie 1943 — Italia se predă, Germania ocupă, Mussolini rescris și Republica Salò.</p>
+        </a>
+        <a href="tehran-conference.html" class="timeline-card era-3">
+          <div class="year">1943</div>
+          <h3>Conferința de la Teheran</h3>
+          <p>23 octombrie - 11 noiembrie — Trei lideri se întâlnesc. D-Day e planificat.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- ERA 4: Sfârșitul Regimurilor -->
+    <div class="section">
+      <h2><i class="fas fa-flag"></i> ERA 4: Sfârșitul Regimurilor (1944-1945)</h2>
+      <div class="timeline-grid">
+        <a href="1944.html" class="timeline-card era-4">
+          <div class="year">1944</div>
+          <h3>D-Day și Eliberarea</h3>
+          <p>6 iunie — Debarcarea din Normandia. Cea mai mare operațiune militară din istorie.</p>
+        </a>
+        <a href="puciul-20-iulie-final.html" class="timeline-card era-4">
+          <div class="year">1944</div>
+          <h3>Puciul de la 20 iulie 1944</h3>
+          <p>Ofițeri germani încearcă asasinarea lui Hitler. Eșecul și represalii brutale.</p>
+        </a>
+        <a href="lovitura-romania-august-1944-final.html" class="timeline-card era-4">
+          <div class="year">1944</div>
+          <h3>Lovitura de Stat din România</h3>
+          <p>23 august 1944 — Regele Mihai îl aruncă pe Antonescu. România abandoneaza Axa.</p>
+        </a>
+        <a href="eliberarea-parisului-final.html" class="timeline-card era-4">
+          <div class="year">1944</div>
+          <h3>Eliberarea Parisului</h3>
+          <p>25 august 1944 — Orașul Luminos e Liber. De Gaulle intră în triumf.</p>
+        </a>
+        <a href="1944-1945-bulge.html" class="timeline-card era-4">
+          <div class="year">1944-45</div>
+          <h3>Bătălia Bulge & Ofensiva Finală</h3>
+          <p>Ultima tentativă germană eșuează. Americani și sovietici avanseaza spre Berlin.</p>
+        </a>
+        <a href="ofensiva-sovietica-berlin.html" class="timeline-card era-4">
+          <div class="year">1945</div>
+          <h3>Ofensiva Sovietică spre Berlin</h3>
+          <p>ianuarie - aprilie 1945 — Rusia marșează spre Berlin. 2 milioane de soldați.</p>
+        </a>
+        <a href="sinuciderea-hitler-final.html" class="timeline-card era-4">
+          <div class="year">1945</div>
+          <h3>Sinuciderea lui Hitler</h3>
+          <p>30 aprilie 1945 — Hitler se trage un gloant. Eva se otrăvește. Sfârșitul dictatorului.</p>
+        </a>
+        <a href="capitularea-germaniei.html" class="timeline-card era-4">
+          <div class="year">1945</div>
+          <h3>Capitularea Germaniei</h3>
+          <p>7-8 mai 1945 — V-E Day. Germania semnează capitularea necondiționată.</p>
+        </a>
+        <a href="bombardamentul-hiroshima.html" class="timeline-card era-4">
+          <div class="year">1945</div>
+          <h3>Bombardamentul Atomic de la Hiroshima</h3>
+          <p>6 august 1945 — Prima bombă atomică. 70.000 oameni omorâți instantaneu.</p>
+        </a>
+        <a href="bombardamentul-nagasaki.html" class="timeline-card era-4">
+          <div class="year">1945</div>
+          <h3>Bombardamentul Atomic de la Nagasaki</h3>
+          <p>9 august 1945 — A doua bombă. URSS declară război Japoniei. Japonia capitulează.</p>
+        </a>
+        <a href="capitularea-japoniei.html" class="timeline-card era-4">
+          <div class="year">1945</div>
+          <h3>Capitularea Japoniei</h3>
+          <p>15 august / 2 septembrie 1945 — V-J DAY. Sfârșitul Al Doilea Război Mondial.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- ERA 5: Justiție și Reconstrucție -->
+    <div class="section">
+      <h2><i class="fas fa-balance-scale"></i> ERA 5: Justiție și Reconstrucție (1945-1949+)</h2>
+      <div class="timeline-grid">
+        <a href="1945-1946-nuremberg-complete.html" class="timeline-card era-5">
+          <div class="year">1945-46</div>
+          <h3>Procesele de Nüremberg</h3>
+          <p>Prima instanță internațională pentru crime de război. 24 lideri nazii judecați.</p>
+        </a>
+        <a href="holocaust.html" class="timeline-card era-5">
+          <div class="year">1941-45</div>
+          <h3>Holocaustul</h3>
+          <p>6 milioane de evrei + 6 milioane alții omorâți sistematic. Cea mai întunecată pagină.</p>
+        </a>
+        <a href="1945-1949-germany-divided.html" class="timeline-card era-5">
+          <div class="year">1945-49</div>
+          <h3>Divizarea Germaniei</h3>
+          <p>4 zone devin 2 state: RFG (capitalismă) și RDG (comunistă) pentru 40 de ani.</p>
+        </a>
+        <a href="united-nations.html" class="timeline-card era-5">
+          <div class="year">1945</div>
+          <h3>Națiunile Unite</h3>
+          <p>24 octombrie — ONU se constituie oficial. Speranța unei păci globale.</p>
+        </a>
+        <a href="yalta-conference.html" class="timeline-card era-5">
+          <div class="year">1945</div>
+          <h3>Conferința de la Yalta</h3>
+          <p>4-11 februarie — Împărțirea Europei. Yalta = Munchen al RăzboinuluiRece.</p>
+        </a>
+        <a href="potsdam-conference.html" class="timeline-card era-5">
+          <div class="year">1945</div>
+          <h3>Conferința de la Potsdam</h3>
+          <p>17-30 iulie — Decizii finale. Germania divizată. Reparații masive.</p>
+        </a>
+        <a href="cold-war-beginning.html" class="timeline-card era-5">
+          <div class="year">1946+</div>
+          <h3>Începutul Războiul Rece</h3>
+          <p>Alianța SUA-URSS se prăbușește. Două superputeri cu arme nucleare. 45 de ani tensiune.</p>
+        </a>
+
+        <!-- Alte pagini importante -->
+        <a href="pactul-tripartit.html" class="timeline-card" style="background: linear-gradient(135deg, #c62828 0%, #7d1a1a 100%);">
+          <div class="year">1940</div>
+          <h3>Pactul Tripartit</h3>
+          <p>25 octombrie 1940 — Alianța Berlin-Roma-Tokio. Axa ofițial formată.</p>
+        </a>
+        <a href="japonia-cucereste-asia.html" class="timeline-card" style="background: linear-gradient(135deg, #e53935 0%, #b71c1c 100%);">
+          <div class="year">1941-42</div>
+          <h3>Japonia Cucerește Asia</h3>
+          <p>decembrie 1941 - februarie 1942 — Expansiune fulgerătoare. 1,5 milioane km² ocupați.</p>
+        </a>
+        <a href="conferinta-washington.html" class="timeline-card" style="background: linear-gradient(135deg, #0277bd 0%, #01579b 100%);">
+          <div class="year">1942</div>
+          <h3>Conferința de la Washington</h3>
+          <p>20 ianuarie 1942 — Planificare Aliată. "Europe First" e decidit.</p>
+        </a>
+        <a href="operatiunea-torch.html" class="timeline-card" style="background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);">
+          <div class="year">1942</div>
+          <h3>Operațiunea Torch</h3>
+          <p>8 noiembrie 1942 — Debarcarea aliaților în Maroc și Algeria.</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📖 Cum să Utilizezi Această Platformă</h2>
+      <ul style="list-style: disc; margin-left: 30px; line-height: 2.2;">
+        <li><strong>Apasă pe fiecare card</strong> pentru a deschide pagina acelui an/perioadă</li>
+        <li><strong>Fiecare pagină include:</strong> Timeline detaliat, context istoric, statistici, citate și referințe</li>
+        <li><strong>Navigare ușoară:</strong> Fiecare pagină are link înapoi la index</li>
+        <li><strong>Design responsive:</strong> Optimizat pentru mobil, tablet și desktop</li>
+        <li><strong>Resurse la final:</strong> Cărți, filme, documente pentru aprofundare</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📚 Resurse Externe Recomandate</h2>
+      <ul style="list-style: disc; margin-left: 30px; line-height: 2;">
+        <li><strong>United States Holocaust Memorial Museum:</strong> ushmm.org</li>
+        <li><strong>Yad Vashem Memorial:</strong> yadvashem.org</li>
+        <li><strong>Muzele și Documente:</strong> Archives de la Grande Guerre, Deutsches Historisches Museum</li>
+        <li><strong>Documentare Video:</strong> Ken Burns' The War, Laurence Rees' World War II in Color</li>
+        <li><strong>Cărți Fundamentale:</strong> Shirer's Rise and Fall, Overy's Russia's War, Beevor's The Second World War</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p><i class="fas fa-copyright"></i> 2026 | Colecție completă de 39 pagini educative despre Al Doilea Război Mondial</p>
+    <p style="margin-top: 10px;">Limba: Română | Design: Responsive & Modern | Educație: Cuprinzătoare</p>
+  </div>
+
+</body>
+</html>

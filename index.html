@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> WWII</title>
+  <style>
+    :root{
+      --nav-width: 300px;
+      --bg: #070707;
+      --nav-bg: linear-gradient(180deg,#0f1b18,#122620);
+      --accent: #ffd54f;
+      --muted: #dfeee3;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--muted);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    #app{display:flex;height:100vh;overflow:hidden;}
+    /* Sidebar */
+    #siteNav {
+      box-sizing:border-box;
+      width:var(--nav-width);min-width:var(--nav-width);
+      padding:14px 18px;background:var(--nav-bg);
+      transform:translateX(-100%);transition:transform .28s cubic-bezier(.2,.9,.2,1);
+      z-index:1200;position:fixed;left:0;top:0;bottom:0;overflow:auto;
+      box-shadow:0 30px 60px rgba(0,0,0,0.6);
+    }
+    #siteNav.open{transform:translateX(0);}
+    /* Dimmer */
+    #dimmer{position:fixed;inset:0;background:rgba(0,0,0,0.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:1150}
+    #dimmer.visible{opacity:1;pointer-events:auto}
+    /* Content */
+    #contentWrap{flex:1;margin-left:0}
+    #contentFrame{width:100%;height:100vh;border:0;display:block;background:#000}
+    /* Sidebar inner */
+    .top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(180deg,#6b7a3a,#1b1e19);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent)}
+    .brand-logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(180deg,#6b7a3a,#1b1e19);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .brand-logo img{width:100%;height:100%;object-fit:contain;}
+    h1{margin:0;font-size:1.02rem}
+    .muted{color:rgba(255,255,255,0.8);font-size:0.92rem}
+    .links{margin-top:12px}
+    ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    a{padding:10px;border-radius:8px;text-decoration:none;color:var(--muted);display:block}
+    a:hover{background:rgba(255,213,79,0.06);color:#fff}
+    a.active{background:linear-gradient(90deg,var(--accent),#ffb347);color:#07120a}
+    .footer{margin-top:auto;font-size:0.92rem;color:rgba(255,255,255,0.7)}
+    .hint{font-size:12px;color:rgba(255,255,255,0.6)}
+    .sr-only{position:absolute!important;height:1px;width:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    /* details inside nav */
+    #navList details summary { list-style: none; cursor: pointer; display: block; padding: 8px 10px; border-radius: 8px; background: rgba(255,213,79,0.06); color: var(--muted); font-weight:600; }
+    #navList details[open] summary { background: rgba(255,213,79,0.10); color: #fff; }
+    #navList .test-link { padding-left: 18px; display:block; margin:6px 0; border-radius:6px; background:transparent; }
+    @media(max-width:760px){#siteNav{--nav-width:82vw;width:82vw;min-width:82vw}}
+  </style>
+</head>
+<body>
+  <div id="app" role="application" aria-label="Portal istorie">
+    <aside id="siteNav" aria-label="Meniu principal" aria-hidden="true">
+      <div class="top-row">
+        <div class="brand">
+          <div class="brand-logo" aria-hidden="true">
+            <!-- Înlocuiește src-ul cu calea către propriul tău logo -->
+            <img src="logo_v.png" alt="" />
+          </div>
+          <div>
+            <h1> WWII</h1>
+            <div class="muted">Memorie • Istorie • Educație</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="links" id="linksWrap" role="navigation" aria-label="Linkuri principale">
+        <ul id="navList" role="menu">
+          <li role="none"><a role="menuitem" href="welcome.html" data-href="welcome.html">Welcome</a></li>
+          <li role="none"><a role="menuitem" href="istorie.html" data-href="istorie.html">Istorie</a></li>
+          <li role="none"><a role="menuitem" href="protagonisti.html" data-href="protagonisti.html">Protagoniști</a></li>
+          <li role="none"><a role="menuitem" href="timeline.html" data-href="timeline.html">Timeline</a></li>
+          <li role="none"><a role="menuitem" href="holo.html" data-href="holo.html">Ceva Interesant</a></li>
+          <li role="none"><a role="menuitem" href="biografie.html" data-href="biografie.html">Bibliografie</a></li>
+          <li role="none"><a role="menuitem" href="feed.html" data-href="feed.html">Feedback</a></li>
+          <li role="none"><a role="menuitem" href="joc.html" data-href="joc.html">Joc</a></li>
+
+          <!-- Tests section moved to the end -->
+          <li role="none" aria-labelledby="teste-title">
+            <details>
+              <summary id="teste-title">Secțiunea teste ▸</summary>
+              <div style="padding:6px 4px;">
+                <a class="test-link" href="teste/test1.html" data-href="teste/test1.html">Test 1</a>
+                <a class="test-link" href="teste/test2.html" data-href="teste/test2.html">Test 2</a>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="footer">
+        <!-- Textul cu tastele a fost șters -->
+      </div>
+
+      <div id="announce" class="sr-only" aria-live="polite"></div>
+    </aside>
+
+    <div id="dimmer" aria-hidden="true"></div>
+
+    <div id="contentWrap">
+      <iframe id="contentFrame" name="continut" src="welcome.html" title="Conținut principal"></iframe>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const siteNav = document.getElementById('siteNav');
+    const dimmer = document.getElementById('dimmer');
+    const navList = document.getElementById('navList');
+    const links = Array.from(navList.querySelectorAll('a'));
+    const announce = document.getElementById('announce');
+    const contentFrame = document.getElementById('contentFrame');
+
+    let lastFocused = null;
+
+    function a11y(msg){ announce.textContent = msg; setTimeout(()=>announce.textContent='',900); }
+
+    function showNav(){
+      if (localStorage.getItem('navHidden') === '1') return;
+      siteNav.classList.add('open');
+      siteNav.setAttribute('aria-hidden','false');
+      dimmer.classList.add('visible'); dimmer.setAttribute('aria-hidden','false');
+      lastFocused = document.activeElement;
+      const first = navList.querySelector('a, summary');
+      if (first) first.focus();
+      a11y('Meniu afișat');
+      console.log('[nav] shown');
+    }
+
+    function hideNav(){
+      siteNav.classList.remove('open');
+      siteNav.setAttribute('aria-hidden','true');
+      dimmer.classList.remove('visible'); dimmer.setAttribute('aria-hidden','true');
+      try{ if (lastFocused && lastFocused.focus) lastFocused.focus(); }catch(e){}
+      a11y('Meniu ascuns');
+      console.log('[nav] hidden');
+    }
+
+    function toggleNav(){ siteNav.classList.contains('open') ? hideNav() : showNav(); }
+
+    window.addEventListener('keydown', function(e){
+      const tag = document.activeElement && document.activeElement.tagName ? document.activeElement.tagName.toLowerCase() : '';
+      if (['input','textarea','select'].includes(tag) || (document.activeElement && document.activeElement.isContentEditable)){
+        if (e.key === 'Escape' && siteNav.classList.contains('open')){ e.preventDefault(); hideNav(); }
+        return;
+      }
+      if (e.code === 'BracketLeft' || e.key === '['){ e.preventDefault(); toggleNav(); }
+      else if (e.key === 'Escape'){ if (siteNav.classList.contains('open')){ e.preventDefault(); hideNav(); } }
+    }, true);
+
+    function attachKeyListenerToContentFrame(){
+      try{
+        const win = contentFrame.contentWindow;
+        if(!win) return;
+        try{ win.removeEventListener('keydown', contentFrame._navKeyHandler); }catch(e){}
+        contentFrame._navKeyHandler = function(e){
+          if (e.code === 'BracketLeft' || e.key === '['){ e.preventDefault(); toggleNav(); }
+          else if (e.key === 'Escape'){ if (siteNav.classList.contains('open')){ e.preventDefault(); hideNav(); } }
+        };
+        win.addEventListener('keydown', contentFrame._navKeyHandler, true);
+        console.log('[parent] attached keydown listener inside content frame');
+      }catch(err){
+        console.warn('[parent] could not attach to contentFrame (cross-origin?)', err);
+      }
+    }
+    contentFrame.addEventListener('load', attachKeyListenerToContentFrame);
+    setTimeout(attachKeyListenerToContentFrame, 500);
+
+    dimmer.addEventListener('click', ()=> { hideNav(); });
+
+    navList.addEventListener('click', function(e){
+      const a = e.target.closest('a');
+      if (!a) return;
+      e.preventDefault();
+      links.forEach(l => l.classList.toggle('active', l === a));
+      const href = a.dataset.href || a.getAttribute('href');
+      if (contentFrame && href) contentFrame.src = href;
+      a11y('Se încarcă ' + (a.textContent || '').trim());
+      hideNav();
+    });
+
+    navList.addEventListener('click', function(e){
+      const summary = e.target.closest('summary');
+      if (!summary) return;
+      e.preventDefault();
+      const det = summary.parentElement;
+      det.open = !det.open;
+    });
+
+    window.portalNav = {
+      show: showNav,
+      hide: hideNav,
+      toggle: toggleNav,
+      isOpen: ()=> siteNav.classList.contains('open'),
+      resetHideFlag: ()=> { try{ localStorage.removeItem('navHidden'); siteNav.style.display=''; dimmer.style.display=''; }catch(e){} }
+    };
+
+    hideNav();
+    a11y('Meniul este gata');
+    console.log('[nav] sidebar ready. Use [ to toggle.');
+  })();
+  </script>
+
+  <script>
+  (function(){
+    const container = document.getElementById('navList');
+    if (!container) return;
+    const details = container.querySelectorAll('details');
+    details.forEach(d => {
+      const summary = d.querySelector('summary');
+      if (!summary) return;
+      if (!summary.querySelector('.coll-icon')) {
+        const icon = document.createElement('span');
+        icon.className = 'coll-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.style.display = 'inline-block';
+        icon.style.marginRight = '0.5rem';
+        icon.textContent = d.hasAttribute('open') ? '▾' : '▸';
+        summary.insertBefore(icon, summary.firstChild);
+      }
+      summary.setAttribute('aria-expanded', d.hasAttribute('open') ? 'true' : 'false');
+      d.addEventListener('toggle', ()=> {
+        const ic = summary.querySelector('.coll-icon');
+        if (ic) ic.textContent = d.open ? '▾' : '▸';
+        summary.setAttribute('aria-expanded', d.open ? 'true' : 'false');
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
