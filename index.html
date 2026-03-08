@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title> WWII</title>
+  <title>WWII</title>
   <style>
     :root{
       --nav-width: 300px;
@@ -54,6 +54,9 @@
   </style>
 </head>
 <body>
+  <button id="navToggleBtn" aria-label="Deschide meniu" style="position:fixed; left:10px; top:10px; z-index:1300; background:var(--accent); color:#070707; border:none; border-radius:8px; padding:10px 14px; font-size:16px; cursor:pointer; font-weight:600;">
+  ☰ Meniu
+</button>
   <div id="app" role="application" aria-label="Portal istorie">
     <aside id="siteNav" aria-label="Meniu principal" aria-hidden="true">
       <div class="top-row">
@@ -232,5 +235,12 @@
     });
   })();
   </script>
+  <script>
+document.getElementById('navToggleBtn').addEventListener('click', function(){
+  if (window.portalNav && window.portalNav.toggle) {
+    window.portalNav.toggle();
+  }
+});
+</script>
 </body>
 </html>
