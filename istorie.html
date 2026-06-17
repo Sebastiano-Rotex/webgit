@@ -4,9 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Istorie — Cauzele Al Doilea Război Mondial</title>
-  <meta name="description" content="Analiză succintă a cauzelor care au condus la Al Doilea Război Mondial: Tratatul de la Versailles, ascensiunea regimurilor totalitare, criza economică, politica de conciliere și altele.">
+  <meta name="description" content="Analiză succintă a cauzelor care au condus la Al Doilea Război Mondial.">
   <meta property="og:title" content="Istorie — Cauzele Al Doilea Război Mondial" />
-  <meta property="og:description" content="Analiză succintă a cauzelor care au condus la Al Doilea Război Mondial." />
   <meta property="og:type" content="article" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
@@ -14,7 +13,7 @@
 
   <style>
     :root { --base-font: 18px; }
-    html,body { height: 100%; }
+    html, body { height: 100%; }
     body {
       font-family: 'Staatliches', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background-color: #121212;
@@ -25,47 +24,27 @@
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.45;
     }
-
-    /* Headings scale */
-    .text-sm { font-size: 0.95rem !important; }
-    .text-lg { font-size: 1.15rem !important; }
-    .text-xl { font-size: 1.35rem !important; }
-    .text-2xl { font-size: 1.6rem !important; }
+    .text-sm  { font-size: .95rem  !important; }
+    .text-lg  { font-size: 1.15rem !important; }
+    .text-xl  { font-size: 1.35rem !important; }
+    .text-2xl { font-size: 1.6rem  !important; }
     .text-3xl { font-size: 1.95rem !important; }
-    .text-4xl { font-size: 2.4rem !important; }
-
-    /* Accessible focus for keyboard users */
-    :focus {
-      outline: 3px solid #ffd54f;
-      outline-offset: 3px;
-    }
-
-    /* Style for <summary> to look like your original button */
+    .text-4xl { font-size: 2.4rem  !important; }
+    :focus { outline: 3px solid #ffd54f; outline-offset: 3px; }
     details summary {
       list-style: none;
       cursor: pointer;
       display: block;
       background-color: #5f6640;
-      padding: 0.6rem 1rem;
-      border-radius: 0.5rem;
+      padding: .6rem 1rem;
+      border-radius: .5rem;
       color: #fff;
       font-weight: 600;
     }
     details[open] summary { background-color: #6c7450; }
     details summary::-webkit-details-marker { display: none; }
-
-    /* Card backgrounds */
-    .card { background-color: rgba(31, 33, 36, 0.9); }
-
-    /* Timeline bullets */
-    .timeline .dot {
-      width: 1.25rem; height: 1.25rem;
-      border-radius: 9999px;
-      display: inline-block;
-      margin-right: 0.5rem;
-    }
-
-    /* Container max width */
+    .card { background-color: rgba(31, 33, 36, .9); }
+    .timeline .dot { width: 1.25rem; height: 1.25rem; border-radius: 9999px; display: inline-block; margin-right: .5rem; }
     .container { max-width: 1000px; margin-left: auto; margin-right: auto; }
   </style>
 </head>
@@ -73,18 +52,25 @@
   <a class="sr-only focus:not-sr-only focus:block mb-4 p-2 bg-yellow-300 text-black rounded" href="#main">Sari la conținut</a>
 
   <header class="container mb-6">
-    <h1 class="text-4xl text-yellow-300 mb-2"><i class="fas fa-history" aria-hidden="true"></i> Istorie</h1>
-    <p class="text-sm text-gray-300 max-w-3xl">Cauzele principale care au condus la izbucnirea celui de-al Doilea Război Mondial — o prezentare sintetică, neutră și informativă.</p>
+    <h1 class="text-4xl text-yellow-300 mb-2">
+      <i class="fas fa-history" aria-hidden="true"></i>
+      <span data-i18n="ist.heading">Istorie</span>
+    </h1>
+    <p class="text-sm text-gray-300 max-w-3xl" data-i18n="ist.subtitle">Cauzele principale care au condus la izbucnirea celui de-al Doilea Război Mondial — o prezentare sintetică, neutră și informativă.</p>
   </header>
 
   <main id="main" class="container space-y-6">
-    <section class="card p-6 rounded-xl shadow-lg" aria-labelledby="cauze-title">
-      <h2 id="cauze-title" class="text-2xl text-yellow-200 mb-4"><i class="fas fa-balance-scale"></i> Cauzele Al Doilea Război Mondial</h2>
 
-      <!-- Using <details> for accessible collapsible sections; keeps markup simple and degrades gracefully -->
+    <!-- ── Causes section ── -->
+    <section class="card p-6 rounded-xl shadow-lg" aria-labelledby="cauze-title">
+      <h2 id="cauze-title" class="text-2xl text-yellow-200 mb-4">
+        <i class="fas fa-balance-scale"></i>
+        <span data-i18n="ist.causes.title">Cauzele Al Doilea Război Mondial</span>
+      </h2>
+
       <details class="mb-4">
-        <summary class="text-lg"><i class="fas fa-chevron-right mr-2" aria-hidden="true"></i> Tratatul de la Versailles (1919) – umilința impusă Germaniei</summary>
-        <div class="mt-3 text-sm text-gray-200">
+        <summary class="text-lg"><span data-i18n="ist.versailles.summary">Tratatul de la Versailles (1919) – umilința impusă Germaniei</span></summary>
+        <div class="mt-3 text-sm text-gray-200" data-i18n-html="ist.versailles.body">
           <ul class="list-disc list-inside">
             <li>Pierderea unor teritorii importante (Alsacia și Lorena către Franța, coloniile externe etc.).</li>
             <li>Limitarea armatei la 100.000 de soldați.</li>
@@ -96,8 +82,8 @@
       </details>
 
       <details class="mb-4">
-        <summary class="text-lg"><i class="fas fa-chevron-right mr-2" aria-hidden="true"></i> Ascensiunea regimurilor totalitare</summary>
-        <div class="mt-3 text-sm text-gray-200">
+        <summary class="text-lg"><span data-i18n="ist.totalitarian.summary">Ascensiunea regimurilor totalitare</span></summary>
+        <div class="mt-3 text-sm text-gray-200" data-i18n-html="ist.totalitarian.body">
           <section class="mb-3">
             <h3 class="font-semibold text-red-400">Nazismul (Germania)</h3>
             <ul class="list-disc list-inside">
@@ -107,7 +93,6 @@
               <li>Politici: reînarmare, Anschluss (1938), invadarea Cehoslovaciei (1939).</li>
             </ul>
           </section>
-
           <section class="mb-3">
             <h3 class="font-semibold text-gray-300">Fascismul (Italia)</h3>
             <ul class="list-disc list-inside">
@@ -117,7 +102,6 @@
               <li>Acțiuni: invadarea Etiopiei (1935), intervenția în Spania, Axa Roma–Berlin (1936).</li>
             </ul>
           </section>
-
           <section>
             <h3 class="font-semibold text-red-400">Militarismul în Japonia</h3>
             <ul class="list-disc list-inside">
@@ -126,24 +110,23 @@
               <li>Masacrul de la Nanking (1937).</li>
             </ul>
           </section>
-
         </div>
       </details>
 
       <details class="mb-4">
-        <summary class="text-lg"><i class="fas fa-chevron-right mr-2" aria-hidden="true"></i> Criza economică mondială (1929–1933)</summary>
-        <div class="mt-3 text-sm text-gray-200">
+        <summary class="text-lg"><span data-i18n="ist.crisis.summary">Criza economică mondială (1929–1933)</span></summary>
+        <div class="mt-3 text-sm text-gray-200" data-i18n-html="ist.crisis.body">
           <ul class="list-disc list-inside">
             <li>Șomaj masiv, inflație, foamete, mai ales în Germania.</li>
-            <li>Promisiuni totalitare de „ordine” și „măreție națională”.</li>
+            <li>Promisiuni totalitare de „ordine" și „măreție națională".</li>
             <li>Democrațiile păreau slabe și ineficiente.</li>
           </ul>
         </div>
       </details>
 
       <details class="mb-4">
-        <summary class="text-lg"><i class="fas fa-chevron-right mr-2" aria-hidden="true"></i> Politica de conciliere („appeasement”)</summary>
-        <div class="mt-3 text-sm text-gray-200">
+        <summary class="text-lg"><span data-i18n="ist.appeasement.summary">Politica de conciliere (appeasement)</span></summary>
+        <div class="mt-3 text-sm text-gray-200" data-i18n-html="ist.appeasement.body">
           <ul class="list-disc list-inside">
             <li>Se evita confruntarea directă cu Hitler, sperând că va fi suficientă concesiunea.</li>
             <li>Conferința de la München (1938): Sudetii cedați fără opoziție.</li>
@@ -154,8 +137,8 @@
       </details>
 
       <details class="mb-4">
-        <summary class="text-lg"><i class="fas fa-chevron-right mr-2" aria-hidden="true"></i> Eșecul Ligii Națiunilor</summary>
-        <div class="mt-3 text-sm text-gray-200">
+        <summary class="text-lg"><span data-i18n="ist.league.summary">Eșecul Ligii Națiunilor</span></summary>
+        <div class="mt-3 text-sm text-gray-200" data-i18n-html="ist.league.body">
           <ul class="list-disc list-inside">
             <li>Creată pentru păstrarea păcii, dar fără forță militară coerentă.</li>
             <li>Nu a putut opri agresiunile Japoniei, Italiei și Germaniei.</li>
@@ -164,8 +147,8 @@
       </details>
 
       <details class="mb-4">
-        <summary class="text-lg"><i class="fas fa-chevron-right mr-2" aria-hidden="true"></i> Pactul Ribbentrop–Molotov (23 august 1939)</summary>
-        <div class="mt-3 text-sm text-gray-200">
+        <summary class="text-lg"><span data-i18n="ist.pact.summary">Pactul Ribbentrop–Molotov (23 august 1939)</span></summary>
+        <div class="mt-3 text-sm text-gray-200" data-i18n-html="ist.pact.body">
           <ul class="list-disc list-inside">
             <li>Pact de neagresiune între Germania și URSS.</li>
             <li>Protocol secret: împărțirea Poloniei și a altor teritorii est-europene.</li>
@@ -175,57 +158,70 @@
       </details>
     </section>
 
+    <!-- ── Timeline section ── -->
     <section class="card p-6 rounded-xl shadow-lg" aria-labelledby="cronologie-title">
-      <h2 id="cronologie-title" class="text-2xl text-yellow-200 mb-4"><i class="fas fa-stream"></i> Cronologia Evenimentelor (1919–1939)</h2>
+      <h2 id="cronologie-title" class="text-2xl text-yellow-200 mb-4">
+        <i class="fas fa-stream"></i>
+        <span data-i18n="ist.timeline.title">Cronologia Evenimentelor (1919–1939)</span>
+      </h2>
 
       <nav aria-label="Cronologie">
         <ol class="timeline relative border-l border-yellow-400 pl-6">
           <li class="mb-6">
             <span class="dot bg-yellow-400"></span>
-            <time datetime="1919" class="font-bold text-lg text-yellow-300"><a href="tratatul-versailles.html" class="hover:underline">1919-1920 – Tratatatele de la Versailles</a></time>
-            <p class="text-sm text-gray-300">Germania este obligată să accepte condiții dure.</p>
+            <time datetime="1919" class="font-bold text-lg text-yellow-300">
+              <a href="tratatul-versailles.html" class="hover:underline" data-i18n="ist.t1919">1919-1920 – Tratatele de la Versailles</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1919.desc">Germania este obligată să accepte condiții dure.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-yellow-400"></span>
-            <time datetime="1922" class="font-bold text-lg text-yellow-300"><a href="mussolini-1922.html" class="hover:underline">1922 – Mussolini devine prim-ministru</a></time>
-            <p class="text-sm text-gray-300">Ascensiunea fascismului în Italia.</p>
+            <time datetime="1922" class="font-bold text-lg text-yellow-300">
+              <a href="mussolini-1922.html" class="hover:underline" data-i18n="ist.t1922">1922 – Mussolini devine prim-ministru</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1922.desc">Ascensiunea fascismului în Italia.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-yellow-400"></span>
-            <time datetime="1933" class="font-bold text-lg text-yellow-300"><a href="hitler-1933.html" class="hover:underline">1933 – Hitler devine cancelar</a></time>
-            <p class="text-sm text-gray-300">Nazismul preia puterea în Germania.</p>
+            <time datetime="1933" class="font-bold text-lg text-yellow-300">
+              <a href="hitler-1933.html" class="hover:underline" data-i18n="ist.t1933">1933 – Hitler devine cancelar</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1933.desc">Nazismul preia puterea în Germania.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-yellow-400"></span>
-            <time datetime="1935" class="font-bold text-lg text-yellow-300"><a href="etiopia-1935.html" class="hover:underline">1935 – Italia invadează Etiopia</a></time>
-            <p class="text-sm text-gray-300">Liga Națiunilor eșuează să intervină.</p>
+            <time datetime="1935" class="font-bold text-lg text-yellow-300">
+              <a href="etiopia-1935.html" class="hover:underline" data-i18n="ist.t1935">1935 – Italia invadează Etiopia</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1935.desc">Liga Națiunilor eșuează să intervină.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-yellow-400"></span>
-            <time datetime="1936" class="font-bold text-lg text-yellow-300"><a href="axa-roma-berlin.html" class="hover:underline">1936 – Axa Roma–Berlin</a></time>
-            <p class="text-sm text-gray-300">Alianță Italia–Germania.</p>
+            <time datetime="1936" class="font-bold text-lg text-yellow-300">
+              <a href="axa-roma-berlin.html" class="hover:underline" data-i18n="ist.t1936">1936 – Axa Roma–Berlin</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1936.desc">Alianță Italia–Germania.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-yellow-400"></span>
-            <time datetime="1938" class="font-bold text-lg text-yellow-300"><a href="anschluss-munchen.html" class="hover:underline">1938 – Anschluss și Acordul de la München</a></time>
-            <p class="text-sm text-gray-300">Germania anexează Austria și obține Sudetele.</p>
+            <time datetime="1938" class="font-bold text-lg text-yellow-300">
+              <a href="anschluss-munchen.html" class="hover:underline" data-i18n="ist.t1938">1938 – Anschluss și Acordul de la München</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1938.desc">Germania anexează Austria și obține Sudetele.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-red-500"></span>
-            <time datetime="1939-08-23" class="font-bold text-lg text-red-400"><a href="pactul-ribbentrop.html" class="hover:underline">23 august 1939 – Pactul Ribbentrop–Molotov</a></time>
-            <p class="text-sm text-gray-300">Germania și URSS împart Europa de Est.</p>
+            <time datetime="1939-08-23" class="font-bold text-lg text-red-400">
+              <a href="pactul-ribbentrop.html" class="hover:underline" data-i18n="ist.t1939a">23 august 1939 – Pactul Ribbentrop–Molotov</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1939a.desc">Germania și URSS împart Europa de Est.</p>
           </li>
-
           <li class="mb-6">
             <span class="dot bg-red-500"></span>
-            <time datetime="1939-09-01" class="font-bold text-lg text-red-400"><a href="invazia-poloniei.html" class="hover:underline">1 septembrie 1939 – Germania invadează Polonia</a></time>
-            <p class="text-sm text-gray-300">Începutul celui de-Al Doilea Război Mondial.</p>
+            <time datetime="1939-09-01" class="font-bold text-lg text-red-400">
+              <a href="invazia-poloniei.html" class="hover:underline" data-i18n="ist.t1939b">1 septembrie 1939 – Germania invadează Polonia</a>
+            </time>
+            <p class="text-sm text-gray-300" data-i18n="ist.t1939b.desc">Începutul celui de-Al Doilea Război Mondial.</p>
           </li>
         </ol>
       </nav>
@@ -233,14 +229,15 @@
   </main>
 
   <footer class="container mt-8 text-sm text-gray-400">
-    <p>Pagina are scop informativ și critic. Sursele recomandate: lucrări istorice consacrate și arhive primare — se recomandă verificarea referințelor pentru detalii și context.</p>
+    <p data-i18n="ist.footer">Pagina are scop informativ și critic. Sursele recomandate: lucrări istorice consacrate și arhive primare.</p>
   </footer>
 
+  <script src="lang.js"></script>
+
   <script>
-    // Small enhancement: toggle open/close state icons for <details> elements
+    /* Animated expand/collapse arrow icons for <details> elements. */
     (function () {
-      const details = document.querySelectorAll('details');
-      details.forEach(d => {
+      document.querySelectorAll('details').forEach(d => {
         const summary = d.querySelector('summary');
         const icon = document.createElement('span');
         icon.setAttribute('aria-hidden', 'true');
@@ -250,9 +247,8 @@
 
         function update() {
           icon.innerHTML = d.open ? '▾' : '▸';
-          summary.setAttribute('aria-expanded', d.open ? 'true' : 'false');
+          summary.setAttribute('aria-expanded', String(d.open));
         }
-        // initialize
         update();
         d.addEventListener('toggle', update);
       });

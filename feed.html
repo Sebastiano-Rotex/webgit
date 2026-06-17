@@ -2,7 +2,8 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <title>Feedback</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback — WWII</title>
   <style>
     body {
       font-family: 'Roboto Condensed', Arial, sans-serif;
@@ -13,10 +14,10 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      letter-spacing: 0.5px;
+      letter-spacing: .5px;
     }
     .container {
-      background: rgba(34, 37, 20, 0.95);
+      background: rgba(34, 37, 20, .95);
       padding: 30px;
       border-radius: 14px;
       width: 440px;
@@ -68,7 +69,7 @@
       font-size: 28px;
       cursor: pointer;
       color: #666c5c;
-      transition: 0.2s;
+      transition: .2s;
       user-select: none;
       text-shadow: 1px 1px 2px #111;
     }
@@ -76,13 +77,13 @@
       color: #d1a83e;
       text-shadow: 0 0 6px #d1a83e, 2px 2px 2px #23260e;
     }
-    button {
+    button[type="submit"] {
       margin-top: 24px;
       width: 100%;
       padding: 13px;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(90deg,#4b5d36 0%, #d1a83e 100%);
+      background: linear-gradient(90deg, #4b5d36 0%, #d1a83e 100%);
       color: #23260e;
       font-size: 1.1rem;
       font-weight: bold;
@@ -90,37 +91,41 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       box-shadow: 0 2px 6px #23260e;
-      transition: 0.2s;
+      transition: .2s;
     }
-    button:hover {
-      background: linear-gradient(90deg,#d1a83e 0%, #4b5d36 100%);
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, #d1a83e 0%, #4b5d36 100%);
       color: #fff;
     }
     .divider {
-      margin: 18px 0 12px 0;
+      margin: 18px 0 12px;
       border-top: 1.5px dashed #b9c68d;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Feedback</h2>
-    <form
-      action="https://formspree.io/f/xwvrkkzv"
-      method="POST"
-    >
-      <label for="name">Nume:</label>
-      <input type="text" id="name" name="name" placeholder="Scrie numele tău" required>
+    <h2 data-i18n="feed.heading">Feedback</h2>
+    <form action="https://formspree.io/f/xwvrkkzv" method="POST">
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="exemplu@email.com" required>
+      <label for="name" data-i18n="feed.name">Nume:</label>
+      <input type="text" id="name" name="name"
+             data-i18n-placeholder="feed.name.ph"
+             placeholder="Scrie numele tău" required>
 
-      <label for="phone">Număr de telefon:</label>
-      <input type="tel" id="phone" name="phone" placeholder="07XXXXXXXX" required>
+      <label for="email" data-i18n="feed.email">Email:</label>
+      <input type="email" id="email" name="email"
+             data-i18n-placeholder="feed.email.ph"
+             placeholder="exemplu@email.com" required>
+
+      <label for="phone" data-i18n="feed.phone">Număr de telefon:</label>
+      <input type="tel" id="phone" name="phone"
+             data-i18n-placeholder="feed.phone.ph"
+             placeholder="07XXXXXXXX" required>
 
       <div class="divider"></div>
 
-      <label>Apreciază lecția:</label>
+      <label data-i18n="feed.rateLesson">Apreciază lecția:</label>
       <div class="stars" id="stars-lectie">
         <span class="star" data-value="1">&#9733;</span>
         <span class="star" data-value="2">&#9733;</span>
@@ -130,7 +135,7 @@
       </div>
       <input type="hidden" id="rating-lectie" name="rating_lectie" value="0">
 
-      <label>Apreciază grafica:</label>
+      <label data-i18n="feed.rateGraphics">Apreciază grafica:</label>
       <div class="stars" id="stars-grafica">
         <span class="star" data-value="1">&#9733;</span>
         <span class="star" data-value="2">&#9733;</span>
@@ -140,7 +145,7 @@
       </div>
       <input type="hidden" id="rating-grafica" name="rating_grafica" value="0">
 
-      <label>Apreciază informațiile:</label>
+      <label data-i18n="feed.rateInfo">Apreciază informațiile:</label>
       <div class="stars" id="stars-informatii">
         <span class="star" data-value="1">&#9733;</span>
         <span class="star" data-value="2">&#9733;</span>
@@ -150,12 +155,16 @@
       </div>
       <input type="hidden" id="rating-informatii" name="rating_informatii" value="0">
 
-      <label for="message">Sugestii / Comentarii:</label>
-      <textarea id="message" name="message" placeholder="Scrie aici părerea ta..."></textarea>
+      <label for="message" data-i18n="feed.message">Sugestii / Comentarii:</label>
+      <textarea id="message" name="message"
+                data-i18n-placeholder="feed.message.ph"
+                placeholder="Scrie aici părerea ta..."></textarea>
 
-      <button type="submit">Trimite Feedback</button>
+      <button type="submit"><span data-i18n="feed.submit">Trimite Feedback</span></button>
     </form>
   </div>
+
+  <script src="lang.js"></script>
   <script>
     function setupStars(starsId, inputId) {
       const stars = document.querySelectorAll(`#${starsId} .star`);
@@ -163,16 +172,14 @@
       stars.forEach((star, index) => {
         star.addEventListener('click', () => {
           stars.forEach(s => s.classList.remove('selected'));
-          for (let i = 0; i <= index; i++) {
-            stars[i].classList.add('selected');
-          }
+          for (let i = 0; i <= index; i++) stars[i].classList.add('selected');
           ratingInput.value = index + 1;
         });
       });
     }
-    setupStars('stars-lectie', 'rating-lectie');
-    setupStars('stars-grafica', 'rating-grafica');
-    setupStars('stars-informatii', 'rating-informatii');
+    setupStars('stars-lectie',    'rating-lectie');
+    setupStars('stars-grafica',   'rating-grafica');
+    setupStars('stars-informatii','rating-informatii');
   </script>
 </body>
 </html>

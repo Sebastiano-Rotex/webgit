@@ -3,243 +3,552 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WWII</title>
+  <title>WWII — Al Doilea Război Mondial</title>
   <style>
-    :root{
+    :root {
       --nav-width: 300px;
       --bg: #070707;
-      --nav-bg: linear-gradient(180deg,#0f1b18,#122620);
+      --nav-bg: linear-gradient(180deg, #0f1b18, #122620);
       --accent: #ffd54f;
       --muted: #dfeee3;
     }
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--muted);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
-    #app{display:flex;height:100vh;overflow:hidden;}
-    /* Sidebar */
-    #siteNav {
-      box-sizing:border-box;
-      width:var(--nav-width);min-width:var(--nav-width);
-      padding:14px 18px;background:var(--nav-bg);
-      transform:translateX(-100%);transition:transform .28s cubic-bezier(.2,.9,.2,1);
-      z-index:1200;position:fixed;left:0;top:0;bottom:0;overflow:auto;
-      box-shadow:0 30px 60px rgba(0,0,0,0.6);
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--muted);
+      font-family: Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
     }
-    #siteNav.open{transform:translateX(0);}
-    /* Dimmer */
-    #dimmer{position:fixed;inset:0;background:rgba(0,0,0,0.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:1150}
-    #dimmer.visible{opacity:1;pointer-events:auto}
-    /* Content */
-    #contentWrap{flex:1;margin-left:0}
-    #contentFrame{width:100%;height:100vh;border:0;display:block;background:#000}
-    /* Sidebar inner */
-    .top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(180deg,#6b7a3a,#1b1e19);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent)}
-    .brand-logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(180deg,#6b7a3a,#1b1e19);display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .brand-logo img{width:100%;height:100%;object-fit:contain;}
-    h1{margin:0;font-size:1.02rem}
-    .muted{color:rgba(255,255,255,0.8);font-size:0.92rem}
-    .links{margin-top:12px}
-    ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-    a{padding:10px;border-radius:8px;text-decoration:none;color:var(--muted);display:block}
-    a:hover{background:rgba(255,213,79,0.06);color:#fff}
-    a.active{background:linear-gradient(90deg,var(--accent),#ffb347);color:#07120a}
-    .footer{margin-top:auto;font-size:0.92rem;color:rgba(255,255,255,0.7)}
-    .hint{font-size:12px;color:rgba(255,255,255,0.6)}
-    .sr-only{position:absolute!important;height:1px;width:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    /* details inside nav */
-    #navList details summary { list-style: none; cursor: pointer; display: block; padding: 8px 10px; border-radius: 8px; background: rgba(255,213,79,0.06); color: var(--muted); font-weight:600; }
-    #navList details[open] summary { background: rgba(255,213,79,0.10); color: #fff; }
-    #navList .test-link { padding-left: 18px; display:block; margin:6px 0; border-radius:6px; background:transparent; }
-    @media(max-width:760px){#siteNav{--nav-width:82vw;width:82vw;min-width:82vw}}
+
+    #app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    #siteNav {
+      box-sizing: border-box;
+      width: var(--nav-width);
+      min-width: var(--nav-width);
+      padding: 14px 18px;
+      background: var(--nav-bg);
+      transform: translateX(-100%);
+      transition: transform .28s cubic-bezier(.2, .9, .2, 1);
+      z-index: 1200;
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      overflow: auto;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, .6);
+    }
+
+    #siteNav.open { transform: translateX(0); }
+
+    /* ── Overlay dimmer shown behind the open sidebar ── */
+    #dimmer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+      z-index: 1150;
+    }
+
+    #dimmer.visible { opacity: 1; pointer-events: auto; }
+
+    /* ── Main content area ── */
+    #contentWrap { flex: 1; margin-left: 0; }
+
+    #contentFrame {
+      width: 100%;
+      height: 100vh;
+      border: 0;
+      display: block;
+      background: #000;
+    }
+
+    /* ── Sidebar internals ── */
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand { display: flex; gap: 12px; align-items: center; }
+
+    .brand-logo {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #6b7a3a, #1b1e19);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+    h1 { margin: 0; font-size: 1.02rem; }
+
+    .muted { color: rgba(255, 255, 255, .8); font-size: .92rem; }
+
+    .links { margin-top: 12px; }
+
+    ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+
+    a {
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      display: block;
+    }
+
+    a:hover { background: rgba(255, 213, 79, .06); color: #fff; }
+
+    a.active {
+      background: linear-gradient(90deg, var(--accent), #ffb347);
+      color: #07120a;
+    }
+
+    .footer { margin-top: auto; font-size: .92rem; color: rgba(255, 255, 255, .7); }
+
+    /* Visually hidden but accessible to screen readers */
+    .sr-only {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ── Collapsible sections inside the nav ── */
+    #navList details summary {
+      list-style: none;
+      cursor: pointer;
+      display: block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: rgba(255, 213, 79, .06);
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    #navList details[open] summary {
+      background: rgba(255, 213, 79, .10);
+      color: #fff;
+    }
+
+    #navList .test-link {
+      padding-left: 18px;
+      display: block;
+      margin: 6px 0;
+      border-radius: 6px;
+      background: transparent;
+    }
+
+    /* ── Language switcher pill row ── */
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .lang-btn {
+      flex: 1;
+      padding: 6px 4px;
+      border: 1px solid rgba(255, 213, 79, .25);
+      border-radius: 6px;
+      background: transparent;
+      color: rgba(255, 255, 255, .6);
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: .04em;
+      transition: background .18s, color .18s, border-color .18s;
+    }
+
+    .lang-btn:hover { background: rgba(255, 213, 79, .08); color: #fff; }
+
+    .lang-btn.lang-active {
+      background: rgba(255, 213, 79, .15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      #siteNav { --nav-width: 82vw; width: 82vw; min-width: 82vw; }
+    }
   </style>
 </head>
 <body>
-<button id="navToggleBtn" aria-label="Deschide meniu" style="position:fixed; left:10px; bottom:10px; z-index:1300; background:var(--accent); color:#070707; border:none; border-radius:8px; padding:10px 14px; font-size:16px; cursor:pointer; font-weight:600;">
-  ☰ Meniu
+
+<!-- Floating menu toggle button (bottom-left corner) -->
+<button
+  id="navToggleBtn"
+  aria-label="Deschide meniu"
+  data-i18n-aria="nav.toggleBtn"
+  style="position:fixed; left:10px; bottom:10px; z-index:1300; background:var(--accent); color:#070707; border:none; border-radius:8px; padding:10px 14px; font-size:16px; cursor:pointer; font-weight:600;"
+>
+  ☰ <span data-i18n="nav.toggleBtn">Meniu</span>
 </button>
-  <div id="app" role="application" aria-label="Portal istorie">
-    <aside id="siteNav" aria-label="Meniu principal" aria-hidden="true">
-      <div class="top-row">
-        <div class="brand">
-          <div class="brand-logo" aria-hidden="true">
-            <!-- Înlocuiește src-ul cu calea către propriul tău logo -->
-            <img src="logo_v.png" alt="" />
-          </div>
-          <div>
-            <h1> WWII</h1>
-            <div class="muted">Memorie • Istorie • Educație</div>
-          </div>
+
+<div id="app" role="application" aria-label="Portal istorie">
+
+  <aside id="siteNav" aria-label="Meniu principal" aria-hidden="true">
+
+    <!-- Brand header -->
+    <div class="top-row">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <img src="logo_v.png" alt="" />
+        </div>
+        <div>
+          <h1>WWII</h1>
+          <div class="muted" data-i18n="brand.tagline">Memorie • Istorie • Educație</div>
         </div>
       </div>
-
-      <nav class="links" id="linksWrap" role="navigation" aria-label="Linkuri principale">
-        <ul id="navList" role="menu">
-          <li role="none"><a role="menuitem" href="welcome.html" data-href="welcome.html">Welcome</a></li>
-          <li role="none"><a role="menuitem" href="istorie.html" data-href="istorie.html">Istorie</a></li>
-          <li role="none"><a role="menuitem" href="protagonisti.html" data-href="protagonisti.html">Protagoniști</a></li>
-          <li role="none"><a role="menuitem" href="timeline.html" data-href="timeline.html">Timeline</a></li>
-          <li role="none"><a role="menuitem" href="biografie.html" data-href="biografie.html">Bibliografie</a></li>
-          <li role="none"><a role="menuitem" href="feed.html" data-href="feed.html">Feedback</a></li>
-          <li role="none"><a role="menuitem" href="joc.html" data-href="joc.html">Joc</a></li>
-
-          <!-- Tests section moved to the end -->
-          <li role="none" aria-labelledby="teste-title">
-            <details>
-              <summary id="teste-title">Secțiunea teste ▸</summary>
-              <div style="padding:6px 4px;">
-                <a class="test-link" href="teste/test1.html" data-href="teste/test1.html">Test 1</a>
-                <a class="test-link" href="teste/test2.html" data-href="teste/test2.html">Test 2</a>
-              </div>
-            </details>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="footer">
-        <!-- Textul cu tastele a fost șters -->
-      </div>
-
-      <div id="announce" class="sr-only" aria-live="polite"></div>
-    </aside>
-
-    <div id="dimmer" aria-hidden="true"></div>
-
-    <div id="contentWrap">
-      <iframe id="contentFrame" name="continut" src="welcome.html" title="Conținut principal"></iframe>
     </div>
+
+    <!-- Language selector: RO / IT / EN -->
+    <div class="lang-switcher" role="group" aria-label="Selectează limba">
+      <button class="lang-btn" data-lang="ro" aria-pressed="true">🇷🇴 RO</button>
+      <button class="lang-btn" data-lang="it" aria-pressed="false">🇮🇹 IT</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">🇬🇧 EN</button>
+    </div>
+
+    <!-- Primary navigation links -->
+    <nav class="links" id="linksWrap" role="navigation" aria-label="Linkuri principale">
+      <ul id="navList" role="menu">
+        <li role="none"><a role="menuitem" href="welcome.html"     data-href="welcome.html"     data-i18n="nav.welcome">Bun venit</a></li>
+        <li role="none"><a role="menuitem" href="istorie.html"     data-href="istorie.html"     data-i18n="nav.history">Istorie</a></li>
+        <li role="none"><a role="menuitem" href="protagonisti.html" data-href="protagonisti.html" data-i18n="nav.protagonists">Protagoniști</a></li>
+        <li role="none"><a role="menuitem" href="timeline.html"    data-href="timeline.html"    data-i18n="nav.timeline">Cronologie</a></li>
+        <li role="none"><a role="menuitem" href="biografie.html"   data-href="biografie.html"   data-i18n="nav.bibliography">Bibliografie</a></li>
+        <li role="none"><a role="menuitem" href="feed.html"        data-href="feed.html"        data-i18n="nav.feedback">Feedback</a></li>
+        <li role="none"><a role="menuitem" href="joc.html"         data-href="joc.html"         data-i18n="nav.quiz">Joc / Quiz</a></li>
+
+        <!-- Collapsible tests section -->
+        <li role="none" aria-labelledby="teste-title">
+          <details>
+            <summary id="teste-title" data-i18n="nav.tests">Secțiunea teste</summary>
+            <div style="padding:6px 4px;">
+              <a class="test-link" href="teste/test1.html" data-href="teste/test1.html">Test 1</a>
+              <a class="test-link" href="teste/test2.html" data-href="teste/test2.html">Test 2</a>
+            </div>
+          </details>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="footer"></div>
+
+    <!-- Live region for screen-reader announcements -->
+    <div id="announce" class="sr-only" aria-live="polite"></div>
+  </aside>
+
+  <!-- Click-outside dimmer that closes the sidebar -->
+  <div id="dimmer" aria-hidden="true"></div>
+
+  <div id="contentWrap">
+    <iframe id="contentFrame" name="continut" src="welcome.html" title="Conținut principal"></iframe>
   </div>
 
-  <script>
-  (function(){
-    const siteNav = document.getElementById('siteNav');
-    const dimmer = document.getElementById('dimmer');
-    const navList = document.getElementById('navList');
-    const links = Array.from(navList.querySelectorAll('a'));
-    const announce = document.getElementById('announce');
-    const contentFrame = document.getElementById('contentFrame');
+</div>
 
-    let lastFocused = null;
+<!-- ══════════════════════════════════════════════════════════
+     i18n — translation dictionary for all three languages.
+     Keys mirror the data-i18n attributes used in the markup.
+     ══════════════════════════════════════════════════════════ -->
+<script>
+const I18N = {
+  ro: {
+    "brand.tagline":      "Memorie • Istorie • Educație",
+    "nav.toggleBtn":      "Meniu",
+    "nav.welcome":        "Bun venit",
+    "nav.history":        "Istorie",
+    "nav.protagonists":   "Protagoniști",
+    "nav.timeline":       "Cronologie",
+    "nav.bibliography":   "Bibliografie",
+    "nav.feedback":       "Feedback",
+    "nav.quiz":           "Joc / Quiz",
+    "nav.tests":          "Secțiunea teste",
+    "a11y.navShown":      "Meniu afișat",
+    "a11y.navHidden":     "Meniu ascuns",
+    "a11y.navReady":      "Meniul este gata",
+    "a11y.loading":       "Se încarcă",
+  },
+  it: {
+    "brand.tagline":      "Memoria • Storia • Istruzione",
+    "nav.toggleBtn":      "Menu",
+    "nav.welcome":        "Benvenuto",
+    "nav.history":        "Storia",
+    "nav.protagonists":   "Protagonisti",
+    "nav.timeline":       "Cronologia",
+    "nav.bibliography":   "Bibliografia",
+    "nav.feedback":       "Feedback",
+    "nav.quiz":           "Gioco / Quiz",
+    "nav.tests":          "Sezione test",
+    "a11y.navShown":      "Menu aperto",
+    "a11y.navHidden":     "Menu chiuso",
+    "a11y.navReady":      "Menu pronto",
+    "a11y.loading":       "Caricamento",
+  },
+  en: {
+    "brand.tagline":      "Memory • History • Education",
+    "nav.toggleBtn":      "Menu",
+    "nav.welcome":        "Welcome",
+    "nav.history":        "History",
+    "nav.protagonists":   "Key Figures",
+    "nav.timeline":       "Timeline",
+    "nav.bibliography":   "Bibliography",
+    "nav.feedback":       "Feedback",
+    "nav.quiz":           "Game / Quiz",
+    "nav.tests":          "Tests section",
+    "a11y.navShown":      "Menu opened",
+    "a11y.navHidden":     "Menu closed",
+    "a11y.navReady":      "Menu ready",
+    "a11y.loading":       "Loading",
+  },
+};
 
-    function a11y(msg){ announce.textContent = msg; setTimeout(()=>announce.textContent='',900); }
+/* ── Language engine ──────────────────────────────────────────
+   Reads the active locale, updates every [data-i18n] element,
+   syncs the <html lang> attribute, and highlights the active
+   language button. Persists the choice in localStorage.
+   ──────────────────────────────────────────────────────────── */
+function applyLang(lang) {
+  if (!I18N[lang]) return;
+  const dict = I18N[lang];
 
-    function showNav(){
-      if (localStorage.getItem('navHidden') === '1') return;
-      siteNav.classList.add('open');
-      siteNav.setAttribute('aria-hidden','false');
-      dimmer.classList.add('visible'); dimmer.setAttribute('aria-hidden','false');
-      lastFocused = document.activeElement;
-      const first = navList.querySelector('a, summary');
-      if (first) first.focus();
-      a11y('Meniu afișat');
-      console.log('[nav] shown');
-    }
+  // Update all translatable text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
 
-    function hideNav(){
-      siteNav.classList.remove('open');
-      siteNav.setAttribute('aria-hidden','true');
-      dimmer.classList.remove('visible'); dimmer.setAttribute('aria-hidden','true');
-      try{ if (lastFocused && lastFocused.focus) lastFocused.focus(); }catch(e){}
-      a11y('Meniu ascuns');
-      console.log('[nav] hidden');
-    }
+  // Sync the document language for screen readers and search engines
+  document.documentElement.lang = lang;
 
-    function toggleNav(){ siteNav.classList.contains('open') ? hideNav() : showNav(); }
+  // Update aria-pressed state on language buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const active = btn.dataset.lang === lang;
+    btn.classList.toggle('lang-active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
 
-    window.addEventListener('keydown', function(e){
-      const tag = document.activeElement && document.activeElement.tagName ? document.activeElement.tagName.toLowerCase() : '';
-      if (['input','textarea','select'].includes(tag) || (document.activeElement && document.activeElement.isContentEditable)){
-        if (e.key === 'Escape' && siteNav.classList.contains('open')){ e.preventDefault(); hideNav(); }
-        return;
+  // Expose the current locale so other scripts can read it
+  window.SITE_LANG = lang;
+
+  localStorage.setItem('siteLang', lang);
+}
+
+// Wire up language buttons — also broadcast to the embedded iframe
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    applyLang(btn.dataset.lang);
+    try {
+      const frame = document.getElementById('contentFrame');
+      if (frame && frame.contentWindow) {
+        frame.contentWindow.postMessage({ type: 'set-lang', lang: btn.dataset.lang }, '*');
       }
-      if (e.code === 'BracketLeft' || e.key === '['){ e.preventDefault(); toggleNav(); }
-      else if (e.key === 'Escape'){ if (siteNav.classList.contains('open')){ e.preventDefault(); hideNav(); } }
-    }, true);
+    } catch (_) {}
+  });
+});
 
-    function attachKeyListenerToContentFrame(){
-      try{
-        const win = contentFrame.contentWindow;
-        if(!win) return;
-        try{ win.removeEventListener('keydown', contentFrame._navKeyHandler); }catch(e){}
-        contentFrame._navKeyHandler = function(e){
-          if (e.code === 'BracketLeft' || e.key === '['){ e.preventDefault(); toggleNav(); }
-          else if (e.key === 'Escape'){ if (siteNav.classList.contains('open')){ e.preventDefault(); hideNav(); } }
-        };
-        win.addEventListener('keydown', contentFrame._navKeyHandler, true);
-        console.log('[parent] attached keydown listener inside content frame');
-      }catch(err){
-        console.warn('[parent] could not attach to contentFrame (cross-origin?)', err);
-      }
-    }
-    contentFrame.addEventListener('load', attachKeyListenerToContentFrame);
-    setTimeout(attachKeyListenerToContentFrame, 500);
+// Restore the language the user last chose (default: Romanian)
+applyLang(localStorage.getItem('siteLang') || 'ro');
+</script>
 
-    dimmer.addEventListener('click', ()=> { hideNav(); });
+<!-- ══════════════════════════════════════════════════════════
+     Sidebar navigation — open/close/toggle, keyboard shortcuts,
+     active-link tracking, and iframe key-event forwarding.
+     ══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  const siteNav      = document.getElementById('siteNav');
+  const dimmer       = document.getElementById('dimmer');
+  const navList      = document.getElementById('navList');
+  const announce     = document.getElementById('announce');
+  const contentFrame = document.getElementById('contentFrame');
+  const links        = Array.from(navList.querySelectorAll('a'));
 
-    navList.addEventListener('click', function(e){
-      const a = e.target.closest('a');
-      if (!a) return;
-      e.preventDefault();
-      links.forEach(l => l.classList.toggle('active', l === a));
-      const href = a.dataset.href || a.getAttribute('href');
-      if (contentFrame && href) contentFrame.src = href;
-      a11y('Se încarcă ' + (a.textContent || '').trim());
-      hideNav();
-    });
+  let lastFocused = null;
 
-    navList.addEventListener('click', function(e){
-      const summary = e.target.closest('summary');
-      if (!summary) return;
-      e.preventDefault();
-      const det = summary.parentElement;
-      det.open = !det.open;
-    });
-
-    window.portalNav = {
-      show: showNav,
-      hide: hideNav,
-      toggle: toggleNav,
-      isOpen: ()=> siteNav.classList.contains('open'),
-      resetHideFlag: ()=> { try{ localStorage.removeItem('navHidden'); siteNav.style.display=''; dimmer.style.display=''; }catch(e){} }
-    };
-
-    hideNav();
-    a11y('Meniul este gata');
-    console.log('[nav] sidebar ready. Use [ to toggle.');
-  })();
-  </script>
-
-  <script>
-  (function(){
-    const container = document.getElementById('navList');
-    if (!container) return;
-    const details = container.querySelectorAll('details');
-    details.forEach(d => {
-      const summary = d.querySelector('summary');
-      if (!summary) return;
-      if (!summary.querySelector('.coll-icon')) {
-        const icon = document.createElement('span');
-        icon.className = 'coll-icon';
-        icon.setAttribute('aria-hidden', 'true');
-        icon.style.display = 'inline-block';
-        icon.style.marginRight = '0.5rem';
-        icon.textContent = d.hasAttribute('open') ? '▾' : '▸';
-        summary.insertBefore(icon, summary.firstChild);
-      }
-      summary.setAttribute('aria-expanded', d.hasAttribute('open') ? 'true' : 'false');
-      d.addEventListener('toggle', ()=> {
-        const ic = summary.querySelector('.coll-icon');
-        if (ic) ic.textContent = d.open ? '▾' : '▸';
-        summary.setAttribute('aria-expanded', d.open ? 'true' : 'false');
-      });
-    });
-  })();
-  </script>
-  <script>
-document.getElementById('navToggleBtn').addEventListener('click', function(){
-  if (window.portalNav && window.portalNav.toggle) {
-    window.portalNav.toggle();
+  /* Post a transient message to the live region for screen readers. */
+  function a11y(key) {
+    const dict = I18N[window.SITE_LANG] || I18N.ro;
+    announce.textContent = dict[key] || key;
+    setTimeout(() => { announce.textContent = ''; }, 900);
   }
+
+  function showNav() {
+    if (localStorage.getItem('navHidden') === '1') return;
+    siteNav.classList.add('open');
+    siteNav.setAttribute('aria-hidden', 'false');
+    dimmer.classList.add('visible');
+    dimmer.setAttribute('aria-hidden', 'false');
+    lastFocused = document.activeElement;
+    const first = navList.querySelector('a, summary');
+    if (first) first.focus();
+    a11y('a11y.navShown');
+  }
+
+  function hideNav() {
+    siteNav.classList.remove('open');
+    siteNav.setAttribute('aria-hidden', 'true');
+    dimmer.classList.remove('visible');
+    dimmer.setAttribute('aria-hidden', 'true');
+    try { if (lastFocused?.focus) lastFocused.focus(); } catch (_) {}
+    a11y('a11y.navHidden');
+  }
+
+  function toggleNav() {
+    siteNav.classList.contains('open') ? hideNav() : showNav();
+  }
+
+  /* Global keyboard shortcuts: [ to toggle, Escape to close. */
+  window.addEventListener('keydown', function (e) {
+    const tag = document.activeElement?.tagName?.toLowerCase() ?? '';
+    const isEditable = ['input', 'textarea', 'select'].includes(tag)
+      || document.activeElement?.isContentEditable;
+
+    if (isEditable) {
+      if (e.key === 'Escape' && siteNav.classList.contains('open')) {
+        e.preventDefault();
+        hideNav();
+      }
+      return;
+    }
+
+    if (e.code === 'BracketLeft' || e.key === '[') {
+      e.preventDefault();
+      toggleNav();
+    } else if (e.key === 'Escape' && siteNav.classList.contains('open')) {
+      e.preventDefault();
+      hideNav();
+    }
+  }, true);
+
+  /* Mirror keyboard shortcuts inside the embedded iframe so users
+     can close the sidebar from any sub-page without switching focus. */
+  function attachKeyListenerToContentFrame() {
+    try {
+      const win = contentFrame.contentWindow;
+      if (!win) return;
+      try { win.removeEventListener('keydown', contentFrame._navKeyHandler); } catch (_) {}
+
+      contentFrame._navKeyHandler = function (e) {
+        if (e.code === 'BracketLeft' || e.key === '[') {
+          e.preventDefault();
+          toggleNav();
+        } else if (e.key === 'Escape' && siteNav.classList.contains('open')) {
+          e.preventDefault();
+          hideNav();
+        }
+      };
+
+      win.addEventListener('keydown', contentFrame._navKeyHandler, true);
+    } catch (err) {
+      // Cross-origin iframes block this access — silently skip
+    }
+  }
+
+  contentFrame.addEventListener('load', attachKeyListenerToContentFrame);
+  setTimeout(attachKeyListenerToContentFrame, 500);
+
+  // Close sidebar when clicking the dimmer overlay
+  dimmer.addEventListener('click', hideNav);
+
+  /* Handle link clicks inside the nav:
+     update the active state and load the target into the iframe. */
+  navList.addEventListener('click', function (e) {
+    const a = e.target.closest('a');
+    if (!a) return;
+    e.preventDefault();
+    links.forEach(l => l.classList.toggle('active', l === a));
+    const href = a.dataset.href || a.getAttribute('href');
+    if (contentFrame && href) contentFrame.src = href;
+    const dict = I18N[window.SITE_LANG] || I18N.ro;
+    a11y('a11y.loading');
+    hideNav();
+  });
+
+  /* Toggle <details> open/closed without native browser default. */
+  navList.addEventListener('click', function (e) {
+    const summary = e.target.closest('summary');
+    if (!summary) return;
+    e.preventDefault();
+    const det = summary.parentElement;
+    det.open = !det.open;
+  });
+
+  // Expose nav controls globally so sub-pages can call window.portalNav.*
+  window.portalNav = {
+    show:          showNav,
+    hide:          hideNav,
+    toggle:        toggleNav,
+    isOpen:        () => siteNav.classList.contains('open'),
+    resetHideFlag: () => {
+      try {
+        localStorage.removeItem('navHidden');
+        siteNav.style.display = '';
+        dimmer.style.display  = '';
+      } catch (_) {}
+    },
+  };
+
+  hideNav();
+  a11y('a11y.navReady');
+})();
+</script>
+
+<!-- ══════════════════════════════════════════════════════════
+     Collapsible <details> enhancement — injects animated
+     arrow icons and keeps aria-expanded in sync.
+     ══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  const container = document.getElementById('navList');
+  if (!container) return;
+
+  container.querySelectorAll('details').forEach(d => {
+    const summary = d.querySelector('summary');
+    if (!summary) return;
+
+    // Inject the toggle arrow only once
+    if (!summary.querySelector('.coll-icon')) {
+      const icon = document.createElement('span');
+      icon.className = 'coll-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.style.cssText = 'display:inline-block; margin-right:.5rem;';
+      icon.textContent = d.hasAttribute('open') ? '▾' : '▸';
+      summary.insertBefore(icon, summary.firstChild);
+    }
+
+    summary.setAttribute('aria-expanded', d.hasAttribute('open') ? 'true' : 'false');
+
+    d.addEventListener('toggle', () => {
+      const ic = summary.querySelector('.coll-icon');
+      if (ic) ic.textContent = d.open ? '▾' : '▸';
+      summary.setAttribute('aria-expanded', String(d.open));
+    });
+  });
+})();
+</script>
+
+<!-- Floating toggle button handler -->
+<script>
+document.getElementById('navToggleBtn').addEventListener('click', function () {
+  window.portalNav?.toggle();
 });
 </script>
+
 </body>
 </html>
