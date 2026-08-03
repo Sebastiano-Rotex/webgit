@@ -113,6 +113,16 @@
       color: #07120a;
     }
 
+    .cv-btn {
+      text-align: center;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), #ffb347);
+      color: #07120a !important;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .35);
+    }
+
+    .cv-btn:hover { filter: brightness(1.08); color: #07120a; }
+
     .footer { margin-top: auto; font-size: .92rem; color: rgba(255, 255, 255, .7); }
 
     /* Visually hidden but accessible to screen readers */
@@ -233,6 +243,7 @@
         <li role="none"><a role="menuitem" href="biografie.html"   data-href="biografie.html"   data-i18n="nav.bibliography">Bibliografie</a></li>
         <li role="none"><a role="menuitem" href="feed.html"        data-href="feed.html"        data-i18n="nav.feedback">Feedback</a></li>
         <li role="none"><a role="menuitem" href="joc.html"         data-href="joc.html"         data-i18n="nav.quiz">Joc / Quiz</a></li>
+        <li role="none"><a class="cv-btn" role="menuitem" href="cv_sebastiano_v3_bold.html" data-href="cv_sebastiano_v3_bold.html" data-i18n="nav.cv">📄 Vezi CV</a></li>
 
         <!-- Collapsible tests section -->
         <li role="none" aria-labelledby="teste-title">
@@ -278,6 +289,7 @@ const I18N = {
     "nav.bibliography":   "Bibliografie",
     "nav.feedback":       "Feedback",
     "nav.quiz":           "Joc / Quiz",
+    "nav.cv":             "📄 Vezi CV",
     "nav.tests":          "Secțiunea teste",
     "a11y.navShown":      "Meniu afișat",
     "a11y.navHidden":     "Meniu ascuns",
@@ -294,6 +306,7 @@ const I18N = {
     "nav.bibliography":   "Bibliografia",
     "nav.feedback":       "Feedback",
     "nav.quiz":           "Gioco / Quiz",
+    "nav.cv":             "📄 Vedi CV",
     "nav.tests":          "Sezione test",
     "a11y.navShown":      "Menu aperto",
     "a11y.navHidden":     "Menu chiuso",
@@ -310,6 +323,7 @@ const I18N = {
     "nav.bibliography":   "Bibliography",
     "nav.feedback":       "Feedback",
     "nav.quiz":           "Game / Quiz",
+    "nav.cv":             "📄 View CV",
     "nav.tests":          "Tests section",
     "a11y.navShown":      "Menu opened",
     "a11y.navHidden":     "Menu closed",
