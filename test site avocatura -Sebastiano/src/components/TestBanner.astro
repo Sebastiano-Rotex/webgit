@@ -1,0 +1,23 @@
+---
+import { site } from "../config/site";
+---
+
+{
+  site.testMode && (
+    <div class="test-banner" role="note">
+      Site de test — date fictive
+    </div>
+  )
+}
+
+<style>
+  .test-banner {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 1rem;
+  }
+</style>

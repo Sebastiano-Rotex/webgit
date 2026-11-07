@@ -1,0 +1,41 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { site } from "../config/site";
+---
+
+<LegalLayout
+  title="Declarație de accesibilitate"
+  description={`Angajamentul ${site.form} privind accesibilitatea site-ului: ținta WCAG 2.2 nivel AA, măsuri luate și cum ne puteți semnala o problemă.`}
+  path="/accesibilitate"
+  updated="7 noiembrie 2026"
+>
+  <p>
+    Ne dorim ca acest site să poată fi folosit de cât mai multe persoane, inclusiv de persoanele cu dizabilități.
+    Ținta noastră este conformitatea cu <strong>Ghidul de accesibilitate pentru conținut web (WCAG) 2.2, nivelul AA</strong>.
+  </p>
+
+  <h2>Ce am făcut</h2>
+  <ul>
+    <li>contrast suficient între text și fundal, atât în modul luminos, cât și în cel întunecat;</li>
+    <li>navigare completă din tastatură, cu indicator de focus vizibil și link „Sari la conținut”;</li>
+    <li>structură clară a titlurilor și repere de navigare (antet, meniu, conținut principal, subsol);</li>
+    <li>text alternativ pentru imagini;</li>
+    <li>formular cu etichete și mesaje de eroare asociate fiecărui câmp;</li>
+    <li>animațiile sunt oprite dacă ați activat în sistem opțiunea „reducere mișcare”;</li>
+    <li>zone de atingere de cel puțin 44 × 44 pixeli pe telefon;</li>
+    <li>textul poate fi mărit până la 200% fără pierderea conținutului.</li>
+  </ul>
+
+  <h2>Limitări cunoscute</h2>
+  <p>
+    Harta OpenStreetMap din pagina de contact este un serviciu extern și poate să nu fie complet accesibilă. Adresa este
+    afișată întotdeauna și în format text.
+  </p>
+
+  <h2>Semnalați o problemă</h2>
+  <p>
+    Dacă întâmpinați dificultăți în folosirea site-ului, vă rugăm să ne scrieți la
+    <a href={`mailto:${site.email}`}>{site.email}</a> sau să ne sunați la {site.phone}. Vom încerca să rezolvăm problema
+    și să vă oferim informația în alt format.
+  </p>
+</LegalLayout>

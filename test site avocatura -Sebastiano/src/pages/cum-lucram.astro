@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SignatureLine from "../components/SignatureLine.astro";
+import { steps } from "../lib/steps";
+import { site } from "../config/site";
+---
+
+<BaseLayout
+  title="Cum lucrăm"
+  description="Cei patru pași ai colaborării: primul contact, discuția inițială, contractul de asistență juridică și lucrul pe dosar. Plus principiile onorariului."
+  breadcrumbs={[{ name: "Cum lucrăm", href: "/cum-lucram" }]}
+>
+  <section class="container page-hero">
+    <span class="eyebrow">Cum lucrăm</span>
+    <h1>De la primul telefon până la ultimul termen</h1>
+    <SignatureLine variant="divider" class="ph-line" />
+    <p class="lead">Știi de la început ce urmează. Fiecare pas e explicat mai jos, inclusiv cum se stabilește onorariul.</p>
+  </section>
+
+  <section class="container steps-detailed" aria-label="Pașii colaborării">
+    <ol>
+      {
+        steps.map((s, i) => (
+          <li class="sd" data-reveal>
+            <span class="sd-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+            <div class="sd-body">
+              <h2><span class="visually-hidden">Pasul {i + 1}: </span>{s.title}</h2>
+              {s.details.map((p) => <p>{p}</p>)}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="onorariu">
+    <div class="container two-col">
+      <div data-reveal>
+        <span class="eyebrow">Onorariul</span>
+        <h2 id="onorariu">Cum se stabilește onorariul</h2>
+      </div>
+      <div class="prose" data-reveal>
+        <p>Onorariul nu este o sumă fixă, aceeași pentru toate cazurile. El se stabilește pentru fiecare situație în parte, după câteva principii simple:</p>
+        <ul class="checklist">
+          <li><strong>Complexitatea cazului.</strong> Contează volumul de muncă, numărul de acte și de termene, urgența și dificultatea juridică a problemei.</li>
+          <li><strong>Se convine în scris, înainte de începerea lucrului.</strong> Nu încep să lucrez pe dosar până nu știi exact ce plătești și pentru ce.</li>
+          <li><strong>Prin contract de asistență juridică.</strong> Onorariul, modul de plată și ce anume include sunt trecute în contract, așa cum prevede legea profesiei.</li>
+          <li><strong>Fără costuri ascunse.</strong> Dacă pot apărea cheltuieli separate (taxe judiciare, onorariul unui expert, al unui executor), îți spun din timp.</li>
+        </ul>
+        <p>La discuția inițială îți pot spune, după ce înțeleg situația, cum ar arăta onorariul în cazul tău.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="cta-band" data-reveal>
+      <div>
+        <h2>Primul pas e simplu</h2>
+        <p>Sună la {site.phone} sau completează formularul de contact.</p>
+      </div>
+      <a href="/contact#formular" class="btn btn--primary">Programează o discuție</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(.ph-line) { margin-top: 2rem; }
+  .steps-detailed ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .sd {
+    display: grid; gap: 1rem 3rem;
+    padding: clamp(2rem, 5vw, 3.5rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 48rem) { .sd { grid-template-columns: 12rem 1fr; } }
+  .sd-num {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 3rem + 4vw, 7rem);
+    line-height: 0.9;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+  .sd-body { max-width: var(--measure); }
+  .sd-body h2 { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem); }
+  .sd-body p:last-child { margin-bottom: 0; }
+
+  .two-col { display: grid; gap: 1rem clamp(2rem, 6vw, 6rem); }
+  @media (min-width: 56rem) { .two-col { grid-template-columns: 0.8fr 1.2fr; } }
+</style>

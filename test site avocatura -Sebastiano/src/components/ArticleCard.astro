@@ -1,0 +1,57 @@
+---
+import { Picture } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { formatDate, readingTime } from "../lib/format";
+
+interface Props {
+  entry: CollectionEntry<"articles">;
+  headingLevel?: "h2" | "h3";
+}
+const { entry, headingLevel = "h3" } = Astro.props;
+const { title, description, image, imageAlt, pubDate } = entry.data;
+const Heading = headingLevel;
+---
+
+<article class="acard" data-reveal>
+  <div class="acard-media">
+    <Picture
+      src={image}
+      formats={["avif", "webp"]}
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 64rem) 23rem, (min-width: 40rem) 45vw, 92vw"
+      width={1200}
+      height={675}
+      alt={imageAlt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <p class="acard-meta">
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    <span aria-hidden="true">·</span>
+    {readingTime(entry.body ?? "")} min de citit
+  </p>
+  <Heading class="acard-title"><a href={`/articole/${entry.id}`}>{title}</a></Heading>
+  <p class="acard-text">{description}</p>
+</article>
+
+<style>
+  .acard { position: relative; display: flex; flex-direction: column; }
+  .acard-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin-bottom: 1.25rem;
+    background: var(--line);
+  }
+  .acard-media :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+  .acard:hover .acard-media :global(img) { transform: scale(1.025); }
+  .acard-meta { font-size: 0.875rem; color: var(--muted-text); margin-bottom: 0.5rem; display: flex; gap: 0.5rem; }
+  .acard-title { font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.6rem; }
+  .acard-title a { color: var(--ink); text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size 0.4s var(--ease-out); }
+  .acard:hover .acard-title a { background-size: 100% 1px; }
+  .acard-title a::after { content: ""; position: absolute; inset: 0; }
+  .acard-title a:focus-visible { outline: none; }
+  .acard:has(.acard-title a:focus-visible) { outline: 2px solid var(--accent); outline-offset: 6px; }
+  .acard-text { color: var(--muted-text); font-size: 0.9688rem; margin: 0; }
+</style>

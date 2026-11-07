@@ -1,0 +1,253 @@
+---
+import { getCollection } from "astro:content";
+
+const areas = (await getCollection("practice")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<form class="cform" id="formular" data-contact-form novalidate aria-labelledby="cform-title">
+  <h2 id="cform-title" class="cform-title">Scrieți-mi</h2>
+  <p class="cform-intro muted">Câmpurile marcate cu <span aria-hidden="true">*</span><span class="visually-hidden">asterisc</span> sunt obligatorii. Este suficient un telefon <em>sau</em> o adresă de e-mail.</p>
+
+  <div class="field">
+    <label for="cf-name">Nume <span aria-hidden="true">*</span></label>
+    <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-err" maxlength="120" />
+    <p class="err" id="cf-name-err" hidden></p>
+  </div>
+
+  <fieldset class="field-pair" aria-describedby="cf-contact-err">
+    <legend>Cum vă pot contacta <span aria-hidden="true">*</span></legend>
+    <div class="field">
+      <label for="cf-phone">Telefon</label>
+      <input id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="cf-contact-err" maxlength="30" />
+    </div>
+    <div class="field">
+      <label for="cf-email">E-mail</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" aria-describedby="cf-contact-err" maxlength="160" />
+    </div>
+    <p class="err" id="cf-contact-err" hidden></p>
+  </fieldset>
+
+  <div class="field">
+    <label for="cf-area">Domeniu</label>
+    <div class="select-wrap">
+      <select id="cf-area" name="area">
+        <option value="">Alegeți (opțional)</option>
+        {areas.map((a) => <option value={a.id}>{a.data.title}</option>)}
+        <option value="altceva">Altceva</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="cf-message">Mesaj scurt</label>
+    <textarea id="cf-message" name="message" rows="5" maxlength="1000" aria-describedby="cf-count cf-message-err"></textarea>
+    <p class="hint" id="cf-count" aria-live="polite"><span data-count>0</span> / 1000 caractere</p>
+    <p class="err" id="cf-message-err" hidden></p>
+  </div>
+
+  <!-- honeypot: ascuns pentru oameni, completat de roboți -->
+  <div class="hp" aria-hidden="true">
+    <label for="cf-website">Website</label>
+    <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="field field-check">
+    <input id="cf-consent" name="consent" type="checkbox" required aria-describedby="cf-consent-err" />
+    <label for="cf-consent">
+      Am citit <a href="/confidentialitate">informarea privind datele personale</a>. <span aria-hidden="true">*</span>
+    </label>
+    <p class="err" id="cf-consent-err" hidden></p>
+  </div>
+
+  <p class="notice" role="note">
+    Vă rog să nu trimiteți documente sau detalii confidențiale prin acest formular. Le vom discuta la prima întâlnire.
+  </p>
+
+  <button type="submit" class="btn btn--primary">Trimite mesajul</button>
+
+  <div class="status" role="status" aria-live="polite" tabindex="-1" data-status hidden></div>
+</form>
+
+<style>
+  .cform { display: grid; gap: 1.5rem; }
+  .cform-title { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); margin: 0; }
+  .cform-intro { margin: -0.75rem 0 0; font-size: 0.9375rem; }
+
+  .field { display: grid; gap: 0.4rem; }
+  label, legend { font-weight: 540; font-size: 0.9688rem; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .field-pair { display: grid; gap: 1rem; }
+  .field-pair legend { margin-bottom: 0.75rem; padding: 0; }
+  @media (min-width: 40rem) {
+    .field-pair { grid-template-columns: 1fr 1fr; }
+    .field-pair legend, .field-pair .err { grid-column: 1 / -1; }
+  }
+
+  input[type="text"], input[type="tel"], input[type="email"], select, textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+  }
+  textarea { resize: vertical; min-height: 8rem; line-height: 1.5; }
+  input:hover, select:hover, textarea:hover { border-color: var(--ink); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: var(--accent); }
+  [aria-invalid="true"] { border-color: var(--accent) !important; border-width: 2px !important; }
+
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: ""; position: absolute; right: 1rem; top: 50%;
+    width: 0.5rem; height: 0.5rem; margin-top: -0.35rem;
+    border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+    transform: rotate(45deg); pointer-events: none;
+  }
+  select { appearance: none; padding-right: 2.5rem; }
+
+  .field-check { grid-template-columns: auto 1fr; align-items: start; gap: 0.75rem; }
+  .field-check input {
+    width: 1.375rem; height: 1.375rem; margin: 0.15rem 0 0;
+    accent-color: var(--accent);
+  }
+  .field-check label { font-weight: 400; min-height: 44px; }
+  .field-check .err { grid-column: 1 / -1; }
+
+  .hint { font-size: 0.875rem; color: var(--muted-text); margin: 0; justify-self: end; }
+  .err { color: var(--accent); font-size: 0.9063rem; font-weight: 540; margin: 0; }
+  .err::before { content: "! "; }
+
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+  .notice {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    font-size: 0.9375rem;
+  }
+
+  button[type="submit"] { justify-self: start; }
+  button[disabled] { opacity: 0.6; cursor: progress; }
+
+  .status {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    font-weight: 540;
+  }
+  .status:focus { outline: none; }
+</style>
+
+<script>
+  import { submitContact } from "../lib/contact";
+
+  function init() {
+    const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+    if (!form || form.dataset.ready) return;
+    form.dataset.ready = "1";
+    const startedAt = Date.now();
+
+    const $ = <T extends HTMLElement>(sel: string) => form.querySelector<T>(sel)!;
+    const name = $<HTMLInputElement>("#cf-name");
+    const phone = $<HTMLInputElement>("#cf-phone");
+    const email = $<HTMLInputElement>("#cf-email");
+    const area = $<HTMLSelectElement>("#cf-area");
+    const message = $<HTMLTextAreaElement>("#cf-message");
+    const consent = $<HTMLInputElement>("#cf-consent");
+    const website = $<HTMLInputElement>("#cf-website");
+    const count = $<HTMLElement>("[data-count]");
+    const status = $<HTMLElement>("[data-status]");
+    const submit = $<HTMLButtonElement>("button[type=submit]");
+
+    message.addEventListener("input", () => {
+      count.textContent = String(message.value.length);
+    });
+
+    const setError = (fields: HTMLElement[], errId: string, text: string | null) => {
+      const err = form.querySelector<HTMLElement>("#" + errId)!;
+      fields.forEach((f) => (text ? f.setAttribute("aria-invalid", "true") : f.removeAttribute("aria-invalid")));
+      err.hidden = !text;
+      err.textContent = text ?? "";
+    };
+
+    const validate = () => {
+      const errors: HTMLElement[] = [];
+      const n = name.value.trim();
+      if (n.length < 2) {
+        setError([name], "cf-name-err", "Vă rog să completați numele.");
+        errors.push(name);
+      } else setError([name], "cf-name-err", null);
+
+      const p = phone.value.trim();
+      const e = email.value.trim();
+      const phoneOk = /^[+()\d\s.-]{9,}$/.test(p) && p.replace(/\D/g, "").length >= 9;
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
+      if (!p && !e) {
+        setError([phone, email], "cf-contact-err", "Completați un număr de telefon sau o adresă de e-mail.");
+        errors.push(phone);
+      } else if (p && !phoneOk) {
+        setError([phone], "cf-contact-err", "Numărul de telefon nu pare complet. Verificați cifrele.");
+        email.removeAttribute("aria-invalid");
+        errors.push(phone);
+      } else if (e && !emailOk) {
+        setError([email], "cf-contact-err", "Adresa de e-mail nu pare corectă (exemplu: nume@domeniu.ro).");
+        phone.removeAttribute("aria-invalid");
+        errors.push(email);
+      } else setError([phone, email], "cf-contact-err", null);
+
+      if (message.value.length > 1000) {
+        setError([message], "cf-message-err", "Mesajul poate avea cel mult 1000 de caractere.");
+        errors.push(message);
+      } else setError([message], "cf-message-err", null);
+
+      if (!consent.checked) {
+        setError([consent], "cf-consent-err", "Bifați că ați citit informarea privind datele personale.");
+        errors.push(consent);
+      } else setError([consent], "cf-consent-err", null);
+
+      return errors;
+    };
+
+    // re-validare discretă după prima încercare
+    let attempted = false;
+    form.addEventListener("input", () => attempted && validate());
+    form.addEventListener("change", () => attempted && validate());
+
+    form.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      attempted = true;
+      const errors = validate();
+      if (errors.length) {
+        errors[0].focus();
+        return;
+      }
+      submit.disabled = true;
+      const res = await submitContact({
+        name: name.value.trim(),
+        phone: phone.value.trim(),
+        email: email.value.trim(),
+        area: area.value,
+        message: message.value.trim(),
+        consent: consent.checked,
+        website: website.value,
+        elapsed: Date.now() - startedAt,
+      });
+      submit.disabled = false;
+      status.hidden = false;
+      status.textContent = res.message;
+      status.focus();
+      if (res.ok) {
+        form.reset();
+        count.textContent = "0";
+        attempted = false;
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", init);
+</script>

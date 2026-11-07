@@ -1,0 +1,154 @@
+---
+import { Picture } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SignatureLine from "../components/SignatureLine.astro";
+import documente from "../assets/test/documente.jpg";
+import { site } from "../config/site";
+
+const timeline = [
+  { year: "2008–2012", text: "Facultatea de Drept, Universitatea din Iași (date de test)." },
+  { year: "2012–2014", text: "Avocat stagiar într-un cabinet din Iași, în principal pe cauze civile și de familie." },
+  { year: "2014", text: "Examenul de definitivat și înscrierea ca avocat definitiv în Baroul Iași." },
+  { year: "2014–2018", text: "Avocat colaborator, cu activitate în dreptul muncii și în litigii comerciale." },
+  { year: "Din 2018", text: `Activitate în ${site.form}.` },
+];
+
+const principles = [
+  {
+    title: "Confidențialitate",
+    text: "Tot ce îmi spui rămâne între noi. Secretul profesional al avocatului este o obligație legală, nu doar o promisiune.",
+  },
+  {
+    title: "Comunicare clară",
+    text: "Îți explic fără termeni complicați. Dacă folosesc un cuvânt juridic, îți spun și ce înseamnă. Afli din timp vești bune și mai puțin bune.",
+  },
+  {
+    title: "Termene respectate",
+    text: "Îți spun de la început ce termene sunt importante și cât durează, cu aproximație, fiecare etapă. Răspund în intervalul convenit.",
+  },
+  {
+    title: "Onestitate",
+    text: "Nu promit rezultate. Îți spun deschis ce șanse realiste văd și ce riscuri există, ca să poți decide informat.",
+  },
+];
+---
+
+<BaseLayout
+  title="Despre"
+  description={`Cine este ${site.name}: ce probleme rezolvă și pentru cine, parcursul profesional și principiile de lucru. ${site.form}, ${site.bar}.`}
+  breadcrumbs={[{ name: "Despre", href: "/despre" }]}
+>
+  <section class="container page-hero">
+    <span class="eyebrow">Despre</span>
+    <h1>Drept explicat simplu, pentru oameni și firme mici</h1>
+    <SignatureLine variant="divider" class="ph-line" />
+    <p class="lead">Sunt avocat în {site.bar} și lucrez într-un cabinet individual. Vorbești direct cu mine, de la prima întrebare până la ultimul termen.</p>
+  </section>
+
+  <div class="container">
+    <div class="wide-media">
+      <Picture
+        src={documente}
+        formats={["avif", "webp"]}
+        widths={[640, 1024, 1600]}
+        sizes="(min-width: 76rem) 72rem, 94vw"
+        width={1600}
+        height={1000}
+        alt="Dosare și documente ordonate pe biroul cabinetului, lângă un exemplar al Codului civil (imagine de test)."
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+
+  <section class="section container two-col" aria-labelledby="pentru-cine">
+    <h2 id="pentru-cine" data-reveal>Ce probleme rezolv și pentru cine</h2>
+    <div class="prose" data-reveal>
+      <p>
+        Lucrez mai ales cu <strong>persoane fizice</strong> care trec printr-o situație pe care nu au mai întâlnit-o: un
+        divorț, o concediere, o moștenire, o datorie pe care nu o recuperează. Și cu <strong>firme mici</strong> care au
+        nevoie de contracte clare și de cineva care să le răspundă repede la întrebări.
+      </p>
+      <p>Concret, te pot ajuta dacă:</p>
+      <ul class="checklist">
+        <li>ai primit o decizie, o notificare sau o citație și nu știi ce înseamnă;</li>
+        <li>vrei să semnezi un contract și vrei să înțelegi ce semnezi;</li>
+        <li>treci printr-un divorț și vrei să protejezi interesele copiilor;</li>
+        <li>cineva îți datorează bani și nu răspunde la mesaje;</li>
+        <li>ai o firmă și vrei să o organizezi corect din punct de vedere juridic.</li>
+      </ul>
+      <p><a href="/domenii" class="link-arrow">Vezi toate domeniile <span>→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="parcurs">
+    <div class="container two-col">
+      <div data-reveal>
+        <h2 id="parcurs">Parcurs profesional</h2>
+        <p class="test-note">Date fictive, de test</p>
+      </div>
+      <ol class="timeline" data-reveal>
+        {
+          timeline.map((t) => (
+            <li>
+              <span class="tl-year">{t.year}</span>
+              <span class="tl-text">{t.text}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section container" aria-labelledby="principii">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Principii de lucru</span>
+      <h2 id="principii">Cum îmi fac meseria</h2>
+    </div>
+    <div class="principles">
+      {
+        principles.map((p, i) => (
+          <div class="principle" data-reveal style={`transition-delay:${i * 80}ms`}>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container section--tight">
+    <div class="cta-band" data-reveal>
+      <div>
+        <h2>Forma de exercitare</h2>
+        <p>{site.form} · Avocat definitiv, {site.bar} · {site.address}</p>
+      </div>
+      <a href="/contact#formular" class="btn btn--primary">Programează o discuție</a>
+    </div>
+  </section>
+  <div class="spacer"></div>
+</BaseLayout>
+
+<style>
+  :global(.ph-line) { margin-top: 2rem; }
+  .wide-media { aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); background: var(--line); }
+  .wide-media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .two-col { display: grid; gap: 2rem clamp(2rem, 6vw, 6rem); }
+  @media (min-width: 56rem) { .two-col { grid-template-columns: 0.8fr 1.2fr; } }
+  .two-col h2 { max-width: 14ch; }
+
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .timeline li {
+    display: grid; gap: 0.25rem 2rem;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 40rem) { .timeline li { grid-template-columns: 9rem 1fr; } }
+  .tl-year { font-family: var(--font-display); font-size: 1.25rem; color: var(--accent); }
+
+  .principles { display: grid; gap: 2.5rem 3rem; }
+  @media (min-width: 40rem) { .principles { grid-template-columns: repeat(2, 1fr); } }
+  .principle { border-top: 2px solid var(--accent); padding-top: 1.25rem; }
+  .principle p { color: var(--muted-text); margin: 0; }
+  .spacer { height: var(--section); }
+</style>

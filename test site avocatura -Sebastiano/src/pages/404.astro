@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SignatureLine from "../components/SignatureLine.astro";
+---
+
+<BaseLayout title="Pagina nu a fost găsită" description="Pagina căutată nu există sau a fost mutată.">
+  <section class="container nf">
+    <span class="eyebrow">Eroare 404</span>
+    <h1>Firul s-a întrerupt aici.</h1>
+    <SignatureLine variant="hero" />
+    <p class="lead">Pagina pe care o căutați nu există sau a fost mutată.</p>
+    <div class="btn-row">
+      <a href="/" class="btn btn--primary">Înapoi la pagina principală</a>
+      <a href="/contact" class="btn">Contact</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { padding-block: clamp(5rem, 14vw, 11rem); }
+  .nf h1 { font-size: clamp(2.75rem, 1.5rem + 5vw, 5.5rem); letter-spacing: -0.03em; max-width: 14ch; }
+</style>

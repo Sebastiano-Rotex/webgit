@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PracticeCard from "../../components/PracticeCard.astro";
+import SignatureLine from "../../components/SignatureLine.astro";
+import { site } from "../../config/site";
+
+const practice = (await getCollection("practice")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Domenii de practică"
+  description={`Domeniile în care lucrează ${site.name} în ${site.city}: drept civil, dreptul familiei, dreptul muncii și drept comercial. Situații concrete și pași clari.`}
+  breadcrumbs={[{ name: "Domenii", href: "/domenii" }]}
+>
+  <section class="container page-hero">
+    <span class="eyebrow">Domenii de practică</span>
+    <h1>Cu ce te pot ajuta</h1>
+    <SignatureLine variant="divider" class="ph-line" />
+    <p class="lead">Patru domenii, alese pentru problemele pe care le întâlnesc cel mai des oamenii și firmele mici. Alege-l pe cel care se potrivește situației tale.</p>
+  </section>
+
+  <section class="container grid" aria-label="Lista domeniilor">
+    {practice.map((p) => <PracticeCard entry={p} headingLevel="h2" />)}
+  </section>
+
+  <section class="container section">
+    <div class="cta-band" data-reveal>
+      <div>
+        <h2>Nu știi în ce domeniu se încadrează situația ta?</h2>
+        <p>Nu e nevoie să știi. Spune-mi pe scurt ce s-a întâmplat și te îndrum.</p>
+      </div>
+      <a href="/contact#formular" class="btn btn--primary">Programează o discuție</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(.ph-line) { margin-top: 2rem; }
+  .grid { display: grid; gap: 1.5rem; }
+  @media (min-width: 40rem) { .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

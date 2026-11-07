@@ -1,0 +1,46 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { site, phoneHref } from "../config/site";
+---
+
+<LegalLayout
+  title="Mențiuni legale"
+  description={`Informații legale despre ${site.form}: forma de exercitare a profesiei, baroul, adresa și datele de contact.`}
+  path="/mentiuni-legale"
+  testNote={site.testMode ? "Date fictive, de test" : undefined}
+>
+  <h2>Date de identificare</h2>
+  <dl>
+    <dt>Forma de exercitare</dt>
+    <dd>{site.form}</dd>
+    <dt>Titular</dt>
+    <dd>{site.name}, avocat definitiv</dd>
+    <dt>Barou</dt>
+    <dd>{site.bar}, membru al Uniunii Naționale a Barourilor din România (UNBR)</dd>
+    <dt>Sediu profesional</dt>
+    <dd>{site.address}</dd>
+    <dt>Telefon</dt>
+    <dd><a href={phoneHref}>{site.phone}</a></dd>
+    <dt>E-mail</dt>
+    <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+    <dt>Program</dt>
+    <dd>{site.hours}</dd>
+  </dl>
+
+  <h2>Reglementarea profesiei</h2>
+  <p>
+    Profesia de avocat este reglementată de Legea nr. 51/1995 pentru organizarea și exercitarea profesiei de avocat și de
+    Statutul profesiei de avocat. Calitatea de avocat poate fi verificată în Tabloul avocaților publicat de {site.bar} și pe
+    site-ul UNBR.
+  </p>
+
+  <h2>Caracterul informațiilor de pe site</h2>
+  <p>
+    Informațiile publicate pe acest site au caracter general și informativ. Ele nu reprezintă consultanță juridică pentru
+    o situație anume și nu creează o relație avocat–client. O astfel de relație începe doar prin încheierea unui contract
+    de asistență juridică.
+  </p>
+
+  <h2>Drepturi de autor</h2>
+  <p>Textele de pe acest site aparțin {site.form}. Reproducerea lor fără acord scris nu este permisă.</p>
+</LegalLayout>

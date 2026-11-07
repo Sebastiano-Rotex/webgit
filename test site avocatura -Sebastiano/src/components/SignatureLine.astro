@@ -1,0 +1,68 @@
+---
+/**
+ * „Firul argumentului” — motivul semnătură al site-ului.
+ * - variant="hero": se desenează la încărcare (~900ms, ease-out).
+ * - variant="divider": versiune scurtă, se desenează când intră în ecran (o singură dată).
+ * - variant="steps": linie orizontală care leagă pașii (desktop).
+ * Cu prefers-reduced-motion: reduce, linia apare direct.
+ */
+interface Props {
+  variant?: "hero" | "divider" | "steps";
+  class?: string;
+}
+const { variant = "divider", class: className } = Astro.props;
+
+const shapes = {
+  hero: { viewBox: "0 0 360 28", d: "M2 18 C 60 6, 118 4, 178 13 S 300 26, 358 9", ratio: "xMinYMid meet" },
+  divider: { viewBox: "0 0 160 18", d: "M2 11 C 34 3, 66 3, 92 9 S 140 15, 158 6", ratio: "xMinYMid meet" },
+  steps: { viewBox: "0 0 1000 24", d: "M4 14 C 180 4, 320 4, 500 12 S 820 22, 996 8", ratio: "none" },
+} as const;
+const s = shapes[variant];
+---
+
+<svg
+  class:list={["sigline", `sigline--${variant}`, className]}
+  viewBox={s.viewBox}
+  preserveAspectRatio={s.ratio}
+  aria-hidden="true"
+  focusable="false"
+  data-draw={variant === "hero" ? undefined : ""}
+>
+  <path d={s.d} pathLength="1" />
+</svg>
+
+<style>
+  .sigline {
+    display: block;
+    overflow: visible;
+    color: var(--accent);
+  }
+  .sigline path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  .sigline--hero { width: min(22.5rem, 80%); height: auto; margin: 1.5rem 0 1.75rem; }
+  .sigline--divider { width: 10rem; height: auto; }
+  .sigline--steps { width: 100%; height: 24px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .sigline--hero path {
+      stroke-dashoffset: 1;
+      animation: sig-draw 900ms var(--ease-out) 250ms forwards;
+    }
+    :global(html.js) .sigline[data-draw] path {
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 900ms var(--ease-out);
+    }
+    :global(html.js) .sigline[data-draw].is-drawn path { stroke-dashoffset: 0; }
+    .sigline--steps path { transition-duration: 1400ms !important; }
+  }
+
+  @keyframes sig-draw {
+    to { stroke-dashoffset: 0; }
+  }
+</style>

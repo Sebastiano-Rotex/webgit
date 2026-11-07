@@ -1,0 +1,84 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { site } from "../config/site";
+---
+
+<LegalLayout
+  title="Politica de confidențialitate"
+  description={`Cum prelucrează ${site.form} datele personale transmise prin formularul de contact: ce date, în ce scop, cât timp și ce drepturi aveți.`}
+  path="/confidentialitate"
+  updated="7 noiembrie 2026"
+  testNote="Text de test — de revizuit de avocată"
+>
+  <p>
+    Această informare explică ce date personale prelucrăm atunci când ne contactați prin intermediul site-ului, de ce le
+    prelucrăm și ce drepturi aveți, conform Regulamentului (UE) 2016/679 (GDPR).
+  </p>
+
+  <h2>Cine este operatorul</h2>
+  <p>
+    Operatorul datelor este <strong>{site.form}</strong>, {site.bar}, cu sediul în {site.address}, e-mail
+    <a href={`mailto:${site.email}`}>{site.email}</a>, telefon {site.phone}.
+  </p>
+
+  <h2>Ce date colectează formularul de contact</h2>
+  <ul>
+    <li>numele;</li>
+    <li>numărul de telefon și/sau adresa de e-mail;</li>
+    <li>domeniul juridic ales (opțional);</li>
+    <li>mesajul scurt pe care îl scrieți (opțional).</li>
+  </ul>
+  <p>
+    Vă rugăm să nu includeți în mesaj documente, date despre sănătate, date despre fapte penale sau alte detalii
+    confidențiale. Acestea vor fi discutate direct, la prima întâlnire.
+  </p>
+  <p>
+    Site-ul nu folosește cookie-uri de urmărire, instrumente de analiză a traficului sau servicii de publicitate. Fonturile
+    și imaginile sunt găzduite pe același server. Harta OpenStreetMap din pagina de contact se încarcă doar dacă apăsați
+    butonul „Afișează harta”; în acel moment, browserul dumneavoastră se conectează la serverele OpenStreetMap.
+  </p>
+
+  <h2>În ce scop și pe ce temei</h2>
+  <p>
+    Folosim datele exclusiv pentru a vă răspunde și, la cererea dumneavoastră, pentru a programa o discuție. Temeiul
+    prelucrării este efectuarea de demersuri, la cererea dumneavoastră, înainte de încheierea unui eventual contract de
+    asistență juridică (art. 6 alin. (1) lit. b) GDPR), precum și interesul legitim de a răspunde solicitărilor primite
+    (art. 6 alin. (1) lit. f) GDPR).
+  </p>
+
+  <h2>Cât timp păstrăm datele</h2>
+  <p>
+    Dacă nu încheiem un contract de asistență juridică, ștergem mesajul și datele de contact în cel mult 6 luni de la
+    ultima comunicare. Dacă încheiem un contract, datele vor fi păstrate conform obligațiilor legale ale profesiei de
+    avocat, comunicate separat.
+  </p>
+
+  <h2>Cui transmitem datele</h2>
+  <p>
+    Nu vindem și nu transmitem datele către terți în scop de marketing. Datele pot fi accesate de furnizorii tehnici care
+    ne ajută să primim mesajele (de exemplu, furnizorul de e-mail sau de găzduire), aleși dintre cei care stochează datele
+    în Uniunea Europeană și care sunt obligați contractual să le protejeze.
+  </p>
+
+  <h2>Drepturile dumneavoastră</h2>
+  <p>Aveți dreptul:</p>
+  <ul>
+    <li>să aflați dacă vă prelucrăm datele și să primiți o copie a lor (dreptul de acces);</li>
+    <li>să cereți corectarea datelor inexacte (dreptul la rectificare);</li>
+    <li>să cereți ștergerea datelor (dreptul la ștergere);</li>
+    <li>să cereți restricționarea prelucrării;</li>
+    <li>să vă opuneți prelucrării bazate pe interes legitim;</li>
+    <li>să primiți datele într-un format structurat (dreptul la portabilitate);</li>
+    <li>
+      să depuneți o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal
+      (ANSPDCP).
+    </li>
+  </ul>
+
+  <h2>Contact pentru protecția datelor</h2>
+  <p>
+    Pentru orice întrebare sau cerere legată de datele personale, ne puteți scrie la
+    <a href={`mailto:${site.email}`}>{site.email}</a> sau la adresa {site.address}. Răspundem în cel mult o lună de la
+    primirea cererii.
+  </p>
+</LegalLayout>

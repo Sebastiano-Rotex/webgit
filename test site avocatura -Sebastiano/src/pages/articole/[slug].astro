@@ -1,0 +1,138 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { Picture, getImage } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import SignatureLine from "../../components/SignatureLine.astro";
+import { formatDate, readingTime } from "../../lib/format";
+import { articleLd } from "../../lib/schema";
+import { site } from "../../config/site";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("articles", ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<"articles"> }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const path = `/articole/${entry.id}`;
+
+const all = (await getCollection("articles", ({ data }) => !data.draft)).filter((a) => a.id !== entry.id);
+const similar = [
+  ...all.filter((a) => a.data.practice === d.practice),
+  ...all.filter((a) => a.data.practice !== d.practice).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+].slice(0, 2);
+
+const practice = (await getCollection("practice")).find((p) => p.id === d.practice);
+const imgJpg = await getImage({ src: d.image, width: 1200, format: "jpg" });
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  type="article"
+  image={d.image}
+  imageAlt={d.imageAlt}
+  publishedTime={d.pubDate}
+  jsonLd={[articleLd({ title: d.title, description: d.description, pubDate: d.pubDate, path, image: new URL(imgJpg.src, site.domain).href })]}
+  breadcrumbs={[
+    { name: "Articole", href: "/articole" },
+    { name: d.title, href: path },
+  ]}
+>
+  <article>
+    <header class="container art-head">
+      <nav class="crumbs" aria-label="Fir de navigare">
+        <a href="/articole">Articole</a>
+        {practice && <><span aria-hidden="true">/</span> <a href={`/domenii/${practice.id}`}>{practice.data.title}</a></>}
+      </nav>
+      <h1>{d.title}</h1>
+      <p class="art-meta">
+        <span>{site.name}</span>
+        <span aria-hidden="true">·</span>
+        <span>Publicat pe <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate)}</time></span>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime(entry.body ?? "")} min de citit</span>
+      </p>
+      <SignatureLine variant="divider" />
+    </header>
+
+    <div class="container art-media">
+      <Picture
+        src={d.image}
+        formats={["avif", "webp"]}
+        widths={[640, 960, 1200]}
+        sizes="(min-width: 60rem) 56rem, 94vw"
+        width={1200}
+        height={675}
+        alt={d.imageAlt}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+
+    <div class="container">
+      <div class="prose art-body">
+        <Content />
+        <p class="disclaimer">
+          Acest articol are caracter informativ general și nu reprezintă consultanță juridică pentru situația dumneavoastră.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <section class="container section--tight">
+    <div class="cta-band">
+      <div>
+        <h2>Ai o situație asemănătoare?</h2>
+        <p>Fiecare caz are particularitățile lui. Să discutăm despre al tău.</p>
+      </div>
+      <a href="/contact#formular" class="btn btn--primary">Programează o discuție</a>
+    </div>
+  </section>
+
+  {
+    similar.length > 0 && (
+      <section class="container section--tight similar" aria-labelledby="sim-title">
+        <h2 id="sim-title">Articole similare</h2>
+        <div class="sim-grid">{similar.map((a) => <ArticleCard entry={a} />)}</div>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .art-head { padding-top: clamp(2.5rem, 6vw, 5rem); max-width: calc(52rem + 2 * var(--gutter)); }
+  .art-head h1 { font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem); }
+  .crumbs { font-size: 0.9063rem; color: var(--muted-text); margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+  .crumbs a { display: inline-flex; min-height: 44px; align-items: center; }
+  .art-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 0.6rem; color: var(--muted-text); font-size: 0.9375rem; margin: 1.5rem 0; }
+
+  .art-media { max-width: calc(56rem + 2 * var(--gutter)); margin-block: 2.5rem; }
+  .art-media :global(img) { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); background: var(--line); }
+
+  .art-body {
+    margin-inline: auto;
+    font-size: clamp(1.0938rem, 1.03rem + 0.25vw, 1.1875rem);
+    line-height: 1.72;
+    padding-bottom: 2rem;
+  }
+  .art-body :global(h2) { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem); margin-top: 2.2em; }
+  .art-body :global(> p:first-child) { font-size: 1.15em; line-height: 1.6; }
+  .art-body :global(strong) { font-weight: 620; }
+  .art-body :global(ul), .art-body :global(ol) { padding-left: 1.4em; }
+  .art-body :global(li::marker) { color: var(--accent); }
+  .disclaimer {
+    margin-top: 3rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9375rem; color: var(--muted-text);
+  }
+
+  .similar { padding-bottom: var(--section); }
+  .similar h2 { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem); margin-bottom: 2rem; }
+  .sim-grid { display: grid; gap: 2rem; }
+  @media (min-width: 40rem) { .sim-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

@@ -1,0 +1,62 @@
+---
+import { Picture } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"practice">;
+  headingLevel?: "h2" | "h3";
+}
+const { entry, headingLevel = "h3" } = Astro.props;
+const { title, hook, summary, image, imageAlt } = entry.data;
+const Heading = headingLevel;
+const href = `/domenii/${entry.id}`;
+---
+
+<article class="card" data-reveal>
+  <div class="card-media">
+    <Picture
+      src={image}
+      formats={["avif", "webp"]}
+      widths={[400, 800]}
+      sizes="(min-width: 64rem) 17rem, (min-width: 40rem) 45vw, 92vw"
+      width={800}
+      height={600}
+      alt={imageAlt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="card-body">
+    <Heading class="card-title"><a href={href}>{title}</a></Heading>
+    <p class="card-hook">{hook}</p>
+    <p class="card-text">{summary}</p>
+    <span class="link-arrow" aria-hidden="true">Află mai mult <span>→</span></span>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: transform 0.35s var(--ease-out), border-color 0.35s;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .card:focus-within { border-color: var(--accent); }
+  .card-media { aspect-ratio: 4 / 3; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .card-media :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+  .card:hover .card-media :global(img) { transform: scale(1.025); }
+  .card-body { padding: 1.5rem 1.5rem 1rem; display: flex; flex-direction: column; flex: 1; }
+  .card-title { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .card-title a { color: var(--ink); text-decoration: none; }
+  /* întregul card devine clicabil, un singur link în ordinea de tab */
+  .card-title a::after { content: ""; position: absolute; inset: 0; }
+  .card-title a:focus-visible { outline: none; }
+  .card:has(.card-title a:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .card-hook { font-weight: 540; margin-bottom: 0.5rem; }
+  .card-text { color: var(--muted-text); font-size: 0.9688rem; flex: 1; }
+  .link-arrow { color: var(--accent); }
+</style>

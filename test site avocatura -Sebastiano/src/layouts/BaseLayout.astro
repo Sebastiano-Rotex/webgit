@@ -1,0 +1,65 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+import Fonts from "../components/Fonts.astro";
+import SEO, { type Crumb } from "../components/SEO.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  type?: "website" | "article";
+  image?: ImageMetadata;
+  imageAlt?: string;
+  jsonLd?: Record<string, unknown>[];
+  breadcrumbs?: Crumb[];
+  publishedTime?: Date;
+}
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#171513" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Fonts />
+    <SEO {...props} />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <ClientRouter fallback="none" />
+  </head>
+  <body>
+    <a class="skip-link" href="#continut">Sari la conținut</a>
+    <Header />
+    <main id="continut" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/main.ts";
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 200;
+    padding: 0.75rem 1.25rem;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 1rem; }
+  main:focus { outline: none; }
+</style>

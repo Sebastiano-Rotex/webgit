@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ContactDetails from "../components/ContactDetails.astro";
+import SignatureLine from "../components/SignatureLine.astro";
+import { site, mapCoords } from "../config/site";
+
+const d = 0.006;
+const bbox = [mapCoords.lon - d, mapCoords.lat - d / 2, mapCoords.lon + d, mapCoords.lat + d / 2].join(",");
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${mapCoords.lat},${mapCoords.lon}`;
+const mapLink = `https://www.openstreetmap.org/?mlat=${mapCoords.lat}&mlon=${mapCoords.lon}#map=17/${mapCoords.lat}/${mapCoords.lon}`;
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Programează o discuție cu ${site.name}: telefon ${site.phone}, e-mail ${site.email}, ${site.address}. ${site.hours}.`}
+  breadcrumbs={[{ name: "Contact", href: "/contact" }]}
+>
+  <section class="container page-hero">
+    <span class="eyebrow">Contact</span>
+    <h1>Programează o discuție</h1>
+    <SignatureLine variant="divider" class="ph-line" />
+    <p class="lead">Mă poți suna, îmi poți scrie un e-mail sau poți completa formularul. Întâlnirile au loc doar cu programare.</p>
+  </section>
+
+  <section class="container contact" aria-label="Date de contact și formular">
+    <div class="contact-info">
+      <h2 class="visually-hidden">Date de contact</h2>
+      <ContactDetails />
+
+      <div class="map" data-map>
+        <div class="map-placeholder" data-map-placeholder>
+          <svg class="map-pin" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+            <circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          </svg>
+          <p class="map-address">{site.address}</p>
+          <button type="button" class="btn btn--sm" data-map-load data-src={mapSrc}>Afișează harta</button>
+          <p class="map-note">Harta este furnizată de OpenStreetMap și se încarcă doar dacă apăsați butonul.</p>
+        </div>
+      </div>
+      <p class="map-link"><a href={mapLink} rel="noopener" target="_blank">Deschide adresa în OpenStreetMap<span class="visually-hidden"> (se deschide într-o filă nouă)</span></a></p>
+    </div>
+
+    <div class="contact-form">
+      <ContactForm />
+    </div>
+  </section>
+  <div class="spacer"></div>
+</BaseLayout>
+
+<style>
+  :global(.ph-line) { margin-top: 2rem; }
+  .contact { display: grid; gap: clamp(3rem, 6vw, 5rem); align-items: start; }
+  @media (min-width: 56rem) { .contact { grid-template-columns: 0.85fr 1.15fr; } }
+  .contact-info :global(.cdetails) { margin-top: 0; }
+  .contact-form {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .map {
+    margin-top: 2rem;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 31px, var(--line) 31px 32px),
+      repeating-linear-gradient(90deg, transparent 0 31px, var(--line) 31px 32px),
+      var(--surface);
+  }
+  .map :global(iframe) { width: 100%; height: 100%; border: 0; display: block; }
+  .map-placeholder {
+    height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.75rem; text-align: center; padding: 1.5rem;
+  }
+  .map-pin { color: var(--accent); }
+  .map-address {
+    margin: 0; font-family: var(--font-display); font-size: 1.25rem;
+    background: var(--surface); padding: 0 0.5rem;
+  }
+  .map-note { margin: 0; font-size: 0.8125rem; color: var(--muted-text); max-width: 28ch; background: var(--surface); }
+  .map-link { font-size: 0.9375rem; margin-top: 0.75rem; }
+  .map-link a { display: inline-flex; min-height: 44px; align-items: center; }
+  .spacer { height: var(--section); }
+</style>
+
+<script>
+  function initMap() {
+    const btn = document.querySelector<HTMLButtonElement>("[data-map-load]");
+    if (!btn || btn.dataset.ready) return;
+    btn.dataset.ready = "1";
+    btn.addEventListener("click", () => {
+      const wrap = document.querySelector<HTMLElement>("[data-map]")!;
+      const iframe = document.createElement("iframe");
+      iframe.src = btn.dataset.src!;
+      iframe.title = "Harta cu locația cabinetului (OpenStreetMap)";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer";
+      wrap.replaceChildren(iframe);
+      iframe.focus();
+    });
+  }
+  document.addEventListener("astro:page-load", initMap);
+</script>

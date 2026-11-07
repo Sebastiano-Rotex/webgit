@@ -1,0 +1,35 @@
+---
+import { site, phoneHref } from "../config/site";
+---
+
+<dl class="cdetails">
+  <div>
+    <dt>Telefon</dt>
+    <dd><a href={phoneHref}>{site.phone}</a></dd>
+  </div>
+  <div>
+    <dt>E-mail</dt>
+    <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+  </div>
+  <div>
+    <dt>Adresă</dt>
+    <dd>{site.address}</dd>
+  </div>
+  <div>
+    <dt>Program</dt>
+    <dd>{site.hours}</dd>
+  </div>
+  <div>
+    <dt>Forma de exercitare</dt>
+    <dd>{site.form}, {site.bar}</dd>
+  </div>
+</dl>
+
+<style>
+  .cdetails { margin: 2rem 0 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .cdetails div { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  dt { font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-text); font-weight: 560; margin-bottom: 0.2rem; }
+  dd { margin: 0; font-size: 1.0625rem; }
+  dd a { display: inline-flex; min-height: 44px; align-items: center; font-family: var(--font-display); font-size: 1.375rem; text-decoration: none; }
+  dd a:hover { text-decoration: underline; }
+</style>

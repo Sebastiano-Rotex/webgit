@@ -1,0 +1,149 @@
+---
+import { getCollection } from "astro:content";
+import { Picture, getImage } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import PracticeCard from "../components/PracticeCard.astro";
+import Steps from "../components/Steps.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ContactDetails from "../components/ContactDetails.astro";
+import SignatureLine from "../components/SignatureLine.astro";
+import birou from "../assets/test/birou.jpg";
+import portrait from "../assets/test/portret-avocata.jpg";
+import { site } from "../config/site";
+import { legalServiceLd, personLd } from "../lib/schema";
+
+const practice = (await getCollection("practice")).sort((a, b) => a.data.order - b.data.order);
+const articles = (await getCollection("articles", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const portraitJpg = await getImage({ src: portrait, width: 800, format: "jpg" });
+const img = new URL(portraitJpg.src, site.domain).href;
+---
+
+<BaseLayout
+  title="Acasă"
+  description={`${site.name}, avocat în ${site.bar}. Drept civil, dreptul familiei, dreptul muncii și drept comercial pentru persoane și firme mici din ${site.city}.`}
+  jsonLd={[legalServiceLd(img), personLd(img)]}
+>
+  <Hero />
+
+  <section class="section section--surface" aria-labelledby="domenii-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Domenii de practică</span>
+        <h2 id="domenii-title">Situații concrete, explicate simplu</h2>
+        <p>Cele mai multe probleme juridice încep cu o întrebare simplă. Iată cu ce te pot ajuta.</p>
+      </div>
+      <div class="grid-4">
+        {practice.map((p) => <PracticeCard entry={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="cum-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Cum lucrăm</span>
+        <h2 id="cum-title">Patru pași, fără surprize</h2>
+        <p>Știi de la început ce urmează, ce faci tu și ce fac eu.</p>
+      </div>
+      <Steps />
+      <p class="more" data-reveal><a href="/cum-lucram" class="link-arrow">Detalii despre fiecare pas și despre onorariu <span>→</span></a></p>
+    </div>
+  </section>
+
+  <div class="container divider"><SignatureLine variant="divider" /></div>
+
+  <section class="section" aria-labelledby="despre-title">
+    <div class="container about">
+      <div class="about-media" data-reveal>
+        <Picture
+          src={birou}
+          formats={["avif", "webp"]}
+          widths={[600, 900, 1400]}
+          sizes="(min-width: 64rem) 36rem, 92vw"
+          width={1600}
+          height={1000}
+          alt="Biroul cabinetului: o masă de lucru cu dosare și o bibliotecă cu volume de legislație (imagine de test)."
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="about-text" data-reveal>
+        <span class="eyebrow">Despre</span>
+        <h2 id="despre-title">Un avocat pe care îl poți suna direct</h2>
+        <p>
+          Lucrez într-un cabinet individual, în {site.city}. Asta înseamnă că vorbești cu mine de la primul telefon până la
+          ultimul termen. Îți explic ce se întâmplă în dosarul tău în cuvinte obișnuite și îți spun deschis ce se poate și ce
+          nu se poate face.
+        </p>
+        <p class="muted">{site.form} · {site.bar}</p>
+        <a href="/despre" class="link-arrow">Mai multe despre mine <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="articole-title">
+    <div class="container">
+      <div class="section-head head-row" data-reveal>
+        <div>
+          <span class="eyebrow">Articole recente</span>
+          <h2 id="articole-title">Ghiduri scurte, în limbaj simplu</h2>
+        </div>
+        <a href="/articole" class="link-arrow">Toate articolele <span>→</span></a>
+      </div>
+      <div class="grid-3">
+        {articles.map((a) => <ArticleCard entry={a} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="contact-title">
+    <div class="container contact">
+      <div class="contact-info" data-reveal>
+        <span class="eyebrow">Contact</span>
+        <h2 id="contact-title">Să vorbim despre situația ta</h2>
+        <p class="muted">Programările se fac în prealabil, telefonic sau prin formular.</p>
+        <ContactDetails />
+      </div>
+      <div class="contact-form" data-reveal>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid-4 { display: grid; gap: 1.5rem; }
+  @media (min-width: 40rem) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 64rem) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+  .grid-3 { display: grid; gap: 2.5rem 2rem; }
+  @media (min-width: 40rem) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 64rem) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+  .more { margin-top: 3rem; }
+
+  .divider { display: flex; justify-content: center; }
+
+  .about { display: grid; gap: clamp(2.5rem, 5vw, 5rem); align-items: center; }
+  @media (min-width: 56rem) { .about { grid-template-columns: 1.1fr 0.9fr; } }
+  .about-media { aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--radius); background: var(--line); }
+  .about-media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .about-text p:first-of-type { font-size: 1.125em; }
+
+  .head-row { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; max-width: none; }
+  .head-row h2 { margin-bottom: 0; }
+
+  .contact { display: grid; gap: clamp(3rem, 6vw, 5rem); }
+  @media (min-width: 56rem) { .contact { grid-template-columns: 0.8fr 1.2fr; } }
+  .contact-form {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+</style>

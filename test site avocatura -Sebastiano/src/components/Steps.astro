@@ -1,0 +1,67 @@
+---
+import { steps } from "../lib/steps";
+import SignatureLine from "./SignatureLine.astro";
+
+interface Props {
+  headingLevel?: "h2" | "h3";
+}
+const { headingLevel = "h3" } = Astro.props;
+const Heading = headingLevel;
+---
+
+<div class="steps">
+  <SignatureLine variant="steps" class="steps-line" />
+  <ol class="steps-list">
+    {
+      steps.map((s, i) => (
+        <li class="step" data-reveal style={`transition-delay:${i * 90}ms`}>
+          <span class="step-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+          <Heading class="step-title">
+            <span class="visually-hidden">Pasul {i + 1}: </span>
+            {s.title}
+          </Heading>
+          <p>{s.short}</p>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .steps { position: relative; }
+  .steps-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 2.5rem;
+    counter-reset: none;
+  }
+  @media (min-width: 40rem) { .steps-list { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 64rem) { .steps-list { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+
+  .step { position: relative; padding-top: 0.5rem; }
+  .step-num {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
+    line-height: 1;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+    background: var(--paper);
+    padding-right: 0.75rem;
+    margin-bottom: 1rem;
+    font-variant-numeric: lining-nums;
+  }
+  .step-title { font-size: 1.375rem; margin-bottom: 0.6rem; }
+  .step p { color: var(--muted-text); font-size: 0.9688rem; margin: 0; }
+
+  :global(.steps-line) { display: none !important; }
+  @media (min-width: 64rem) {
+    :global(.steps-line) {
+      display: block !important;
+      position: absolute;
+      left: 0; right: 0;
+      top: 2.9rem;
+    }
+    .steps-list { position: relative; }
+  }
+</style>

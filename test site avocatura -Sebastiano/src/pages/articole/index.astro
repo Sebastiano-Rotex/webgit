@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import SignatureLine from "../../components/SignatureLine.astro";
+
+const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Articole"
+  description="Ghiduri juridice scurte, în limbaj simplu: concediere, divorț, datorii neplătite. Informații generale pentru a înțelege primii pași."
+  breadcrumbs={[{ name: "Articole", href: "/articole" }]}
+>
+  <section class="container page-hero">
+    <span class="eyebrow">Articole</span>
+    <h1>Ghiduri scurte, în limbaj simplu</h1>
+    <SignatureLine variant="divider" class="ph-line" />
+    <p class="lead">Explicații generale despre situații întâlnite des. Te ajută să înțelegi primii pași, dar nu înlocuiesc o discuție despre cazul tău.</p>
+  </section>
+
+  <section class="container grid" aria-label="Lista articolelor">
+    {articles.map((a) => <ArticleCard entry={a} headingLevel="h2" />)}
+  </section>
+  <div class="spacer"></div>
+</BaseLayout>
+
+<style>
+  :global(.ph-line) { margin-top: 2rem; }
+  .grid { display: grid; gap: 3rem 2rem; }
+  @media (min-width: 40rem) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 64rem) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .spacer { height: var(--section); }
+</style>

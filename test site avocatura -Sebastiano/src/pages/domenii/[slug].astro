@@ -1,0 +1,141 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FAQ from "../../components/FAQ.astro";
+import SignatureLine from "../../components/SignatureLine.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { faqLd } from "../../lib/schema";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("practice");
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<"practice"> }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const others = (await getCollection("practice"))
+  .filter((p) => p.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order);
+const related = (await getCollection("articles", ({ data }) => !data.draft && data.practice === entry.id)).slice(0, 2);
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  image={d.image}
+  imageAlt={d.imageAlt}
+  jsonLd={[faqLd(d.faq)]}
+  breadcrumbs={[
+    { name: "Domenii", href: "/domenii" },
+    { name: d.title, href: `/domenii/${entry.id}` },
+  ]}
+>
+  <section class="container page-hero practice-hero">
+    <div>
+      <nav class="crumbs" aria-label="Fir de navigare">
+        <a href="/domenii">Domenii</a> <span aria-hidden="true">/</span> <span aria-current="page">{d.title}</span>
+      </nav>
+      <h1>{d.title}</h1>
+      <SignatureLine variant="divider" class="ph-line" />
+      <p class="lead">{d.hook}</p>
+    </div>
+    <div class="practice-media">
+      <Picture
+        src={d.image}
+        formats={["avif", "webp"]}
+        widths={[400, 800]}
+        sizes="(min-width: 56rem) 28rem, 92vw"
+        width={800}
+        height={600}
+        alt={d.imageAlt}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="container section--tight two-col" aria-labelledby="intro">
+    <h2 id="intro">Ce acoperă</h2>
+    <div class="prose intro"><Content /></div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="container lists">
+      <div data-reveal>
+        <h2>Situații în care te pot ajuta</h2>
+        <ul class="checklist">{d.situations.map((s) => <li>{s}</li>)}</ul>
+      </div>
+      <div data-reveal>
+        <h2>Ce documente e bine să pregătești</h2>
+        <ul class="checklist">{d.documents.map((s) => <li>{s}</li>)}</ul>
+        <p class="note">Nu-ți face griji dacă nu le ai pe toate. Le aduci pe cele pe care le găsești, iar restul le stabilim împreună.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" aria-labelledby="faq-title">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">{d.title}</span>
+      <h2 id="faq-title">Întrebări frecvente</h2>
+    </div>
+    <FAQ items={d.faq} />
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="container section--tight" aria-labelledby="rel-title">
+        <h2 id="rel-title" class="small-h">Articole din acest domeniu</h2>
+        <div class="rel-grid">{related.map((a) => <ArticleCard entry={a} />)}</div>
+      </section>
+    )
+  }
+
+  <section class="container section--tight">
+    <div class="cta-band" data-reveal>
+      <div>
+        <h2>Vrei să discutăm situația ta?</h2>
+        <p>Programările se fac în prealabil. Prima discuție te ajută să afli ce opțiuni ai.</p>
+      </div>
+      <a href="/contact#formular" class="btn btn--primary">Programează o discuție</a>
+    </div>
+  </section>
+
+  <nav class="container section--tight others" aria-label="Alte domenii">
+    <p class="eyebrow">Alte domenii</p>
+    <ul>
+      {others.map((o) => <li><a href={`/domenii/${o.id}`} class="link-arrow">{o.data.title} <span>→</span></a></li>)}
+    </ul>
+  </nav>
+</BaseLayout>
+
+<style>
+  :global(.ph-line) { margin-top: 1.5rem; }
+  .crumbs { font-size: 0.9063rem; color: var(--muted-text); margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+  .crumbs a { display: inline-flex; min-height: 44px; align-items: center; }
+  .practice-hero { display: grid; gap: 2.5rem; align-items: end; }
+  @media (min-width: 56rem) { .practice-hero { grid-template-columns: 1.2fr 0.8fr; } }
+  .practice-media { aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius); background: var(--line); }
+  .practice-media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .two-col { display: grid; gap: 1rem clamp(2rem, 6vw, 6rem); }
+  @media (min-width: 56rem) { .two-col { grid-template-columns: 0.8fr 1.2fr; } }
+  .intro :global(p:first-child) { font-size: 1.1875em; }
+
+  .lists { display: grid; gap: 3.5rem clamp(2rem, 6vw, 6rem); }
+  @media (min-width: 56rem) { .lists { grid-template-columns: 1fr 1fr; } }
+  .lists h2 { font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem); margin-bottom: 1.5rem; }
+  .note { margin-top: 1.75rem; color: var(--muted-text); font-size: 0.9375rem; }
+
+  .small-h { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem); margin-bottom: 2rem; }
+  .rel-grid { display: grid; gap: 2rem; }
+  @media (min-width: 40rem) { .rel-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .others { padding-bottom: var(--section); }
+  .others ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; }
+  .others a { font-family: var(--font-display); font-size: 1.375rem; }
+</style>
