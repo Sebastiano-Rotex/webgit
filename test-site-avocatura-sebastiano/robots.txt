@@ -1,0 +1,3 @@
+# Site de test — indexarea este blocată
+User-agent: *
+Disallow: /
